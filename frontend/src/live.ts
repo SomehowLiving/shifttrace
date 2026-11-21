@@ -1,3 +1,4 @@
+import { needSignIn, signedIn } from "./api";
 // One shared EventSource for backend state changes; components refetch on relevant topics.
 import { useCallback, useEffect, useRef, useState } from "react";
 
@@ -67,6 +68,9 @@ export function useFetch<T>(url: string | null, deps: unknown[] = []): { data: T
     let cancelled = false;
     fetch(url)
       .then(async (r) => {
+        // Hosted console: a protected read means the browser has not signed in yet (public pages never redirect).
+        if (r.status === 401) { if (!["/", "/floor"].includes(window.location.pathname)) needSignIn(); throw new Error("Sign in to the console"); }
+        if (r.ok) signedIn();
         const body = await r.json().catch(() => null);
         if (!r.ok) throw new Error(body?.detail?.message ?? body?.detail ?? `HTTP ${r.status}`);
         return body as T;

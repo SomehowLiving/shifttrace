@@ -63,12 +63,27 @@ export interface Health {
 export interface VoiceCreds { agent_id: string; channel: string; user_uid: number; agent_uid: number; app_id: string; token: string }
 export interface StartResult { session_id: string; asset_id: string; task_id?: string; voice: VoiceCreds | null; voice_error: string | null }
 
+/** Hosted console: a request needed the console password. Go to a page the server protects so the browser asks for it.
+ *  The product page and the 3D view are public, so from there go to the board; elsewhere reload once (no loop if cancelled). */
+export function needSignIn() {
+  const p = window.location.pathname;
+  if (p === "/" || p === "/floor") { window.location.assign("/board"); return; }
+  try {
+    if (sessionStorage.getItem("signin-reload")) return;
+    sessionStorage.setItem("signin-reload", "1");
+  } catch { /* storage blocked: reload anyway, once per page view */ }
+  window.location.reload();
+}
+export function signedIn() { try { sessionStorage.removeItem("signin-reload"); } catch { /* ignore */ } }
+
 async function req<T>(method: string, url: string, body?: unknown): Promise<T> {
   const res = await fetch(url, {
     method,
     headers: body !== undefined ? { "content-type": "application/json" } : undefined,
     body: body !== undefined ? JSON.stringify(body) : undefined,
   });
+  if (res.status === 401) { needSignIn(); throw new Error("Sign in to the console to do this."); }
+  if (res.ok) signedIn();
   const text = await res.text();
   const data = text ? JSON.parse(text) : null;
   if (!res.ok) {

@@ -847,10 +847,22 @@ def create_app() -> FastAPI:
         import base64
         import hmac as _hmac
         open_paths = ("/healthz", "/api/integrations/receiver")
+        # The product page and the 3D floor view are public, with the read-only data they show (synthetic demo data).
+        # Everything that changes something, starts a voice session or configures the site stays behind the password.
+        public_pages = ("/", "/floor", "/favicon.ico")
+        public_reads = ("/api/assets", "/api/tool-actions", "/api/sessions", "/api/handoffs", "/api/costs", "/api/stream")
+
+        def _is_public(request: Request) -> bool:
+            path = request.url.path
+            if path in open_paths:
+                return True
+            if request.method not in ("GET", "HEAD"):
+                return False
+            return path in public_pages or path in public_reads or path.startswith("/assets/") or path.startswith("/api/testkit/media/")
 
         @app.middleware("http")
         async def _console_auth(request: Request, call_next):
-            if request.url.path in open_paths:
+            if _is_public(request):
                 return await call_next(request)
             auth = request.headers.get("authorization", "")
             ok = False
