@@ -10,8 +10,6 @@ services:
         value: "1"
       - key: CONSOLE_PASSWORD      # required: the console has no accounts and can start paid Agora sessions
         sync: false
-      - key: MCP_PUBLIC_URL        # this service's https URL, e.g. https://shifttrace.onrender.com
-        sync: false
       - key: MCP_TOKEN
         generateValue: true
       - key: AGORA_APP_ID

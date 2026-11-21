@@ -94,7 +94,7 @@ uv run python scripts/ui_smoke.py   # headless Edge: every page + console-driven
 ## Deploy (Render)
 The repo includes a `Dockerfile` and a `render.yaml` blueprint. In hosted mode one container serves the console and the MCP server on `$PORT`, so no tunnel is needed:
 - `SHIFTTRACE_SINGLE_PORT=1` turns hosted mode on (set in the Dockerfile).
-- `MCP_PUBLIC_URL` is the service's own https URL. Agora calls `<url>/mcp` with the bearer `MCP_TOKEN`.
+- The public URL comes from Render's `RENDER_EXTERNAL_URL` (or set `MCP_PUBLIC_URL`). Agora calls `<url>/mcp` with the bearer `MCP_TOKEN`.
 - `CONSOLE_PASSWORD` is required: the console has no user accounts and can start paid Agora sessions. The browser asks for it (any user name).
 - Set `AGORA_APP_ID`, `AGORA_APP_CERTIFICATE`, `AGORA_CUSTOMER_ID`, `AGORA_CUSTOMER_SECRET` and `MURF_API_KEY` in the Render dashboard.
 - The free plan's disk is temporary: the synthetic demo data is re-seeded on each start, and the service sleeps when idle (the first request takes about a minute).

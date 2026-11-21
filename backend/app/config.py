@@ -33,7 +33,8 @@ class Settings:
     )
     llm_model: str = field(default_factory=lambda: _env("AGORA_LLM_MODEL", "gpt-4o-mini"))
     # Public URL (tunnel) where Agora cloud can reach the MCP server, e.g. https://x.trycloudflare.com
-    mcp_public_url: str = field(default_factory=lambda: _env("MCP_PUBLIC_URL").rstrip("/"))
+    # On Render, RENDER_EXTERNAL_URL (set by the platform) is this service's https URL, used when MCP_PUBLIC_URL is unset.
+    mcp_public_url: str = field(default_factory=lambda: (_env("MCP_PUBLIC_URL") or _env("RENDER_EXTERNAL_URL")).rstrip("/"))
     # Bearer token Agora must present to the MCP server. Random per process if unset.
     mcp_token: str = field(default_factory=lambda: _env("MCP_TOKEN") or secrets.token_urlsafe(24))
     # Hosted mode (Render and similar): one public port ($PORT) serves the console and /mcp together.
