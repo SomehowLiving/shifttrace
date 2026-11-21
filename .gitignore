@@ -7,7 +7,5 @@ __pycache__/
 node_modules/
 frontend/dist/
 .DS_Store
-experiments/media/web/
-experiments/media/generated/
 # Live-run recordings (large); results.json and screenshots are kept
 experiments/scenarios*/*/audio/
