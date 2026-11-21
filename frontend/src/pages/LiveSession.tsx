@@ -122,7 +122,7 @@ function EvidenceRowLive({ e }: { e: Evidence }) {
     : src === "agent_inference" ? { icon: <Lightbulb size={15} />, tone: "ochre", label: "AI hypothesis" }
     : src === "claim_guard" ? { icon: <ShieldAlert size={15} />, tone: "red", label: "Claim check failed" }
     : src === "technician" ? { icon: <User size={15} />, tone: "blue", label: "Technician" }
-    : { icon: <Database size={15} />, tone: "teal", label: "System record" };
+    : { icon: <Database size={15} />, tone: "ink", label: "System record" };
   return (
     <Row time={fmtTime(e.ts).slice(0, 8)} node={<Node icon={spec.icon} tone={spec.tone} />} tag={<Tag icon={spec.icon} label={spec.label} tone={spec.tone} />}>
       <div className="text-[13px] text-pencil">{loop ? (e.event_type === "hypothesis" ? "Hypothesis, to check" : "Open question") : e.event_type === "visual_observation" ? "Seen on camera" : SOURCE[src]?.label ?? src}</div>
