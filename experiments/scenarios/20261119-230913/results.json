@@ -1,0 +1,83 @@
+{
+ "core": {
+  "error": "TimeoutError: agent not ready after 60s; state={'st': {'rtc': 'CONNECTED', 'agentJoined': True, 'agentState': None, 'rtm': 'CONNECTED'}, 'n': 11} errors=[]"
+ },
+ "next_shift": {
+  "ready_s": 14.5,
+  "steps": [
+   {
+    "name": "next_shift",
+    "said": "What happened with C two oh four? What did we try, and what is still open?",
+    "heard": "What happened with c two zero four? | What did we try? And what is still open?",
+    "asr_similarity": 0.52,
+    "replies": [
+     "The previous shift reported an A-17 warning after replacing the TS-2 temperature sensor. The drive-end vibration was 7.4 mm/s, raising concern about bearing wear, which remains unconfirmed. The open items include questions about when vibration occurs relative to the warning and the coupling inspection, which hasn't been done yet. \n\nWould you like to check the stock for the suspected bearing, BRG-6316-C3?"
+    ],
+    "tools": [
+     {
+      "tool": "get_previous_handoff",
+      "status": "ok",
+      "input": {
+       "asset_id": "C-204"
+      },
+      "ms": 2,
+      "caller": "agora_mcp"
+     },
+     {
+      "tool": "get_open_items",
+      "status": "ok",
+      "input": {
+       "asset_id": "C-204"
+      },
+      "ms": 3,
+      "caller": "agora_mcp"
+     }
+    ],
+    "evidence": [],
+    "latency_ms": 4004,
+    "duration_s": 55.3,
+    "checks": [
+     [
+      "used stored handoff",
+      true,
+      ""
+     ],
+     [
+      "mentions bearing order",
+      true,
+      ""
+     ],
+     [
+      "mentions what is still open",
+      true,
+      ""
+     ]
+    ],
+    "camera": "blank:",
+    "passed": true
+   }
+  ],
+  "session_id": "S-1002",
+  "audio": "C:\\Users\\nidhi\\dev\\voice\\shifttrace\\experiments\\scenarios\\20261119-230913\\audio\\next_shift.webm",
+  "page_errors": [],
+  "agent_config_tts": {
+   "vendor": "murf",
+   "params": {
+    "api_key": "***redacted***",
+    "base_url": "wss://global.api.murf.ai/v1/speech/stream-input",
+    "voiceId": "en-IN-isha",
+    "locale": "en-IN",
+    "model": "FALCON",
+    "sample_rate": 24000
+   }
+  },
+  "audio_level": {
+   "mean_db": -20.4,
+   "max_db": -1.0,
+   "duration": null
+  }
+ },
+ "approval": {
+  "error": "TimeoutError: agent not ready after 60s; state={'st': {'rtc': 'CONNECTED', 'agentJoined': True, 'agentState': None, 'rtm': 'CONNECTED'}, 'n': 11} errors=[]"
+ }
+}

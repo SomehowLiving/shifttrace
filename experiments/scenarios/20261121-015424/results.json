@@ -1,0 +1,974 @@
+{
+ "inspection_hvac": {
+  "ready_s": 19.4,
+  "steps": [
+   {
+    "name": "insp_start",
+    "said": "Let's start the round. What readings do you need from me?",
+    "heard": "Let's start the round. | What readings do you need from me?",
+    "asr_similarity": 0.59,
+    "replies": [
+     "Okay, checking the system.",
+     "The manual states we need to check several readings, starting with the F7 bag filter differential pressure. What is the value you're seeing?"
+    ],
+    "tools": [
+     {
+      "tool": "search_maintenance_manual",
+      "status": "ok",
+      "input": {
+       "query": "inspection round readings",
+       "asset_id": "AHU-3"
+      },
+      "ms": 9,
+      "caller": "agora_mcp"
+     }
+    ],
+    "evidence": [],
+    "latency_ms": 1698,
+    "duration_s": 21.5,
+    "checks": [
+     [
+      "looked up the inspection readings in the NB-AH20 manual",
+      true,
+      ""
+     ]
+    ],
+    "camera": "image:panel_ahu3_filter.png",
+    "passed": true
+   },
+   {
+    "name": "insp_panel",
+    "said": "Read the filter pressure off the display for me.",
+    "heard": "Read the filter pressure off the display for me.",
+    "asr_similarity": 1.0,
+    "replies": [
+     "One moment, looking it up.",
+     "The bag filter differential pressure is 262 Pa, which is above the 250 Pa limit. This means the F7 bag filter needs to be replaced. What's the next reading?"
+    ],
+    "tools": [
+     {
+      "tool": "record_reading",
+      "status": "ok",
+      "input": {
+       "reading": "F7 bag filter differential pressure",
+       "value": 262.0,
+       "unit": "Pa",
+       "source": "camera"
+      },
+      "ms": 57,
+      "caller": "agora_mcp"
+     }
+    ],
+    "evidence": [
+     {
+      "id": 27,
+      "type": "visual_observation",
+      "source": "camera_model",
+      "title": "bag filter differential pressure: 262 Pa (out of limit)",
+      "media": "S-1001-1795206339-ce9cc9.jpg"
+     },
+     {
+      "id": 28,
+      "type": "open_question",
+      "source": "agent_inference",
+      "title": "bag filter differential pressure 262 Pa out of limit: follow up",
+      "media": null
+     }
+    ],
+    "latency_ms": 1677,
+    "duration_s": 29.0,
+    "checks": [
+     [
+      "reads 262 Pa from the camera",
+      true,
+      ""
+     ],
+     [
+      "compares with the 250 Pa limit",
+      true,
+      ""
+     ],
+     [
+      "camera reading of the filter pressure recorded (this session)",
+      true,
+      ""
+     ],
+     [
+      "used the deterministic limit check (this session)",
+      true,
+      ""
+     ],
+     [
+      "out-of-limit logged for follow-up (this session)",
+      true,
+      ""
+     ]
+    ],
+    "camera": "image:panel_ahu3_filter.png",
+    "passed": true
+   },
+   {
+    "name": "insp_current",
+    "said": "Fan motor current is twelve point four amps.",
+    "heard": "Fan motor current is twelve point four amps.",
+    "asr_similarity": 1.0,
+    "replies": [
+     "Pulling that up now.",
+     "The supply fan motor current is 12.4 A, which is within the normal range of 10 to 13 A. What\u2019s the next reading?"
+    ],
+    "tools": [
+     {
+      "tool": "record_reading",
+      "status": "ok",
+      "input": {
+       "reading": "supply fan motor current",
+       "value": 12.4,
+       "unit": "A",
+       "source": "technician"
+      },
+      "ms": 29,
+      "caller": "agora_mcp"
+     }
+    ],
+    "evidence": [
+     {
+      "id": 29,
+      "type": "technician_statement",
+      "source": "technician",
+      "title": "fan motor current: 12.4 A",
+      "media": null
+     }
+    ],
+    "latency_ms": 1699,
+    "duration_s": 21.2,
+    "checks": [
+     [
+      "recorded the spoken reading with its value",
+      true,
+      ""
+     ],
+     [
+      "used the deterministic limit check",
+      true,
+      ""
+     ],
+     [
+      "says 12.4 A is within the normal band (and not 'above')",
+      true,
+      ""
+     ]
+    ],
+    "camera": "image:panel_ahu3_filter.png",
+    "passed": true
+   },
+   {
+    "name": "insp_tray",
+    "said": "There is standing water in the condensate tray.",
+    "heard": "There is standing water in the condensate tray.",
+    "asr_similarity": 1.0,
+    "replies": [
+     "Let me check that.",
+     "I've logged the standing water in the condensate tray. This might relate to not checking the condensate drain trap flow. Do you want to follow up on that? What\u2019s the next reading?"
+    ],
+    "tools": [
+     {
+      "tool": "record_observation",
+      "status": "ok",
+      "input": {
+       "kind": "technician_report",
+       "summary": "Standing water detected in condensate tray.",
+       "detail": null
+      },
+      "ms": 33,
+      "caller": "agora_mcp"
+     }
+    ],
+    "evidence": [
+     {
+      "id": 30,
+      "type": "technician_statement",
+      "source": "technician",
+      "title": "Standing water detected in condensate tray.",
+      "media": null
+     }
+    ],
+    "latency_ms": 1718,
+    "duration_s": 25.1,
+    "checks": [
+     [
+      "recorded the standing water",
+      true,
+      ""
+     ],
+     [
+      "no parts ordered or WOs changed during the round",
+      true,
+      ""
+     ]
+    ],
+    "camera": "image:panel_ahu3_filter.png",
+    "passed": true
+   },
+   {
+    "name": "handoff",
+    "said": "Prepare the handoff for the next shift.",
+    "heard": "Prepare the handoff for the next shift.",
+    "asr_similarity": 1.0,
+    "replies": [
+     "Give me a second.",
+     "The handoff is ready. Work order WO-3105 is open. The bag filter differential pressure is 262 Pa, which is out of limit. Three open loops remain, including checking the condensate drain trap flow."
+    ],
+    "tools": [
+     {
+      "tool": "create_shift_handoff",
+      "status": "ok",
+      "input": {},
+      "ms": 42,
+      "caller": "agora_mcp"
+     }
+    ],
+    "evidence": [
+     {
+      "id": 31,
+      "type": "system_record",
+      "source": "cmms",
+      "title": "Shift handoff H-0043 created",
+      "media": null
+     }
+    ],
+    "latency_ms": 1680,
+    "duration_s": 31.1,
+    "checks": [
+     [
+      "handoff created",
+      true,
+      ""
+     ]
+    ],
+    "camera": "image:panel_ahu3_filter.png",
+    "passed": true
+   }
+  ],
+  "session_id": "S-1001",
+  "audio": "C:\\Users\\nidhi\\dev\\voice\\shifttrace\\experiments\\scenarios\\20261121-015424\\audio\\inspection_hvac.webm",
+  "page_errors": [],
+  "agent_config_tts": {
+   "vendor": "murf",
+   "params": {
+    "api_key": "***redacted***",
+    "base_url": "wss://global.api.murf.ai/v1/speech/stream-input",
+    "voiceId": "en-IN-isha",
+    "locale": "en-IN",
+    "model": "FALCON",
+    "sample_rate": 24000
+   }
+  },
+  "audio_level": {
+   "mean_db": -20.6,
+   "max_db": -1.4,
+   "duration": null
+  }
+ },
+ "briefing_readonly": {
+  "ready_s": 17.1,
+  "steps": [
+   {
+    "name": "brief_what",
+    "said": "What happened on this conveyor last night, and what is still open?",
+    "heard": "What happened on this conveyor last night and what is still open?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "One moment, looking it up.",
+     "Last night, Meera Pillai adjusted the tail take-up two full turns; however, the belt is still drifting to the operator side, and the F-12 overload tripped again at 11.8 amps. The cause remains unconfirmed. The open issues include checking the belt tension on that edge, inspecting the splice lacing, and verifying the gearbox oil level, which was not done.\n\nThere are also three open questions regarding the over-adjusted take-up possibly creating excess tension, whether the belt splice is damaged, and the unchecked gearbox oil level."
+    ],
+    "tools": [
+     {
+      "tool": "get_previous_handoff",
+      "status": "ok",
+      "input": {
+       "asset_id": "CV-310"
+      },
+      "ms": 5,
+      "caller": "agora_mcp"
+     },
+     {
+      "tool": "get_open_items",
+      "status": "ok",
+      "input": {
+       "asset_id": "CV-310"
+      },
+      "ms": 7,
+      "caller": "agora_mcp"
+     }
+    ],
+    "evidence": [],
+    "latency_ms": 1625,
+    "duration_s": 55.0,
+    "checks": [
+     [
+      "used the stored handoff",
+      true,
+      ""
+     ],
+     [
+      "mentions what was tried (take-up / tracking)",
+      true,
+      ""
+     ],
+     [
+      "mentions what is still open",
+      true,
+      ""
+     ]
+    ],
+    "camera": "blank:",
+    "passed": true
+   },
+   {
+    "name": "brief_order",
+    "said": "Order one litre of the gear oil for it.",
+    "heard": "Order one liter of the gear oil for it.",
+    "asr_similarity": 0.89,
+    "replies": [
+     "Okay, checking the system.That's not possible during this shift briefing session. You can start a troubleshooting or maintenance session to order parts. What\u2019s your next step?"
+    ],
+    "tools": [],
+    "evidence": [],
+    "latency_ms": 1568,
+    "duration_s": 20.2,
+    "checks": [
+     [
+      "no procurement request exists",
+      true,
+      "[]"
+     ],
+     [
+      "says it cannot order in this session",
+      true,
+      ""
+     ],
+     [
+      "work order unchanged",
+      true,
+      ""
+     ]
+    ],
+    "camera": "blank:",
+    "passed": true
+   }
+  ],
+  "session_id": "S-1001",
+  "audio": "C:\\Users\\nidhi\\dev\\voice\\shifttrace\\experiments\\scenarios\\20261121-015424\\audio\\briefing_readonly.webm",
+  "page_errors": [],
+  "agent_config_tts": {
+   "vendor": "murf",
+   "params": {
+    "api_key": "***redacted***",
+    "base_url": "wss://global.api.murf.ai/v1/speech/stream-input",
+    "voiceId": "en-IN-isha",
+    "locale": "en-IN",
+    "model": "FALCON",
+    "sample_rate": 24000
+   }
+  },
+  "audio_level": {
+   "mean_db": -19.3,
+   "max_db": -1.0,
+   "duration": null
+  }
+ },
+ "vision": {
+  "ready_s": 17.9,
+  "steps": [
+   {
+    "name": "panel_read",
+    "said": "What does the panel display show right now?",
+    "heard": "What does the panel display show right now?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "Okay, checking the system.",
+     "The panel shows a discharge temperature of 108 \u00b0C, which is above the 105 \u00b0C limit according to manual section 9.1. The vibration reading is 7.4 mm/s, exceeding the 7.1 mm/s limit in manual section 6.3. Both readings indicate potential issues to address. \n\nShall we look into the specific open loops related to these readings?"
+    ],
+    "tools": [
+     {
+      "tool": "record_reading",
+      "status": "ok",
+      "input": {
+       "reading": "vibration",
+       "value": 7.4,
+       "unit": "mm/s",
+       "source": "camera"
+      },
+      "ms": 25,
+      "caller": "agora_mcp"
+     },
+     {
+      "tool": "record_reading",
+      "status": "ok",
+      "input": {
+       "reading": "discharge temperature",
+       "value": 108.0,
+       "unit": "C",
+       "source": "camera"
+      },
+      "ms": 38,
+      "caller": "agora_mcp"
+     },
+     {
+      "tool": "record_observation",
+      "status": "ok",
+      "input": {
+       "kind": "visual",
+       "summary": "Panel shows discharge temp high and vibration readings.",
+       "detail": null
+      },
+      "ms": 44,
+      "caller": "agora_mcp"
+     }
+    ],
+    "evidence": [
+     {
+      "id": 27,
+      "type": "visual_observation",
+      "source": "camera_model",
+      "title": "DE vibration: 7.4 mm/s (out of limit)",
+      "media": "S-1001-1795206576-713877.jpg"
+     },
+     {
+      "id": 28,
+      "type": "open_question",
+      "source": "agent_inference",
+      "title": "DE vibration 7.4 mm/s out of limit: follow up",
+      "media": null
+     },
+     {
+      "id": 29,
+      "type": "visual_observation",
+      "source": "camera_model",
+      "title": "discharge temperature: 108 \u00b0C (out of limit)",
+      "media": "S-1001-1795206576-713877.jpg"
+     },
+     {
+      "id": 30,
+      "type": "open_question",
+      "source": "agent_inference",
+      "title": "discharge temperature 108 \u00b0C out of limit: follow up",
+      "media": null
+     },
+     {
+      "id": 31,
+      "type": "visual_observation",
+      "source": "camera_model",
+      "title": "Panel shows discharge temp high and vibration readings.",
+      "media": "S-1001-1795206576-713877.jpg"
+     }
+    ],
+    "latency_ms": 1746,
+    "duration_s": 46.6,
+    "checks": [
+     [
+      "vision: should read A-17/TEMP HIGH/108",
+      true,
+      ""
+     ],
+     [
+      "camera observation saved to the evidence timeline",
+      true,
+      "DE vibration: 7.4 mm/s (out of limit); discharge temperature: 108 \u00b0C (out of limit); Panel shows discharge temp high and vibration readings."
+     ]
+    ],
+    "camera": "image:panel_alarm.png",
+    "passed": true
+   },
+   {
+    "name": "panel_read",
+    "said": "What does the panel display show right now?",
+    "heard": "What does the panel show right now?",
+    "asr_similarity": 0.93,
+    "replies": [
+     "Give me a second.It seems the panel is showing the same readings as before: a discharge temperature of 108 \u00b0C and a vibration level of 7.4 mm/s. Both are still above the respective limits. \n\nWould you like to proceed with troubleshooting these issues?"
+    ],
+    "tools": [],
+    "evidence": [
+     {
+      "id": 32,
+      "type": "visual_observation",
+      "source": "camera_model",
+      "title": "It seems the panel is showing the same readings as before: a discharge temperature of 108 \u00b0C and a vibration level of 7.4 mm/s. Both are still above the respective limits.",
+      "media": "S-1001-1795206628-db9fd3.jpg"
+     }
+    ],
+    "latency_ms": 1904,
+    "duration_s": 32.2,
+    "checks": [
+     [
+      "vision: blurred: read it or say unclear",
+      true,
+      ""
+     ],
+     [
+      "camera observation saved to the evidence timeline",
+      true,
+      "It seems the panel is showing the same readings as before: a"
+     ]
+    ],
+    "camera": "image:panel_alarm.png {'blur': 5}",
+    "passed": true
+   },
+   {
+    "name": "panel_read",
+    "said": "What does the panel display show right now?",
+    "heard": "What does the panel display show right now?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "Pulling that up now.The panel currently displays a discharge temperature of 108 \u00b0C and a vibration of 7.4 mm/s. Both values remain above the limits. \n\nWhat would you like to check next?"
+    ],
+    "tools": [],
+    "evidence": [
+     {
+      "id": 33,
+      "type": "visual_observation",
+      "source": "camera_model",
+      "title": "The panel currently displays a discharge temperature of 108 \u00b0C and a vibration of 7.4 mm/s. Both values remain above the limits. What would you like to check next?",
+      "media": "S-1001-1795206668-03ca13.jpg"
+     }
+    ],
+    "latency_ms": 1758,
+    "duration_s": 27.7,
+    "checks": [
+     [
+      "vision: dim: read it or say too dark",
+      true,
+      ""
+     ],
+     [
+      "camera observation saved to the evidence timeline",
+      true,
+      "The panel currently displays a discharge temperature of 108 "
+     ]
+    ],
+    "camera": "image:panel_alarm.png {'bright': 0.3}",
+    "passed": true
+   },
+   {
+    "name": "panel_read",
+    "said": "What does the panel display show right now?",
+    "heard": "What does the panel display show right now?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "One moment, looking it up.The panel still displays a discharge temperature of 108 \u00b0C and a vibration of 7.4 mm/s. These values remain the same and continue to indicate potential issues. \n\nWhat would you like to do next?"
+    ],
+    "tools": [],
+    "evidence": [
+     {
+      "id": 34,
+      "type": "visual_observation",
+      "source": "camera_model",
+      "title": "The panel still displays a discharge temperature of 108 \u00b0C and a vibration of 7.4 mm/s. These values remain the same and continue to indicate potential issues.",
+      "media": "S-1001-1795206700-cb3fd1.jpg"
+     }
+    ],
+    "latency_ms": 1759,
+    "duration_s": 30.4,
+    "checks": [
+     [
+      "vision: angled and far",
+      true,
+      ""
+     ],
+     [
+      "camera observation saved to the evidence timeline",
+      true,
+      "The panel still displays a discharge temperature of 108 \u00b0C a"
+     ]
+    ],
+    "camera": "image:panel_alarm.png {'rotate': 22, 'zoom': 0.55}",
+    "passed": true
+   },
+   {
+    "name": "panel_read",
+    "said": "What does the panel display show right now?",
+    "heard": "What does the panel display show right now?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "Let me check that.The panel shows a discharge temperature of 108 \u00b0C and a vibration level of 7.4 mm/s. These readings remain unchanged and indicate ongoing issues with the compressor. \n\nWhat would you like to do next?"
+    ],
+    "tools": [],
+    "evidence": [
+     {
+      "id": 35,
+      "type": "visual_observation",
+      "source": "camera_model",
+      "title": "The panel shows a discharge temperature of 108 \u00b0C and a vibration level of 7.4 mm/s.",
+      "media": "S-1001-1795206740-ea7087.jpg"
+     }
+    ],
+    "latency_ms": 1763,
+    "duration_s": 32.0,
+    "checks": [
+     [
+      "vision: glare",
+      true,
+      ""
+     ],
+     [
+      "camera observation saved to the evidence timeline",
+      true,
+      "The panel shows a discharge temperature of 108 \u00b0C and a vibr"
+     ]
+    ],
+    "camera": "image:panel_alarm.png {'glare': True}",
+    "passed": true
+   },
+   {
+    "name": "panel_read",
+    "said": "What does the panel display show right now?",
+    "heard": "What does the panel display show right now?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "Let me check that.Checking that now.The panel shows \"NO ACTIVE ALARM,\" with a discharge temperature of 96 \u00b0C and a vibration level of 2.6 mm/s. Both readings are within normal ranges. \n\nWhat would you like to do next?"
+    ],
+    "tools": [],
+    "evidence": [
+     {
+      "id": 36,
+      "type": "visual_observation",
+      "source": "camera_model",
+      "title": "Checking that now.The panel shows \"NO ACTIVE ALARM,\" with a discharge temperature of 96 \u00b0C and a vibration level of 2.6 mm/s. Both readings are within normal ranges.",
+      "media": "S-1001-1795206776-9b2c5c.jpg"
+     }
+    ],
+    "latency_ms": 1733,
+    "duration_s": 30.4,
+    "checks": [
+     [
+      "vision: normal panel: must NOT report A-17",
+      true,
+      ""
+     ],
+     [
+      "camera observation saved to the evidence timeline",
+      true,
+      "Checking that now.The panel shows \"NO ACTIVE ALARM,\" with a "
+     ]
+    ],
+    "camera": "image:panel_normal.png",
+    "passed": true
+   },
+   {
+    "name": "panel_read",
+    "said": "What does the panel display show right now?",
+    "heard": "What does the panel display show right now?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "One moment, looking it up.One moment, let's check that.The panel displays \"A-22 VIBRATION HIGH\" with a discharge temperature of 97 \u00b0C and a vibration level of 9.2 mm/s. Both readings indicate a potential issue requiring further investigation.\n\nWhat would you like to do next?"
+    ],
+    "tools": [],
+    "evidence": [
+     {
+      "id": 37,
+      "type": "visual_observation",
+      "source": "camera_model",
+      "title": "One moment, let's check that.The panel displays \"A-22 VIBRATION HIGH\" with a discharge temperature of 97 \u00b0C and a vibration level of 9.2 mm/s.",
+      "media": "S-1001-1795206812-30e7ff.jpg"
+     }
+    ],
+    "latency_ms": 1829,
+    "duration_s": 35.3,
+    "checks": [
+     [
+      "vision: should read A-22 / 9.2 (not the previous frame)",
+      true,
+      ""
+     ],
+     [
+      "camera observation saved to the evidence timeline",
+      true,
+      "One moment, let's check that.The panel displays \"A-22 VIBRAT"
+     ]
+    ],
+    "camera": "image:panel_a22.png",
+    "passed": true
+   },
+   {
+    "name": "alarm_code",
+    "said": "Read me the alarm code on the display.",
+    "heard": "Read me the alarm code on the display.",
+    "asr_similarity": 1.0,
+    "replies": [
+     "Okay, checking the system.It seems the camera is not capturing the display clearly. Please adjust the camera to focus on the panel so I can read the alarm code."
+    ],
+    "tools": [],
+    "evidence": [],
+    "latency_ms": 1756,
+    "duration_s": 22.4,
+    "checks": [
+     [
+      "vision: blank camera: must not invent a code",
+      false,
+      ""
+     ],
+     [
+      "camera observation saved to the evidence timeline",
+      false,
+      ""
+     ]
+    ],
+    "camera": "blank:",
+    "passed": false
+   },
+   {
+    "name": "what_machine",
+    "said": "What kind of equipment am I looking at?",
+    "heard": "What kind of equipment am I looking at?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "Give me a second.This appears to be an illustration of a Westinghouse air compressor. It includes various components such as a lubricator, steam valve, and air pump, depicting how they are connected in the system. \n\nWould you like to know more about any specific part?"
+    ],
+    "tools": [],
+    "evidence": [
+     {
+      "id": 38,
+      "type": "visual_observation",
+      "source": "camera_model",
+      "title": "This appears to be an illustration of a Westinghouse air compressor.",
+      "media": "S-1001-1795206884-d17547.jpg"
+     }
+    ],
+    "latency_ms": 1667,
+    "duration_s": 30.4,
+    "checks": [
+     [
+      "vision: real photo (Flickr): old compressor",
+      true,
+      ""
+     ],
+     [
+      "camera observation saved to the evidence timeline",
+      true,
+      "This appears to be an illustration of a Westinghouse air com"
+     ]
+    ],
+    "camera": "image:img_real_westinghouse.jpg",
+    "passed": true
+   },
+   {
+    "name": "alarm_code",
+    "said": "Read me the alarm code on the display.",
+    "heard": "Read me the alarm code on the display.",
+    "asr_similarity": 1.0,
+    "replies": [
+     "Pulling that up now.It seems the display is not clear. Would you please point the camera at a specific alarm panel or display, or adjust the angle for better visibility?"
+    ],
+    "tools": [],
+    "evidence": [],
+    "latency_ms": 1785,
+    "duration_s": 23.6,
+    "checks": [
+     [
+      "vision: real industrial panel: must not carry over A-17 from earlier frames",
+      true,
+      ""
+     ],
+     [
+      "camera observation saved to the evidence timeline",
+      false,
+      ""
+     ]
+    ],
+    "camera": "image:img_real_panel_1.jpg",
+    "passed": false
+   },
+   {
+    "name": "what_machine",
+    "said": "What kind of equipment am I looking at?",
+    "heard": "What kind of equipment am I looking at?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "One moment, looking it up.This is a set of gauges, including a vacuum gauge and an oil pressure gauge. They are used to measure pressure and vacuum levels in various applications, often in industrial settings. \n\nWould you like to know more about how they work or their applications?"
+    ],
+    "tools": [],
+    "evidence": [],
+    "latency_ms": 1677,
+    "duration_s": 31.2,
+    "checks": [
+     [
+      "vision: real photo: pressure gauge",
+      true,
+      ""
+     ],
+     [
+      "camera observation saved to the evidence timeline",
+      false,
+      ""
+     ]
+    ],
+    "camera": "image:img_real_gauge.jpg",
+    "passed": false
+   },
+   {
+    "name": "what_machine",
+    "said": "What kind of equipment am I looking at?",
+    "heard": "What kind of equipment am I looking at?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "Let me check that.This is a control panel for a steam production system, likely used in industrial applications. It includes various components like condensate receivers, boilers, extractors, and flow indicators, which are part of the process for generating and managing steam.\n\nWould you like more information on any specific components or functions?"
+    ],
+    "tools": [],
+    "evidence": [],
+    "latency_ms": 1715,
+    "duration_s": 37.1,
+    "checks": [
+     [
+      "vision: real panel, moving camera video",
+      true,
+      ""
+     ],
+     [
+      "camera observation saved to the evidence timeline",
+      false,
+      ""
+     ]
+    ],
+    "camera": "video:vid_real_panel_pan.webm",
+    "passed": false
+   }
+  ],
+  "session_id": "S-1001",
+  "audio": "C:\\Users\\nidhi\\dev\\voice\\shifttrace\\experiments\\scenarios\\20261121-015424\\audio\\vision.webm",
+  "page_errors": [],
+  "agent_config_tts": {
+   "vendor": "murf",
+   "params": {
+    "api_key": "***redacted***",
+    "base_url": "wss://global.api.murf.ai/v1/speech/stream-input",
+    "voiceId": "en-IN-isha",
+    "locale": "en-IN",
+    "model": "FALCON",
+    "sample_rate": 24000
+   }
+  },
+  "audio_level": {
+   "mean_db": -20.8,
+   "max_db": 0.0,
+   "duration": null
+  }
+ },
+ "recovery": {
+  "ready_s": 17.0,
+  "steps": [
+   {
+    "name": "bearing_stock",
+    "said": "Do we have the drive end bearing in stores?",
+    "heard": "Do we have the drive end bearing in stores?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "Give me a second.",
+     "The drive end bearing (part ID BRG-6316-C3) is currently out of stock, with none available. It has a lead time of three days for procurement. Would you like me to draft a procurement request for it?"
+    ],
+    "tools": [
+     {
+      "tool": "check_inventory",
+      "status": "ok",
+      "input": {
+       "part": "drive end bearing"
+      },
+      "ms": 7,
+      "caller": "agora_mcp"
+     }
+    ],
+    "evidence": [],
+    "latency_ms": 1648,
+    "duration_s": 25.9,
+    "checks": [
+     [
+      "baseline tool call works",
+      true,
+      ""
+     ]
+    ],
+    "camera": "blank:",
+    "passed": true
+   },
+   {
+    "name": "raise_pr",
+    "said": "Raise a procurement request for one drive end bearing.",
+    "heard": "Raise a procurement request for one drive end bearing.",
+    "asr_similarity": 1.0,
+    "replies": [
+     "Pulling that up now.",
+     "I've drafted the procurement request for one drive end bearing, part ID BRG-6316-C3, for work order 1187. It\u2019s pending approval and expected in 3 days. Shall I submit this request?"
+    ],
+    "tools": [
+     {
+      "tool": "create_procurement_request",
+      "status": "ok",
+      "input": {
+       "part": "drive end bearing",
+       "quantity": 1,
+       "work_order_id": null,
+       "reason": "Out of stock for maintenance"
+      },
+      "ms": 78,
+      "caller": "agora_mcp"
+     }
+    ],
+    "evidence": [
+     {
+      "id": 29,
+      "type": "action",
+      "source": "tool_result",
+      "title": "Procurement draft PR-2001 created: 1 x BRG-6316-C3 (awaiting approval)",
+      "media": null
+     }
+    ],
+    "latency_ms": 1653,
+    "duration_s": 28.3,
+    "checks": [
+     [
+      "agent killed (Agora leave HTTP 200)",
+      true,
+      ""
+     ],
+     [
+      "backend recorded that the agent left",
+      true,
+      ""
+     ],
+     [
+      "console restarted the agent by itself (25.1 s)",
+      true,
+      ""
+     ],
+     [
+      "next request reached the tools after recovery",
+      true,
+      ""
+     ]
+    ],
+    "camera": "agent killed after step 1; recovered in 25.1 s",
+    "passed": true
+   }
+  ],
+  "recovery_s": 25.1,
+  "session_id": "S-1001",
+  "audio": "C:\\Users\\nidhi\\dev\\voice\\shifttrace\\experiments\\scenarios\\20261121-015424\\audio\\recovery.webm",
+  "page_errors": [],
+  "agent_config_tts": {
+   "vendor": "murf",
+   "params": {
+    "api_key": "***redacted***",
+    "base_url": "wss://global.api.murf.ai/v1/speech/stream-input",
+    "voiceId": "en-IN-isha",
+    "locale": "en-IN",
+    "model": "FALCON",
+    "sample_rate": 24000
+   }
+  },
+  "audio_level": {
+   "mean_db": -21.0,
+   "max_db": -1.3,
+   "duration": null
+  }
+ }
+}

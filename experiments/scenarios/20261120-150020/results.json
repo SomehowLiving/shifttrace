@@ -1,0 +1,728 @@
+{
+ "vision": {
+  "ready_s": 18.8,
+  "steps": [
+   {
+    "name": "panel_read",
+    "said": "What does the panel display show right now?",
+    "heard": "What does the panel display show right now?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "Let me check that.The display shows \"A-17 DISCH TEMP HIGH\" with a discharge temperature of 108\u00b0C and a vibration reading of 7.4 mm/s. I'll record this observation now."
+    ],
+    "tools": [],
+    "evidence": [
+     {
+      "id": 13,
+      "type": "visual_observation",
+      "source": "camera_model",
+      "title": "Let me check that.The display shows \"A-17 DISCH TEMP HIGH\" with a discharge temperature of 108\u00b0C and a vibration reading of 7.4 mm/s. I'll record this observation now.",
+      "media": "S-1001-1795167055-b3beb0.jpg"
+     }
+    ],
+    "latency_ms": 1721,
+    "duration_s": 27.2,
+    "checks": [
+     [
+      "vision: should read A-17/TEMP HIGH/108",
+      true,
+      ""
+     ],
+     [
+      "camera observation saved to the evidence timeline",
+      true,
+      "Let me check that.The display shows \"A-17 DISCH TEMP HIGH\" w"
+     ]
+    ],
+    "camera": "image:panel_alarm.png",
+    "passed": true
+   },
+   {
+    "name": "panel_read",
+    "said": "What does the panel display show right now?",
+    "heard": "What does the panel display show right now?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "Give me a second.The display is blurry. Please hold your camera steady or move closer so I can get a clear reading."
+    ],
+    "tools": [],
+    "evidence": [
+     {
+      "id": 14,
+      "type": "visual_observation",
+      "source": "camera_model",
+      "title": "Give me a second.The display is blurry. Please hold your camera steady or move closer so I can get a clear reading.",
+      "media": "S-1001-1795167087-c00b7f.jpg"
+     }
+    ],
+    "latency_ms": 1702,
+    "duration_s": 19.6,
+    "checks": [
+     [
+      "vision: blurred: read it or say unclear",
+      true,
+      ""
+     ],
+     [
+      "camera observation saved to the evidence timeline",
+      true,
+      "Give me a second.The display is blurry. Please hold your cam"
+     ]
+    ],
+    "camera": "image:panel_alarm.png {'blur': 5}",
+    "passed": true
+   },
+   {
+    "name": "panel_read",
+    "said": "What does the panel display show right now?",
+    "heard": "What does the panel display show right now?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "Okay, checking the system.The display shows \"A-17 DISCH TEMP HIGH\" with a discharge temperature of 108\u00b0C and a vibration reading of 7.4 mm/s. I'll record this observation now."
+    ],
+    "tools": [],
+    "evidence": [
+     {
+      "id": 15,
+      "type": "visual_observation",
+      "source": "camera_model",
+      "title": "Okay, checking the system.The display shows \"A-17 DISCH TEMP HIGH\" with a discharge temperature of 108\u00b0C and a vibration reading of 7.4 mm/s. I'll record this observation now.",
+      "media": "S-1001-1795167115-08aa54.jpg"
+     }
+    ],
+    "latency_ms": 1709,
+    "duration_s": 27.7,
+    "checks": [
+     [
+      "vision: dim: read it or say too dark",
+      true,
+      ""
+     ],
+     [
+      "camera observation saved to the evidence timeline",
+      true,
+      "Okay, checking the system.The display shows \"A-17 DISCH TEMP"
+     ]
+    ],
+    "camera": "image:panel_alarm.png {'bright': 0.3}",
+    "passed": true
+   },
+   {
+    "name": "panel_read",
+    "said": "What does the panel display show right now?",
+    "heard": "What does the panel display show right now?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "One moment, looking it up.The display shows \"A-17 DISCH TEMP HIGH\" with a discharge temperature of 108\u00b0C and a vibration reading of 7.4 mm/s. I'll record this observation now."
+    ],
+    "tools": [],
+    "evidence": [
+     {
+      "id": 16,
+      "type": "visual_observation",
+      "source": "camera_model",
+      "title": "One moment, looking it up.The display shows \"A-17 DISCH TEMP HIGH\" with a discharge temperature of 108\u00b0C and a vibration reading of 7.4 mm/s. I'll record this observation now.",
+      "media": "S-1001-1795167147-0da2eb.jpg"
+     }
+    ],
+    "latency_ms": 1752,
+    "duration_s": 28.4,
+    "checks": [
+     [
+      "vision: angled and far",
+      true,
+      ""
+     ],
+     [
+      "camera observation saved to the evidence timeline",
+      true,
+      "One moment, looking it up.The display shows \"A-17 DISCH TEMP"
+     ]
+    ],
+    "camera": "image:panel_alarm.png {'rotate': 22, 'zoom': 0.55}",
+    "passed": true
+   },
+   {
+    "name": "panel_read",
+    "said": "What does the panel display show right now?",
+    "heard": "What does the panel display show right now?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "Pulling that up now.The display shows \"A-17 DISCH TEMP HIGH\" with a temperature of 108\u00b0C and a vibration reading of 7.4 mm/s. I'll record this observation as well."
+    ],
+    "tools": [],
+    "evidence": [
+     {
+      "id": 17,
+      "type": "visual_observation",
+      "source": "camera_model",
+      "title": "Pulling that up now.The display shows \"A-17 DISCH TEMP HIGH\" with a temperature of 108\u00b0C and a vibration reading of 7.4 mm/s. I'll record this observation as well.",
+      "media": "S-1001-1795167183-cb6c62.jpg"
+     }
+    ],
+    "latency_ms": 1745,
+    "duration_s": 27.8,
+    "checks": [
+     [
+      "vision: glare",
+      true,
+      ""
+     ],
+     [
+      "camera observation saved to the evidence timeline",
+      true,
+      "Pulling that up now.The display shows \"A-17 DISCH TEMP HIGH\""
+     ]
+    ],
+    "camera": "image:panel_alarm.png {'glare': True}",
+    "passed": true
+   },
+   {
+    "name": "panel_read",
+    "said": "What does the panel display show right now?",
+    "heard": "What does the panel display show right now?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "Okay, checking the system.The display shows \"NO ACTIVE ALARM\" with a discharge temperature of 96\u00b0C and a vibration reading of 2.6 mm/s. I'll record this observation now."
+    ],
+    "tools": [],
+    "evidence": [
+     {
+      "id": 18,
+      "type": "visual_observation",
+      "source": "camera_model",
+      "title": "Okay, checking the system.The display shows \"NO ACTIVE ALARM\" with a discharge temperature of 96\u00b0C and a vibration reading of 2.6 mm/s. I'll record this observation now.",
+      "media": "S-1001-1795167219-7107ba.jpg"
+     }
+    ],
+    "latency_ms": 2964,
+    "duration_s": 29.2,
+    "checks": [
+     [
+      "vision: normal panel: must NOT report A-17",
+      true,
+      ""
+     ],
+     [
+      "camera observation saved to the evidence timeline",
+      true,
+      "Okay, checking the system.The display shows \"NO ACTIVE ALARM"
+     ]
+    ],
+    "camera": "image:panel_normal.png",
+    "passed": true
+   },
+   {
+    "name": "panel_read",
+    "said": "What does the panel display show right now?",
+    "heard": "",
+    "asr_similarity": 0.0,
+    "replies": [],
+    "tools": [],
+    "evidence": [
+     {
+      "id": 19,
+      "type": "system_record",
+      "source": "cmms",
+      "title": "Maintenance tools unreachable from Agora (tunnel down)",
+      "media": null
+     }
+    ],
+    "latency_ms": null,
+    "duration_s": 55.0,
+    "checks": [
+     [
+      "vision: should read A-22 / 9.2 (not the previous frame)",
+      false,
+      ""
+     ],
+     [
+      "camera observation saved to the evidence timeline",
+      false,
+      ""
+     ]
+    ],
+    "camera": "image:panel_a22.png",
+    "passed": false
+   },
+   {
+    "name": "alarm_code",
+    "said": "Read me the alarm code on the display.",
+    "heard": "",
+    "asr_similarity": 0.0,
+    "replies": [],
+    "tools": [],
+    "evidence": [],
+    "latency_ms": null,
+    "duration_s": 55.0,
+    "checks": [
+     [
+      "vision: blank camera: must not invent a code",
+      false,
+      ""
+     ],
+     [
+      "camera observation saved to the evidence timeline",
+      false,
+      ""
+     ]
+    ],
+    "camera": "blank:",
+    "passed": false
+   },
+   {
+    "name": "what_machine",
+    "said": "What kind of equipment am I looking at?",
+    "heard": "",
+    "asr_similarity": 0.0,
+    "replies": [
+     "SHIFTTRACE is live on Compressor C-204. Kavya, ask me what happened on the previous shift, or point your camera at the panel."
+    ],
+    "tools": [],
+    "evidence": [],
+    "latency_ms": null,
+    "duration_s": 23.7,
+    "checks": [
+     [
+      "vision: real photo (Flickr): old compressor",
+      true,
+      ""
+     ],
+     [
+      "camera observation saved to the evidence timeline",
+      false,
+      ""
+     ]
+    ],
+    "camera": "image:img_real_westinghouse.jpg",
+    "passed": false
+   },
+   {
+    "name": "alarm_code",
+    "said": "Read me the alarm code on the display.",
+    "heard": "Read me the alarm code on the display.",
+    "asr_similarity": 1.0,
+    "replies": [
+     "One moment, looking it up.It seems I'm unable to see any specific alarm codes in the current view. Please adjust the camera closer to any display or alarm panel that might have the alarm codes visible."
+    ],
+    "tools": [],
+    "evidence": [],
+    "latency_ms": 2615,
+    "duration_s": 30.9,
+    "checks": [
+     [
+      "vision: real industrial panel: must not carry over A-17 from earlier frames",
+      true,
+      ""
+     ],
+     [
+      "camera observation saved to the evidence timeline",
+      false,
+      ""
+     ]
+    ],
+    "camera": "image:img_real_panel_1.jpg",
+    "passed": false
+   },
+   {
+    "name": "what_machine",
+    "said": "What kind of equipment am I looking at?",
+    "heard": "What kind of equipment am I looking at?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "Let me check that.You're looking at a set of pressure and vacuum gauges. These typically measure the pressure or vacuum levels in a system,"
+    ],
+    "tools": [],
+    "evidence": [
+     {
+      "id": 21,
+      "type": "visual_observation",
+      "source": "camera_model",
+      "title": "Let me check that.You're looking at a set of pressure and vacuum gauges. These typically measure the pressure or vacuum levels in a system,",
+      "media": "S-1001-1795167491-bd71e1.jpg"
+     }
+    ],
+    "latency_ms": 9901,
+    "duration_s": 33.5,
+    "checks": [
+     [
+      "vision: real photo: pressure gauge",
+      true,
+      ""
+     ],
+     [
+      "camera observation saved to the evidence timeline",
+      true,
+      "Let me check that.You're looking at a set of pressure and va"
+     ]
+    ],
+    "camera": "image:img_real_gauge.jpg",
+    "passed": true
+   },
+   {
+    "name": "what_machine",
+    "said": "What kind of equipment am I looking at?",
+    "heard": "What kind of equipment am I looking at?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "Let me check that.This is likely a schematic diagram for a control system, possibly for a process plant or machinery. It shows various components, including sensors, valves, and flow paths, which indicate how different equipment interacts within the system. Would you like to explore any specific part of this diagram?"
+    ],
+    "tools": [],
+    "evidence": [
+     {
+      "id": 22,
+      "type": "visual_observation",
+      "source": "camera_model",
+      "title": "Let me check that.This is likely a schematic diagram for a control system, possibly for a process plant or machinery.",
+      "media": "S-1001-1795167528-93821a.jpg"
+     }
+    ],
+    "latency_ms": 3933,
+    "duration_s": 34.7,
+    "checks": [
+     [
+      "vision: real panel, moving camera video",
+      true,
+      ""
+     ],
+     [
+      "camera observation saved to the evidence timeline",
+      true,
+      "Let me check that.This is likely a schematic diagram for a c"
+     ]
+    ],
+    "camera": "video:vid_real_panel_pan.webm",
+    "passed": true
+   }
+  ],
+  "session_id": "S-1001",
+  "audio": "C:\\Users\\nidhi\\dev\\voice\\shifttrace\\experiments\\scenarios\\20261120-150020\\audio\\vision.webm",
+  "page_errors": [],
+  "agent_config_tts": {
+   "vendor": "murf",
+   "params": {
+    "api_key": "***redacted***",
+    "base_url": "wss://global.api.murf.ai/v1/speech/stream-input",
+    "voiceId": "en-IN-isha",
+    "locale": "en-IN",
+    "model": "FALCON",
+    "sample_rate": 24000
+   }
+  },
+  "audio_level": {
+   "mean_db": -23.5,
+   "max_db": -0.4,
+   "duration": null
+  }
+ },
+ "core": {
+  "ready_s": 24.6,
+  "steps": [
+   {
+    "name": "prev_shift",
+    "said": "What happened to this compressor on the previous shift?",
+    "heard": "",
+    "asr_similarity": 0.0,
+    "replies": [],
+    "tools": [
+     {
+      "tool": "get_previous_handoff",
+      "status": "ok",
+      "input": {
+       "asset_id": "C-204"
+      },
+      "ms": 105,
+      "caller": "agora_mcp"
+     },
+     {
+      "tool": "get_asset_history",
+      "status": "ok",
+      "input": {
+       "asset_id": "C-204"
+      },
+      "ms": 77,
+      "caller": "agora_mcp"
+     }
+    ],
+    "evidence": [],
+    "latency_ms": null,
+    "duration_s": 56.9,
+    "checks": [
+     [
+      "retrieved history/handoff",
+      true,
+      ""
+     ],
+     [
+      "mentions sensor or vibration",
+      false,
+      ""
+     ]
+    ],
+    "camera": "image:panel_alarm.png",
+    "passed": false
+   },
+   {
+    "name": "look_panel",
+    "said": "I'm pointing the camera at the panel now. What do you see?",
+    "heard": "I'm pointing the camera at the panel now. What do you see?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "Pulling that up now.",
+     "I've recorded the observation: the TEMP HIGH lamp is lit, showing 108\u00b0C on A-17 and the vibration is at 7.4 mm/s. This ties in with existing open questions regarding possible causes. Would you like to address any of the open items or take an action?"
+    ],
+    "tools": [
+     {
+      "tool": "record_observation",
+      "status": "ok",
+      "input": {
+       "kind": "visual",
+       "summary": "TEMP HIGH lamp lit; A-17 DISCHARGE TEMP shows 108 \u00b0C; vibration is 7.4 mm/s.",
+       "detail": null
+      },
+      "ms": 53,
+      "caller": "agora_mcp"
+     }
+    ],
+    "evidence": [
+     {
+      "id": 13,
+      "type": "visual_observation",
+      "source": "camera_model",
+      "title": "TEMP HIGH lamp lit; A-17 DISCHARGE TEMP shows 108 \u00b0C; vibration is 7.4 mm/s.",
+      "media": "S-1001-1795167718-4381b4.jpg"
+     }
+    ],
+    "latency_ms": 2941,
+    "duration_s": 47.7,
+    "checks": [
+     [
+      "reads alarm from camera",
+      true,
+      ""
+     ],
+     [
+      "records visual evidence",
+      true,
+      ""
+     ]
+    ],
+    "camera": "image:panel_alarm.png",
+    "passed": true
+   },
+   {
+    "name": "shook_first",
+    "said": "It started shaking first, and then the temperature warning came on.",
+    "heard": "",
+    "asr_similarity": 0.0,
+    "replies": [],
+    "tools": [],
+    "evidence": [
+     {
+      "id": 14,
+      "type": "system_record",
+      "source": "cmms",
+      "title": "Maintenance tools unreachable from Agora (tunnel down)",
+      "media": null
+     }
+    ],
+    "latency_ms": null,
+    "duration_s": 55.1,
+    "checks": [
+     [
+      "records technician report",
+      false,
+      ""
+     ],
+     [
+      "closes the 'before or after' open loop",
+      false,
+      "soft"
+     ]
+    ],
+    "camera": "image:panel_alarm.png",
+    "passed": false
+   },
+   {
+    "name": "manual_a17",
+    "said": "What does the manual say about the A seventeen alarm coming back after a sensor swap?",
+    "heard": "",
+    "asr_similarity": 0.0,
+    "replies": [],
+    "tools": [],
+    "evidence": [],
+    "latency_ms": null,
+    "duration_s": 55.8,
+    "checks": [
+     [
+      "searched manual",
+      false,
+      ""
+     ],
+     [
+      "cites sensor/section",
+      false,
+      ""
+     ]
+    ],
+    "camera": "image:panel_alarm.png",
+    "passed": false
+   },
+   {
+    "name": "bearing_stock",
+    "said": "Do we have the drive end bearing in stores?",
+    "heard": "",
+    "asr_similarity": 0.0,
+    "replies": [],
+    "tools": [],
+    "evidence": [
+     {
+      "id": 15,
+      "type": "system_record",
+      "source": "cmms",
+      "title": "Maintenance tools reachable again",
+      "media": null
+     }
+    ],
+    "latency_ms": null,
+    "duration_s": 55.6,
+    "checks": [
+     [
+      "checked inventory",
+      false,
+      ""
+     ],
+     [
+      "reports out of stock",
+      false,
+      ""
+     ]
+    ],
+    "camera": "image:panel_alarm.png",
+    "passed": false
+   },
+   {
+    "name": "raise_pr",
+    "said": "Raise a procurement request for one drive end bearing.",
+    "heard": "",
+    "asr_similarity": 0.0,
+    "replies": [],
+    "tools": [],
+    "evidence": [
+     {
+      "id": 16,
+      "type": "system_record",
+      "source": "cmms",
+      "title": "Maintenance tools unreachable from Agora (tunnel down)",
+      "media": null
+     }
+    ],
+    "latency_ms": null,
+    "duration_s": 55.1,
+    "checks": [
+     [
+      "drafted PR",
+      false,
+      ""
+     ],
+     [
+      "did NOT submit without a yes",
+      true,
+      ""
+     ],
+     [
+      "asks for confirmation",
+      false,
+      ""
+     ]
+    ],
+    "camera": "image:panel_alarm.png",
+    "passed": false
+   },
+   {
+    "name": "yes_submit",
+    "said": "Yes, submit it.",
+    "heard": "",
+    "asr_similarity": 0.0,
+    "replies": [],
+    "tools": [],
+    "evidence": [],
+    "latency_ms": null,
+    "duration_s": 55.6,
+    "checks": [
+     [
+      "PR submitted in DB",
+      false,
+      ""
+     ],
+     [
+      "agent states expected date",
+      false,
+      ""
+     ]
+    ],
+    "camera": "image:panel_alarm.png",
+    "passed": false
+   },
+   {
+    "name": "wo_hold",
+    "said": "Put the work order on hold for parts.",
+    "heard": "",
+    "asr_similarity": 0.0,
+    "replies": [],
+    "tools": [],
+    "evidence": [],
+    "latency_ms": null,
+    "duration_s": 55.6,
+    "checks": [
+     [
+      "WO set WAITING_PARTS",
+      false,
+      "IN_PROGRESS"
+     ]
+    ],
+    "camera": "image:panel_alarm.png",
+    "passed": false
+   },
+   {
+    "name": "handoff",
+    "said": "Prepare the handoff for the next shift.",
+    "heard": "",
+    "asr_similarity": 0.0,
+    "replies": [],
+    "tools": [],
+    "evidence": [],
+    "latency_ms": null,
+    "duration_s": 55.0,
+    "checks": [
+     [
+      "handoff created",
+      false,
+      ""
+     ]
+    ],
+    "camera": "image:panel_alarm.png",
+    "passed": false
+   }
+  ],
+  "session_id": "S-1001",
+  "audio": "C:\\Users\\nidhi\\dev\\voice\\shifttrace\\experiments\\scenarios\\20261120-150020\\audio\\core.webm",
+  "page_errors": [],
+  "agent_config_tts": {
+   "vendor": "murf",
+   "params": {
+    "api_key": "***redacted***",
+    "base_url": "wss://global.api.murf.ai/v1/speech/stream-input",
+    "voiceId": "en-IN-isha",
+    "locale": "en-IN",
+    "model": "FALCON",
+    "sample_rate": 24000
+   }
+  },
+  "audio_level": {
+   "mean_db": -25.3,
+   "max_db": -0.1,
+   "duration": null
+  }
+ }
+}

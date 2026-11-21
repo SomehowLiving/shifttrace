@@ -1,0 +1,17 @@
+== vision_dataset
+  PASS what_machine: heard='What kind of equipment am I looking at?' tools=[] reply='It looks like you're looking at a pressure gauge. The gauge shows pressure measurements in kilograms per square centimeter (kg/cm²). Would y'
+  FAIL what_machine: heard='What kind of equipment am I looking at?' tools=[] reply='One moment, looking it up.It appears you're looking at the boiler and associated piping of a steam locomotive. This equipment is used for ge'
+  PASS what_machine: heard='What kind of equipment am I looking at?' tools=[] reply='Pulling that up now.You're looking at a chocolate depositing machine. It appears to be used for shaping and depositing chocolate in a factor'
+  PASS what_machine: heard='What kind of equipment am I looking at?' tools=[] reply='Let me check that.You're looking at an automotive assembly line. It shows the process of building cars, with components being assembled toge'
+  FAIL what_machine: heard='What kind of equipment am I looking at?' tools=[] reply='Okay, checking the system.It looks like you are viewing a storage facility or warehouse. The shelves are stacked with boxes, possibly contai'
+  PASS what_machine: heard='What kind of equipment am I looking at?' tools=[] reply='Give me a second.It seems you are looking at another section of a warehouse or storage facility. The shelves are filled with boxes labeled U'
+  FAIL what_machine: heard='What kind of equipment am I looking at?' tools=[] reply='Okay, checking the system.Let me check that for you.It looks like you are viewing a warehouse or distribution center with a forklift in use.'
+  FAIL what_machine: heard='What kind of equipment am I looking at?' tools=[] reply='One moment, looking it up.Let me check.You're looking at a warehouse or distribution center setup, featuring high shelves stacked with vario'
+  FAIL what_machine: heard='What kind of equipment am I looking at?' tools=[] reply='Give me a second.Let me check that for you.It looks like you're viewing HVAC ductwork and an air handling unit. This equipment is used for h'
+  PASS what_machine: heard='What kind of equipment am I looking at?' tools=[] reply='Pulling that up now.Let me check that for you.You're looking at the engine compartment of an electric or hybrid vehicle. It shows the electr'
+  FAIL what_machine: heard='What kind of equipment am I looking at?' tools=[] reply='Let me check that.Let me check that for you.It looks like you're looking at a small, portable gasoline engine, likely used for various appli'
+  FAIL what_machine: heard='' tools=[] reply=''
+  FAIL what_machine: heard='' tools=[] reply=''
+  FAIL what_machine: heard='' tools=[] reply=''
+  FAIL what_machine: heard='' tools=[] reply=''
+checks passed 31/45 -> C:\Users\nidhi\dev\voice\shifttrace\experiments\scenarios\20261121-114453\report.md

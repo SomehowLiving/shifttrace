@@ -1,0 +1,546 @@
+{
+ "vision_dataset": {
+  "ready_s": 19.0,
+  "steps": [
+   {
+    "name": "what_machine",
+    "said": "What kind of equipment am I looking at?",
+    "heard": "What kind of equipment am I looking at?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "It looks like you're looking at a pressure gauge. The gauge shows pressure measurements in kilograms per square centimeter (kg/cm\u00b2). Would you like to check a specific reading or observation?"
+    ],
+    "tools": [],
+    "evidence": [
+     {
+      "id": 33,
+      "type": "visual_observation",
+      "source": "camera_model",
+      "title": "It looks like you're looking at a pressure gauge. The gauge shows pressure measurements in kilograms per square centimeter (kg/cm\u00b2).",
+      "media": "S-1001-1795241741-f043eb.jpg"
+     }
+    ],
+    "latency_ms": 1616,
+    "duration_s": 24.4,
+    "checks": [
+     [
+      "describes it (analogue pressure gauge; needle reading may be estimated, not exact)",
+      true,
+      "It looks like you're looking at a pressure gauge. The gauge shows pressure measurements in kilograms per square centimet"
+     ],
+     [
+      "does not invent an alarm code",
+      true,
+      ""
+     ],
+     [
+      "camera observation saved to the evidence timeline",
+      true,
+      ""
+     ]
+    ],
+    "camera": "image:img_ds_gauge_1.jpg",
+    "passed": true
+   },
+   {
+    "name": "what_machine",
+    "said": "What kind of equipment am I looking at?",
+    "heard": "What kind of equipment am I looking at?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "One moment, looking it up.It appears you're looking at the boiler and associated piping of a steam locomotive. This equipment is used for generating steam to power the locomotive. Would you like to check for any specific readings or observations related to this?"
+    ],
+    "tools": [],
+    "evidence": [
+     {
+      "id": 34,
+      "type": "visual_observation",
+      "source": "camera_model",
+      "title": "It appears you're looking at the boiler and associated piping of a steam locomotive. This equipment is used for generating steam to power the locomotive.",
+      "media": "S-1001-1795241773-e1d256.jpg"
+     }
+    ],
+    "latency_ms": 1838,
+    "duration_s": 28.9,
+    "checks": [
+     [
+      "describes it (locomotive cab with several analogue gauges and valves; readings not legible)",
+      false,
+      "One moment, looking it up.It appears you're looking at the boiler and associated piping of a steam locomotive. This equi"
+     ],
+     [
+      "does not invent an alarm code",
+      true,
+      ""
+     ],
+     [
+      "camera observation saved to the evidence timeline",
+      true,
+      ""
+     ]
+    ],
+    "camera": "image:img_ds_gauge_3.jpg",
+    "passed": false
+   },
+   {
+    "name": "what_machine",
+    "said": "What kind of equipment am I looking at?",
+    "heard": "What kind of equipment am I looking at?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "Pulling that up now.You're looking at a chocolate depositing machine. It appears to be used for shaping and depositing chocolate in a factory setting. Do you need any specific readings or checks on this equipment?"
+    ],
+    "tools": [],
+    "evidence": [
+     {
+      "id": 35,
+      "type": "visual_observation",
+      "source": "camera_model",
+      "title": "You're looking at a chocolate depositing machine. It appears to be used for shaping and depositing chocolate in a factory setting.",
+      "media": "S-1001-1795241805-6b9c4d.jpg"
+     }
+    ],
+    "latency_ms": 1619,
+    "duration_s": 24.4,
+    "checks": [
+     [
+      "describes it (food factory conveyor carrying product past a machine)",
+      true,
+      "Pulling that up now.You're looking at a chocolate depositing machine. It appears to be used for shaping and depositing c"
+     ],
+     [
+      "does not invent an alarm code",
+      true,
+      ""
+     ],
+     [
+      "camera observation saved to the evidence timeline",
+      true,
+      ""
+     ]
+    ],
+    "camera": "image:img_ds_conveyor_1.jpg",
+    "passed": true
+   },
+   {
+    "name": "what_machine",
+    "said": "What kind of equipment am I looking at?",
+    "heard": "What kind of equipment am I looking at?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "Let me check that.You're looking at an automotive assembly line. It shows the process of building cars, with components being assembled together. Would you like to focus on any specific aspect or equipment related to this setup?"
+    ],
+    "tools": [],
+    "evidence": [
+     {
+      "id": 36,
+      "type": "visual_observation",
+      "source": "camera_model",
+      "title": "You're looking at an automotive assembly line. It shows the process of building cars, with components being assembled together.",
+      "media": "S-1001-1795241837-a5eda8.jpg"
+     }
+    ],
+    "latency_ms": 1678,
+    "duration_s": 27.4,
+    "checks": [
+     [
+      "describes it (vehicle assembly line with overhead conveyor)",
+      true,
+      "Let me check that.You're looking at an automotive assembly line. It shows the process of building cars, with components "
+     ],
+     [
+      "does not invent an alarm code",
+      true,
+      ""
+     ],
+     [
+      "camera observation saved to the evidence timeline",
+      true,
+      ""
+     ]
+    ],
+    "camera": "image:img_ds_conveyor_3.jpg",
+    "passed": true
+   },
+   {
+    "name": "what_machine",
+    "said": "What kind of equipment am I looking at?",
+    "heard": "What kind of equipment am I looking at?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "Okay, checking the system.It looks like you are viewing a storage facility or warehouse. The shelves are stacked with boxes, possibly containing supplies or goods from organizations like USAID. Would you like to focus on something specific in this context?"
+    ],
+    "tools": [],
+    "evidence": [],
+    "latency_ms": 1805,
+    "duration_s": 28.0,
+    "checks": [
+     [
+      "describes it (warehouse racking with pallets or cartons)",
+      true,
+      "Okay, checking the system.It looks like you are viewing a storage facility or warehouse. The shelves are stacked with bo"
+     ],
+     [
+      "does not invent an alarm code",
+      true,
+      ""
+     ],
+     [
+      "camera observation saved to the evidence timeline",
+      false,
+      ""
+     ]
+    ],
+    "camera": "image:img_ds_warehouse_1.jpg",
+    "passed": false
+   },
+   {
+    "name": "what_machine",
+    "said": "What kind of equipment am I looking at?",
+    "heard": "What kind of equipment am I looking at?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "Give me a second.It seems you are looking at another section of a warehouse or storage facility. The shelves are filled with boxes labeled USAID, indicating supplies or humanitarian aid. Would you like to verify any specific details or perform a check related to this setup?"
+    ],
+    "tools": [],
+    "evidence": [
+     {
+      "id": 37,
+      "type": "visual_observation",
+      "source": "camera_model",
+      "title": "It seems you are looking at another section of a warehouse or storage facility. The shelves are filled with boxes labeled USAID, indicating supplies or humanitarian aid.",
+      "media": "S-1001-1795241905-c64cd4.jpg"
+     }
+    ],
+    "latency_ms": 1631,
+    "duration_s": 32.2,
+    "checks": [
+     [
+      "describes it (warehouse racking with pallets or cartons)",
+      true,
+      "Give me a second.It seems you are looking at another section of a warehouse or storage facility. The shelves are filled "
+     ],
+     [
+      "does not invent an alarm code",
+      true,
+      ""
+     ],
+     [
+      "camera observation saved to the evidence timeline",
+      true,
+      ""
+     ]
+    ],
+    "camera": "image:img_ds_warehouse_2.jpg",
+    "passed": true
+   },
+   {
+    "name": "what_machine",
+    "said": "What kind of equipment am I looking at?",
+    "heard": "What kind of equipment am I looking at?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "Okay, checking the system.Let me check that for you.It looks like you are viewing a warehouse or distribution center with a forklift in use. The forklift is being operated to move pallets labeled with USAID, likely for logistics or distribution purposes. Do you need any specific details or tasks related to this setup?"
+    ],
+    "tools": [],
+    "evidence": [],
+    "latency_ms": 1644,
+    "duration_s": 34.7,
+    "checks": [
+     [
+      "describes it (warehouse racking with pallets or cartons)",
+      true,
+      "Okay, checking the system.Let me check that for you.It looks like you are viewing a warehouse or distribution center wit"
+     ],
+     [
+      "does not invent an alarm code",
+      true,
+      ""
+     ],
+     [
+      "camera observation saved to the evidence timeline",
+      false,
+      ""
+     ]
+    ],
+    "camera": "image:img_ds_warehouse_3.jpg",
+    "passed": false
+   },
+   {
+    "name": "what_machine",
+    "said": "What kind of equipment am I looking at?",
+    "heard": "What kind of equipment am I looking at?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "One moment, looking it up.Let me check.You're looking at a warehouse or distribution center setup, featuring high shelves stacked with various pallets. The pallets are wrapped and labeled, indicating stored goods or supplies. Would you like to gather any specific information or make any checks related to this equipment?"
+    ],
+    "tools": [],
+    "evidence": [],
+    "latency_ms": 1626,
+    "duration_s": 34.9,
+    "checks": [
+     [
+      "describes it (warehouse racking full of cartons (no forklift visible))",
+      true,
+      "One moment, looking it up.Let me check.You're looking at a warehouse or distribution center setup, featuring high shelve"
+     ],
+     [
+      "does not invent an alarm code",
+      true,
+      ""
+     ],
+     [
+      "camera observation saved to the evidence timeline",
+      false,
+      ""
+     ]
+    ],
+    "camera": "image:img_ds_forklift_2.jpg",
+    "passed": false
+   },
+   {
+    "name": "what_machine",
+    "said": "What kind of equipment am I looking at?",
+    "heard": "What kind of equipment am I looking at?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "Give me a second.Let me check that for you.It looks like you're viewing HVAC ductwork and an air handling unit. This equipment is used for heating, ventilation, and air conditioning within a building. Would you like to investigate anything specific related to this setup?"
+    ],
+    "tools": [],
+    "evidence": [],
+    "latency_ms": 1648,
+    "duration_s": 31.0,
+    "checks": [
+     [
+      "describes it (supply air duct and vibration isolators in a plant room)",
+      true,
+      "Give me a second.Let me check that for you.It looks like you're viewing HVAC ductwork and an air handling unit. This equ"
+     ],
+     [
+      "does not invent an alarm code",
+      true,
+      ""
+     ],
+     [
+      "camera observation saved to the evidence timeline",
+      false,
+      ""
+     ]
+    ],
+    "camera": "image:img_ds_hvac_2.jpg",
+    "passed": false
+   },
+   {
+    "name": "what_machine",
+    "said": "What kind of equipment am I looking at?",
+    "heard": "What kind of equipment am I looking at?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "Pulling that up now.Let me check that for you.You're looking at the engine compartment of an electric or hybrid vehicle. It shows the electric motor, cooling systems, and associated components. Do you need to explore any specific aspects or details related to this equipment?"
+    ],
+    "tools": [],
+    "evidence": [
+     {
+      "id": 38,
+      "type": "visual_observation",
+      "source": "camera_model",
+      "title": "Let me check that for you.You're looking at the engine compartment of an electric or hybrid vehicle. It shows the electric motor, cooling systems, and associated components.",
+      "media": "S-1001-1795242061-dec061.jpg"
+     }
+    ],
+    "latency_ms": 1643,
+    "duration_s": 31.0,
+    "checks": [
+     [
+      "describes it (electric drive motor in a vehicle chassis)",
+      true,
+      "Pulling that up now.Let me check that for you.You're looking at the engine compartment of an electric or hybrid vehicle."
+     ],
+     [
+      "does not invent an alarm code",
+      true,
+      ""
+     ],
+     [
+      "camera observation saved to the evidence timeline",
+      true,
+      ""
+     ]
+    ],
+    "camera": "image:img_ds_motor_1.jpg",
+    "passed": true
+   },
+   {
+    "name": "what_machine",
+    "said": "What kind of equipment am I looking at?",
+    "heard": "What kind of equipment am I looking at?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "Let me check that.Let me check that for you.It looks like you're looking at a small, portable gasoline engine, likely used for various applications like irrigation or powering tools. It's part of a makeshift setup, often seen in informal settings. Would you like to explore any specific details or tasks related to this equipment?"
+    ],
+    "tools": [],
+    "evidence": [],
+    "latency_ms": 1646,
+    "duration_s": 55.2,
+    "checks": [
+     [
+      "describes it (outdoor air compressor driven by a car engine)",
+      true,
+      "Let me check that.Let me check that for you.It looks like you're looking at a small, portable gasoline engine, likely us"
+     ],
+     [
+      "does not invent an alarm code",
+      true,
+      ""
+     ],
+     [
+      "camera observation saved to the evidence timeline",
+      false,
+      ""
+     ]
+    ],
+    "camera": "image:img_ds_compressor_1.jpg",
+    "passed": false
+   },
+   {
+    "name": "what_machine",
+    "said": "What kind of equipment am I looking at?",
+    "heard": "",
+    "asr_similarity": 0.0,
+    "replies": [],
+    "tools": [],
+    "evidence": [],
+    "latency_ms": null,
+    "duration_s": 55.6,
+    "checks": [
+     [
+      "describes it (room thermostat display reading 22.5 C)",
+      false,
+      ""
+     ],
+     [
+      "does not invent an alarm code",
+      true,
+      ""
+     ],
+     [
+      "camera observation saved to the evidence timeline",
+      false,
+      ""
+     ]
+    ],
+    "camera": "image:img_ds_display_1.jpg",
+    "passed": false
+   },
+   {
+    "name": "what_machine",
+    "said": "What kind of equipment am I looking at?",
+    "heard": "",
+    "asr_similarity": 0.0,
+    "replies": [],
+    "tools": [],
+    "evidence": [],
+    "latency_ms": null,
+    "duration_s": 55.5,
+    "checks": [
+     [
+      "describes it (hand-held pan along a factory conveyor)",
+      false,
+      ""
+     ],
+     [
+      "does not invent an alarm code",
+      true,
+      ""
+     ],
+     [
+      "camera observation saved to the evidence timeline",
+      false,
+      ""
+     ]
+    ],
+    "camera": "video:vid_ds_conveyor_pan.webm",
+    "passed": false
+   },
+   {
+    "name": "what_machine",
+    "said": "What kind of equipment am I looking at?",
+    "heard": "",
+    "asr_similarity": 0.0,
+    "replies": [],
+    "tools": [],
+    "evidence": [],
+    "latency_ms": null,
+    "duration_s": 55.2,
+    "checks": [
+     [
+      "describes it (hand-held walk past warehouse racking)",
+      false,
+      ""
+     ],
+     [
+      "does not invent an alarm code",
+      true,
+      ""
+     ],
+     [
+      "camera observation saved to the evidence timeline",
+      false,
+      ""
+     ]
+    ],
+    "camera": "video:vid_ds_warehouse_pan.webm",
+    "passed": false
+   },
+   {
+    "name": "what_machine",
+    "said": "What kind of equipment am I looking at?",
+    "heard": "",
+    "asr_similarity": 0.0,
+    "replies": [],
+    "tools": [],
+    "evidence": [],
+    "latency_ms": null,
+    "duration_s": 55.4,
+    "checks": [
+     [
+      "describes it (hand-held zoom onto pressure gauges, slight shake)",
+      false,
+      ""
+     ],
+     [
+      "does not invent an alarm code",
+      true,
+      ""
+     ],
+     [
+      "camera observation saved to the evidence timeline",
+      false,
+      ""
+     ]
+    ],
+    "camera": "video:vid_ds_gauge_zoom.webm",
+    "passed": false
+   }
+  ],
+  "session_id": "S-1001",
+  "audio": "C:\\Users\\nidhi\\dev\\voice\\shifttrace\\experiments\\scenarios\\20261121-114453\\audio\\vision_dataset.webm",
+  "page_errors": [],
+  "agent_config_tts": {
+   "vendor": "murf",
+   "params": {
+    "api_key": "***redacted***",
+    "base_url": "wss://global.api.murf.ai/v1/speech/stream-input",
+    "voiceId": "en-IN-isha",
+    "locale": "en-IN",
+    "model": "FALCON",
+    "sample_rate": 24000
+   }
+  },
+  "audio_level": {
+   "mean_db": -20.6,
+   "max_db": -0.1,
+   "duration": null
+  }
+ }
+}

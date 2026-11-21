@@ -1,0 +1,588 @@
+{
+ "id": "packaging_line",
+ "name": "Packaging line 2 (Building A)",
+ "description": "Case conveyor CV-310: belt drifting and F-12 drive overload trips overnight, and its monthly preventive maintenance is due. All data synthetic.",
+ "manuals": [
+  {
+   "model": "TL-600",
+   "prefix": "TL600",
+   "file": "TL-600_service_manual.md"
+  }
+ ],
+ "assets": [
+  {
+   "asset_id": "CV-310",
+   "name": "Case conveyor CV-310",
+   "asset_type": "Flat belt conveyor",
+   "manufacturer": "Trackline Conveyors (fictional)",
+   "model": "TL-600",
+   "serial_no": "TL600-23-0882",
+   "location": "Building A, Packaging line 2, case outfeed",
+   "status": "DEGRADED",
+   "criticality": "High",
+   "metadata": {
+    "rated_power_kw": 5.5,
+    "running_hours": 6120,
+    "commissioned": "2023-06",
+    "belt": "600 mm PVC",
+    "serves": "Case packer to palletiser",
+    "qr": "SHIFTTRACE:CV-310",
+    "tasks": [
+     "preventive_maintenance",
+     "troubleshoot",
+     "inspection_round",
+     "onboarding",
+     "shift_briefing"
+    ],
+    "safety_notes": [
+     "Before touching the belt, pulleys, take-ups or gearbox, the drive must be locked out at isolator MCC-2 and zero energy verified (manual section 6.1).",
+     "Tracking must never be adjusted with guards removed while the belt is running."
+    ],
+    "panel": {
+     "title": "TRACKLINE TL-600",
+     "subtitle": "CASE CONVEYOR · CV-310",
+     "lamps": [
+      {
+       "key": "run",
+       "label": "RUN",
+       "color": "#2fbf71"
+      },
+      {
+       "key": "jam",
+       "label": "JAM",
+       "color": "#f5a524"
+      },
+      {
+       "key": "overload",
+       "label": "OVERLOAD",
+       "color": "#ff3b30"
+      },
+      {
+       "key": "estop",
+       "label": "E-STOP",
+       "color": "#ff3b30"
+      },
+      {
+       "key": "service",
+       "label": "SERVICE",
+       "color": "#f5a524"
+      }
+     ],
+     "lit": [
+      "overload",
+      "service"
+     ],
+     "alarms": [
+      "F-12 DRIVE OVERLOAD",
+      "F-07 PHOTO-EYE BLOCKED",
+      "F-03 E-STOP ACTIVE",
+      "READY"
+     ],
+     "readings": [
+      {
+       "key": "amps",
+       "label": "MOTOR CURRENT",
+       "unit": "A",
+       "value": 11.8,
+       "step": 0.4,
+       "min": 8.2,
+       "max": 13.4,
+       "decimals": 1
+      },
+      {
+       "key": "speed",
+       "label": "BELT SPEED",
+       "unit": "m/min",
+       "value": 24,
+       "step": 2,
+       "min": 10,
+       "max": 36,
+       "decimals": 0
+      }
+     ]
+    },
+    "limits": [
+     {
+      "label": "motor current",
+      "aliases": [
+       "current",
+       "amps",
+       "drive current"
+      ],
+      "unit": "A",
+      "normal": [
+       9.0,
+       11.0
+      ],
+      "limit_high": 12.1,
+      "section": "5.1",
+      "note": "Between 11.0 and 12.1 A sustained: investigate within the shift (tracking, debris, tension, oil).",
+      "action_high": "The relay trips with F-12 above this."
+     },
+     {
+      "label": "belt speed",
+      "aliases": [
+       "speed"
+      ],
+      "unit": "m/min",
+      "limit_low": 10,
+      "limit_high": 36,
+      "section": "1.1"
+     },
+     {
+      "label": "belt tracking offset",
+      "aliases": [
+       "tracking",
+       "drift",
+       "off centre",
+       "off center"
+      ],
+      "unit": "mm",
+      "limit_high": 10,
+      "section": "4.1",
+      "action_high": "Belt is not centred within 10 mm; see tracking procedure section 3.1."
+     },
+     {
+      "label": "belt deflection",
+      "aliases": [
+       "deflection",
+       "tension",
+       "sag"
+      ],
+      "unit": "mm",
+      "limit_low": 10,
+      "limit_high": 15,
+      "section": "3.2"
+     }
+    ],
+    "training": [
+     {
+      "module_id": "TL600-SAFE-1",
+      "title": "TL-600 conveyor lockout and tracking",
+      "pass_score": 80,
+      "intro": "Three questions on isolating the conveyor, adjusting tracking and motor current.",
+      "questions": [
+       {
+        "id": "q1",
+        "ask": "Before touching the belt or pulleys, how do you make the conveyor safe?",
+        "section": "6.1",
+        "min_points": 2,
+        "key_points": [
+         [
+          "mcc-2",
+          "mcc 2",
+          "isolate",
+          "isolator",
+          "lock out",
+          "lockout",
+          "lock"
+         ],
+         [
+          "zero energy",
+          "press start",
+          "pressing start",
+          "verify"
+         ],
+         [
+          "guard"
+         ]
+        ],
+        "explain": "Stop the line, isolate the drive at MCC-2 with a personal lock and tag, verify zero energy by pressing START, and refit every guard before restoring power."
+       },
+       {
+        "id": "q2",
+        "ask": "How much can you turn the tail take-up screws in one adjustment?",
+        "section": "3.1",
+        "min_points": 1,
+        "key_points": [
+         [
+          "one full turn",
+          "1 full turn",
+          "a full turn",
+          "quarter turn",
+          "1/4"
+         ]
+        ],
+        "explain": "Quarter turns only, at most one full turn per adjustment, then run the empty belt five minutes before adjusting again."
+       },
+       {
+        "id": "q3",
+        "ask": "At what motor current does the relay trip with F-12?",
+        "section": "5.1",
+        "min_points": 1,
+        "key_points": [
+         [
+          "12.1"
+         ]
+        ],
+        "explain": "Normal full-load current is 9 to 11 amps; above 12.1 amps the relay trips with F-12."
+       }
+      ]
+     }
+    ]
+   }
+  }
+ ],
+ "parts": [
+  {
+   "part_id": "BLT-LACE-600",
+   "name": "Belt lacing kit 600 mm",
+   "description": "Hinged steel lacing clips and pin for 600 mm belt",
+   "quantity_on_hand": 2,
+   "quantity_reserved": 0,
+   "location": "Stores D-04",
+   "reorder_threshold": 1,
+   "lead_time_days": 3,
+   "supplier": "Beltway Supply (demo supplier)",
+   "compatible_models": "TL-600"
+  },
+  {
+   "part_id": "BRG-UCP206",
+   "name": "Pillow block bearing UCP206 (tail pulley)",
+   "description": "Cast housing pillow block, 30 mm bore",
+   "quantity_on_hand": 1,
+   "quantity_reserved": 0,
+   "location": "Stores A-09",
+   "reorder_threshold": 1,
+   "lead_time_days": 4,
+   "supplier": "Southfield Bearings (demo supplier)",
+   "compatible_models": "TL-600"
+  },
+  {
+   "part_id": "OIL-GX220",
+   "name": "Gear oil GX-220, 1 litre",
+   "description": "Synthetic gear oil for TL-600 head gearbox",
+   "quantity_on_hand": 0,
+   "quantity_reserved": 0,
+   "location": "Stores C-02",
+   "reorder_threshold": 2,
+   "lead_time_days": 2,
+   "supplier": "Lubeco (demo supplier)",
+   "compatible_models": "TL-600"
+  },
+  {
+   "part_id": "PE-30",
+   "name": "Photo-eye sensor PE-30",
+   "description": "Retro-reflective photo-eye with bracket",
+   "quantity_on_hand": 0,
+   "quantity_reserved": 0,
+   "location": "Stores C-11",
+   "reorder_threshold": 1,
+   "lead_time_days": 5,
+   "supplier": "Trackline spares (demo)",
+   "compatible_models": "TL-600"
+  },
+  {
+   "part_id": "BLT-600-PVC",
+   "name": "Conveyor belt 600 mm PVC, 14 m",
+   "description": "Replacement belt, endless spliced",
+   "quantity_on_hand": 0,
+   "quantity_reserved": 0,
+   "location": "Stores D-01",
+   "reorder_threshold": 0,
+   "lead_time_days": 10,
+   "supplier": "Beltway Supply (demo supplier)",
+   "compatible_models": "TL-600"
+  }
+ ],
+ "work_orders": [
+  {
+   "work_order_id": "WO-2214",
+   "asset_id": "CV-310",
+   "title": "Belt tracking drift and drive overload trips (F-12)",
+   "description": "Night shift: belt drifting to the operator side at the tail end; F-12 overload tripped twice under full load.",
+   "priority": "P2",
+   "status": "IN_PROGRESS",
+   "assigned_to": "Maintenance C-team",
+   "created_at": "ago:14h",
+   "updated_at": "ago:9h"
+  },
+  {
+   "work_order_id": "WO-2190",
+   "asset_id": "CV-310",
+   "title": "Monthly preventive maintenance: conveyor CV-310",
+   "description": "Monthly PM per manual section 4.1. Due today.",
+   "priority": "P3",
+   "status": "OPEN",
+   "assigned_to": "Maintenance A-team",
+   "created_at": "ago:6d",
+   "updated_at": "ago:6d"
+  },
+  {
+   "work_order_id": "WO-2133",
+   "asset_id": "CV-310",
+   "title": "Monthly preventive maintenance (previous month)",
+   "description": "Routine PM.",
+   "priority": "P3",
+   "status": "CLOSED",
+   "assigned_to": "Maintenance A-team",
+   "created_at": "ago:33d",
+   "updated_at": "ago:32d"
+  }
+ ],
+ "work_order_log": [
+  {
+   "work_order_id": "WO-2133",
+   "ts": "ago:32d",
+   "author": "Suresh Nair",
+   "status_from": "IN_PROGRESS",
+   "status_to": "CLOSED",
+   "note": "PM done. Gearbox oil topped up 0.2 L. Lacing OK. Current 9.6 A.",
+   "via": "cmms"
+  },
+  {
+   "work_order_id": "WO-2214",
+   "ts": "ago:14h",
+   "author": "Line lead",
+   "status_to": "OPEN",
+   "note": "Created after second F-12 trip.",
+   "session_id": "S-0984",
+   "via": "cmms"
+  },
+  {
+   "work_order_id": "WO-2214",
+   "ts": "ago:12h",
+   "author": "Meera Pillai",
+   "status_from": "OPEN",
+   "status_to": "IN_PROGRESS",
+   "note": "Tail pulley take-up adjusted two full turns on the operator side. Belt still drifting.",
+   "session_id": "S-0984",
+   "via": "cmms"
+  }
+ ],
+ "sessions": [
+  {
+   "session_id": "S-0984",
+   "asset_id": "CV-310",
+   "technician": "Meera Pillai",
+   "shift_label": "C shift (last night)",
+   "started_at": "ago:13h",
+   "ended_at": "ago:9h",
+   "status": "ENDED",
+   "summary": "Tracking adjusted two turns; drift and F-12 persist; current 11.8 A.",
+   "task_id": "troubleshoot"
+  }
+ ],
+ "evidence": [
+  {
+   "session_id": "S-0984",
+   "asset_id": "CV-310",
+   "ts": "ago:12h50m",
+   "event_type": "technician_statement",
+   "source_type": "technician",
+   "title": "Belt drifting about 15 mm to the operator side at the tail end",
+   "detail": "Meera Pillai: \"Belt is walking about fifteen mil towards the operator side at the tail.\"",
+   "verified_by": "Meera Pillai"
+  },
+  {
+   "session_id": "S-0984",
+   "asset_id": "CV-310",
+   "ts": "ago:12h",
+   "event_type": "action",
+   "source_type": "tool_result",
+   "title": "Tail pulley take-up adjusted two full turns (operator side)",
+   "detail": "Recorded on WO-2214. Manual section 3.1 limits a single adjustment to one full turn.",
+   "verified_by": "Meera Pillai"
+  },
+  {
+   "session_id": "S-0984",
+   "asset_id": "CV-310",
+   "ts": "ago:10h20m",
+   "event_type": "technician_statement",
+   "source_type": "technician",
+   "title": "F-12 tripped again under full load; motor current 11.8 A",
+   "detail": "Meera Pillai: \"Tripped again at full load. Clamp meter shows eleven point eight amps.\" (Nameplate 11.0 A, trip 12.1 A per manual section 5.1.)",
+   "verified_by": "Meera Pillai"
+  },
+  {
+   "session_id": "S-0984",
+   "asset_id": "CV-310",
+   "ts": "ago:10h",
+   "event_type": "visual_observation",
+   "source_type": "camera_model",
+   "title": "OVERLOAD lamp lit; display shows F-12 and 11.8 A",
+   "detail": "Model observation from the technician's camera: OVERLOAD lamp appears lit, display reads F-12 DRIVE OVERLOAD, motor current 11.8 A.",
+   "model_id": "gpt-4o-mini via Agora ConvoAI (camera frames)",
+   "status": "verified",
+   "verified_by": "Meera Pillai"
+  },
+  {
+   "session_id": "S-0984",
+   "asset_id": "CV-310",
+   "ts": "ago:9h40m",
+   "event_type": "hypothesis",
+   "source_type": "agent_inference",
+   "title": "Over-adjusted take-up is over-tensioning one belt edge",
+   "detail": "Two full turns exceeds the one-turn limit in manual section 3.1; over-tension raises current (section 3.2). Not checked.",
+   "status": "open"
+  },
+  {
+   "session_id": "S-0984",
+   "asset_id": "CV-310",
+   "ts": "ago:9h35m",
+   "event_type": "open_question",
+   "source_type": "agent_inference",
+   "title": "Is the belt splice lacing crooked or damaged?",
+   "detail": "Manual section 3.1: if drift continues after one turn, inspect the splice. Not inspected yet.",
+   "status": "open"
+  },
+  {
+   "session_id": "S-0984",
+   "asset_id": "CV-310",
+   "ts": "ago:9h30m",
+   "event_type": "open_question",
+   "source_type": "technician",
+   "title": "Gearbox oil level not checked",
+   "detail": "Meera Pillai ran out of time. Low oil raises drag and can trip F-12 (manual section 4.2).",
+   "status": "open",
+   "verified_by": "Meera Pillai"
+  },
+  {
+   "session_id": "S-0984",
+   "asset_id": "CV-310",
+   "ts": "ago:9h1m",
+   "event_type": "system_record",
+   "source_type": "cmms",
+   "title": "Shift handoff H-0039 created",
+   "detail": "Handoff stored for the next shift."
+  }
+ ],
+ "handoffs": [
+  {
+   "handoff_id": "H-0039",
+   "asset_id": "CV-310",
+   "session_id": "S-0984",
+   "created_at": "ago:9h1m",
+   "created_by": "Meera Pillai",
+   "status": "PUBLISHED",
+   "report": {
+    "schema": "shifttrace.handoff/v1",
+    "asset": {
+     "asset_id": "CV-310",
+     "name": "Case conveyor CV-310",
+     "model": "TL-600",
+     "location": "Building A, Packaging line 2, case outfeed"
+    },
+    "session": {
+     "session_id": "S-0984",
+     "technician": "Meera Pillai",
+     "shift": "C shift (last night)",
+     "started_at": "ago:13h",
+     "ended_at": "ago:9h"
+    },
+    "task": {
+     "id": "troubleshoot",
+     "label": "Troubleshoot a fault"
+    },
+    "headline": "Belt still drifting after two turns of tail take-up; F-12 overload tripped again at 11.8 A. Cause not confirmed.",
+    "work_order": {
+     "work_order_id": "WO-2214",
+     "status": "IN_PROGRESS",
+     "priority": "P2",
+     "title": "Belt tracking drift and drive overload trips (F-12)"
+    },
+    "observations": [
+     {
+      "text": "Belt drifting about 15 mm to the operator side at the tail end",
+      "source": "technician"
+     },
+     {
+      "text": "F-12 tripped again under full load; motor current 11.8 A",
+      "source": "technician"
+     },
+     {
+      "text": "OVERLOAD lamp lit; display shows F-12 and 11.8 A",
+      "source": "camera_model",
+      "verified_by": "Meera Pillai"
+     }
+    ],
+    "actions_completed": [
+     {
+      "text": "Tail pulley take-up adjusted two full turns (operator side)",
+      "verified": true,
+      "ref": "WO-2214"
+     }
+    ],
+    "actions_failed_or_pending": [
+     {
+      "text": "Gearbox oil level not checked",
+      "ref": null
+     }
+    ],
+    "parts": [],
+    "ruled_out": [],
+    "open_loops": [
+     {
+      "text": "Over-adjusted take-up is over-tensioning one belt edge",
+      "type": "hypothesis"
+     },
+     {
+      "text": "Is the belt splice lacing crooked or damaged?",
+      "type": "open_question"
+     },
+     {
+      "text": "Gearbox oil level not checked",
+      "type": "open_question"
+     }
+    ],
+    "suggested_next_steps": [
+     "Check belt tension at both edges (suggestion, manual section 3.2).",
+     "Inspect the splice lacing and tail pulley for debris (suggestion, manual section 3.1).",
+     "Check gearbox oil level; GX-220 stock should be checked first (suggestion, manual section 4.2).",
+     "Monthly PM WO-2190 is due today and covers several of these checks (suggestion)."
+    ],
+    "manual_refs": [
+     "TL600-2.1",
+     "TL600-3.1",
+     "TL600-5.1"
+    ],
+    "spoken_summary": "Last night Meera Pillai adjusted the tail take-up two full turns, but the belt is still drifting to the operator side and the F-12 overload tripped again at 11.8 amps. The cause is not confirmed. Still open: belt tension on that edge, the splice lacing, and the gearbox oil level, which was not checked. The monthly PM is also due today.",
+    "generated_by": "seed (synthetic history)"
+   }
+  }
+ ],
+ "procurement": [
+  {
+   "request_id": "PR-1991",
+   "part_id": "OIL-GX220",
+   "quantity": 2,
+   "work_order_id": "WO-2214",
+   "session_id": "S-0984",
+   "status": "REJECTED",
+   "reason": "Gearbox top-up stock",
+   "created_by": "Meera Pillai",
+   "approved_by": "Meera Pillai",
+   "approval_via": "voice",
+   "approval_evidence": "\"Yes, go ahead.\" (voice)",
+   "supplier": "Beltway Supply (demo supplier)",
+   "expected_by": null,
+   "supplier_ref": null,
+   "failure_reason": "Supplier rejected: 1 litre pack discontinued; order the 4 litre pack (GX-220-4)",
+   "created_at": "ago:11h",
+   "decided_at": "ago:11h"
+  }
+ ],
+ "reservations": [
+  {
+   "reservation_id": "RSV-2996",
+   "part_id": "BLT-LACE-600",
+   "quantity": 1,
+   "work_order_id": "WO-2190",
+   "session_id": null,
+   "status": "ACTIVE",
+   "created_at": "ago:2d"
+  }
+ ],
+ "escalations": [
+  {
+   "escalation_id": "ESC-3995",
+   "work_order_id": "WO-2214",
+   "asset_id": "CV-310",
+   "session_id": "S-0984",
+   "severity": "medium",
+   "reason": "F-12 overload tripped twice in one shift; line slowed to 70 percent",
+   "status": "OPEN",
+   "created_at": "ago:10h"
+  }
+ ]
+}

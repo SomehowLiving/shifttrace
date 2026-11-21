@@ -1,0 +1,501 @@
+{
+ "id": "building_hvac",
+ "name": "Office tower plant room (Tower A)",
+ "description": "Air handling unit AHU-3: weekly inspection round, bag filter pressure rising toward its change limit, fan belt squeal at start-up. All data synthetic.",
+ "manuals": [
+  {
+   "model": "NB-AH20",
+   "prefix": "AH20",
+   "file": "NB-AH20_service_manual.md"
+  }
+ ],
+ "assets": [
+  {
+   "asset_id": "AHU-3",
+   "name": "Air handling unit AHU-3",
+   "asset_type": "Air handling unit",
+   "manufacturer": "Northbreeze Climate (fictional)",
+   "model": "NB-AH20",
+   "serial_no": "NBAH20-21-0315",
+   "location": "Tower A, level 5 plant room",
+   "status": "RUNNING",
+   "criticality": "Medium",
+   "metadata": {
+    "rated_power_kw": 7.5,
+    "running_hours": 21880,
+    "commissioned": "2021-09",
+    "serves": "Tower A floors 3 to 6, supply air",
+    "qr": "SHIFTTRACE:AHU-3",
+    "tasks": [
+     "inspection_round",
+     "preventive_maintenance",
+     "troubleshoot",
+     "onboarding",
+     "shift_briefing"
+    ],
+    "safety_notes": [
+     "Before opening any access door, the unit must be stopped, the local isolator locked off, and the fan fully stopped and chocked (manual section 5.1)."
+    ],
+    "panel": {
+     "title": "NORTHBREEZE NB-AH20",
+     "subtitle": "AIR HANDLING UNIT · AHU-3",
+     "lamps": [
+      {
+       "key": "fan",
+       "label": "FAN RUN",
+       "color": "#2fbf71"
+      },
+      {
+       "key": "filter",
+       "label": "FILTER",
+       "color": "#f5a524"
+      },
+      {
+       "key": "frost",
+       "label": "FROST",
+       "color": "#3b8bff"
+      },
+      {
+       "key": "fault",
+       "label": "FAULT",
+       "color": "#ff3b30"
+      },
+      {
+       "key": "cool",
+       "label": "COOLING",
+       "color": "#2fbf71"
+      }
+     ],
+     "lit": [
+      "fan",
+      "filter",
+      "cool"
+     ],
+     "alarms": [
+      "AL-5 FILTER DIRTY",
+      "AL-8 FAN FAIL",
+      "AL-11 FROST PROTECT",
+      "SYSTEM NORMAL"
+     ],
+     "readings": [
+      {
+       "key": "dp",
+       "label": "BAG FILTER ΔP",
+       "unit": "Pa",
+       "value": 262,
+       "step": 12,
+       "min": 70,
+       "max": 320,
+       "decimals": 0
+      },
+      {
+       "key": "sat",
+       "label": "SUPPLY AIR",
+       "unit": "°C",
+       "value": 14.6,
+       "step": 0.4,
+       "min": 11,
+       "max": 19,
+       "decimals": 1
+      }
+     ]
+    },
+    "limits": [
+     {
+      "label": "bag filter differential pressure",
+      "aliases": [
+       "bag filter",
+       "f7",
+       "filter pressure",
+       "filter differential",
+       "filter dp",
+       "filter delta p",
+       "filter"
+      ],
+      "unit": "Pa",
+      "normal": [
+       0,
+       150
+      ],
+      "limit_high": 250,
+      "section": "3.1",
+      "note": "Rising: plan a filter change before 250 Pa.",
+      "action_high": "Change limit reached (alarm AL-5): replace the F7 bag filter set."
+     },
+     {
+      "label": "pre-filter differential pressure",
+      "aliases": [
+       "pre-filter",
+       "pre filter",
+       "prefilter",
+       "g4",
+       "pre filter pressure",
+       "pre-filter pressure",
+       "prefilter pressure",
+       "g4 pressure",
+       "g4 filter"
+      ],
+      "unit": "Pa",
+      "normal": [
+       0,
+       100
+      ],
+      "limit_high": 150,
+      "section": "3.1",
+      "action_high": "Change the G4 pre-filter panels."
+     },
+     {
+      "label": "supply air temperature",
+      "aliases": [
+       "supply air",
+       "supply temperature",
+       "air temperature",
+       "temperature"
+      ],
+      "unit": "°C",
+      "limit_low": 12.5,
+      "limit_high": 15.5,
+      "section": "3.1",
+      "action_high": "More than 1.5 °C from the 14 °C setpoint.",
+      "action_low": "More than 1.5 °C from the 14 °C setpoint."
+     },
+     {
+      "label": "fan motor current",
+      "aliases": [
+       "fan current",
+       "motor current",
+       "current",
+       "amps"
+      ],
+      "unit": "A",
+      "normal": [
+       10,
+       13
+      ],
+      "limit_high": 13.5,
+      "section": "3.1",
+      "action_high": "Investigate the fan drive."
+     }
+    ],
+    "training": [
+     {
+      "module_id": "NBAH20-SAFE-1",
+      "title": "NB-AH20 air handler isolation and filters",
+      "pass_score": 80,
+      "intro": "Two questions on isolating the air handler and the filter change limit.",
+      "questions": [
+       {
+        "id": "q1",
+        "ask": "Before opening a fan section door, what must you do?",
+        "section": "5.1",
+        "min_points": 2,
+        "key_points": [
+         [
+          "isolator",
+          "isolate",
+          "lock",
+          "switch off"
+         ],
+         [
+          "fully stopped",
+          "wait",
+          "chock",
+          "windmill"
+         ]
+        ],
+        "explain": "Stop from the controller, lock off the local isolator, wait for the fan to stop fully and chock the wheel, because it can windmill from duct airflow."
+       },
+       {
+        "id": "q2",
+        "ask": "At what differential pressure must the F7 bag filter be changed?",
+        "section": "3.1",
+        "min_points": 1,
+        "key_points": [
+         [
+          "250"
+         ]
+        ],
+        "explain": "The F7 bag filter is clean below 150 pascals and must be changed at 250 pascals, which raises alarm AL-5."
+       }
+      ]
+     }
+    ]
+   }
+  }
+ ],
+ "parts": [
+  {
+   "part_id": "FLT-F7-592",
+   "name": "Bag filter set F7 (AHU-3)",
+   "description": "Set of 6 F7 bag filters, 592 x 592 mm",
+   "quantity_on_hand": 0,
+   "quantity_reserved": 0,
+   "location": "Stores E-01",
+   "reorder_threshold": 1,
+   "lead_time_days": 4,
+   "supplier": "Clearair Filters (demo supplier)",
+   "compatible_models": "NB-AH20"
+  },
+  {
+   "part_id": "FLT-G4-PANEL",
+   "name": "G4 pre-filter panel",
+   "description": "Pleated panel pre-filter 592 x 592 x 48 mm",
+   "quantity_on_hand": 6,
+   "quantity_reserved": 0,
+   "location": "Stores E-02",
+   "reorder_threshold": 6,
+   "lead_time_days": 3,
+   "supplier": "Clearair Filters (demo supplier)",
+   "compatible_models": "NB-AH20"
+  },
+  {
+   "part_id": "BLT-SPA-1250",
+   "name": "V-belt SPA-1250 (matched pair)",
+   "description": "Supply fan drive belts, matched pair",
+   "quantity_on_hand": 2,
+   "quantity_reserved": 0,
+   "location": "Stores E-05",
+   "reorder_threshold": 1,
+   "lead_time_days": 3,
+   "supplier": "Drivetrain Supply (demo supplier)",
+   "compatible_models": "NB-AH20"
+  }
+ ],
+ "work_orders": [
+  {
+   "work_order_id": "WO-3105",
+   "asset_id": "AHU-3",
+   "title": "Supply fan belt squeal at start-up",
+   "description": "Reported on last weekly round: about 10 seconds of belt squeal at each fan start.",
+   "priority": "P3",
+   "status": "OPEN",
+   "assigned_to": "Facilities team",
+   "created_at": "ago:2d",
+   "updated_at": "ago:2d"
+  },
+  {
+   "work_order_id": "WO-3098",
+   "asset_id": "AHU-3",
+   "title": "Quarterly filter change",
+   "description": "Routine filter change.",
+   "priority": "P4",
+   "status": "CLOSED",
+   "assigned_to": "Facilities team",
+   "created_at": "ago:62d",
+   "updated_at": "ago:61d"
+  }
+ ],
+ "work_order_log": [
+  {
+   "work_order_id": "WO-3098",
+   "ts": "ago:61d",
+   "author": "Joseph Fernandes",
+   "status_from": "IN_PROGRESS",
+   "status_to": "CLOSED",
+   "note": "G4 and F7 filters replaced. F7 dP after restart 72 Pa.",
+   "via": "cmms"
+  },
+  {
+   "work_order_id": "WO-3105",
+   "ts": "ago:2d",
+   "author": "Joseph Fernandes",
+   "status_to": "OPEN",
+   "note": "Raised from weekly round.",
+   "session_id": "S-0979",
+   "via": "cmms"
+  }
+ ],
+ "sessions": [
+  {
+   "session_id": "S-0979",
+   "asset_id": "AHU-3",
+   "technician": "Joseph Fernandes",
+   "shift_label": "Day shift (2 days ago)",
+   "started_at": "ago:2d1h",
+   "ended_at": "ago:2d",
+   "status": "ENDED",
+   "summary": "Weekly round: F7 bag filter 230 Pa and rising; belt squeal at start-up.",
+   "task_id": "inspection_round"
+  }
+ ],
+ "evidence": [
+  {
+   "session_id": "S-0979",
+   "asset_id": "AHU-3",
+   "ts": "ago:2d50m",
+   "event_type": "technician_statement",
+   "source_type": "technician",
+   "title": "F7 bag filter differential pressure 230 Pa",
+   "detail": "Joseph Fernandes: \"Bag filter reading two thirty pascal.\" (Change at 250 Pa per manual section 3.1.)",
+   "verified_by": "Joseph Fernandes"
+  },
+  {
+   "session_id": "S-0979",
+   "asset_id": "AHU-3",
+   "ts": "ago:2d45m",
+   "event_type": "visual_observation",
+   "source_type": "camera_model",
+   "title": "Controller shows supply air 14.2 °C, no active alarm",
+   "detail": "Model observation from the technician's camera: display reads SYSTEM NORMAL, supply air 14.2 °C (setpoint 14 °C).",
+   "model_id": "gpt-4o-mini via Agora ConvoAI (camera frames)",
+   "status": "verified",
+   "verified_by": "Joseph Fernandes"
+  },
+  {
+   "session_id": "S-0979",
+   "asset_id": "AHU-3",
+   "ts": "ago:2d40m",
+   "event_type": "technician_statement",
+   "source_type": "technician",
+   "title": "Belt squeals for about 10 seconds at fan start-up",
+   "detail": "Joseph Fernandes: \"Belt squeals for maybe ten seconds every time the fan starts.\"",
+   "verified_by": "Joseph Fernandes"
+  },
+  {
+   "session_id": "S-0979",
+   "asset_id": "AHU-3",
+   "ts": "ago:2d30m",
+   "event_type": "hypothesis",
+   "source_type": "agent_inference",
+   "title": "Fan belts are under-tensioned or glazed",
+   "detail": "Start-up squeal usually means low tension or glazed belts (manual section 4.1). Tension not measured.",
+   "status": "open"
+  },
+  {
+   "session_id": "S-0979",
+   "asset_id": "AHU-3",
+   "ts": "ago:2d25m",
+   "event_type": "open_question",
+   "source_type": "technician",
+   "title": "Condensate drain trap flow not checked",
+   "detail": "Joseph Fernandes could not reach the trap; tray access panel was blocked.",
+   "status": "open",
+   "verified_by": "Joseph Fernandes"
+  },
+  {
+   "session_id": "S-0979",
+   "asset_id": "AHU-3",
+   "ts": "ago:2d1m",
+   "event_type": "system_record",
+   "source_type": "cmms",
+   "title": "Shift handoff H-0035 created",
+   "detail": "Handoff stored for the next shift."
+  }
+ ],
+ "handoffs": [
+  {
+   "handoff_id": "H-0035",
+   "asset_id": "AHU-3",
+   "session_id": "S-0979",
+   "created_at": "ago:2d1m",
+   "created_by": "Joseph Fernandes",
+   "status": "PUBLISHED",
+   "report": {
+    "schema": "shifttrace.handoff/v1",
+    "asset": {
+     "asset_id": "AHU-3",
+     "name": "Air handling unit AHU-3",
+     "model": "NB-AH20",
+     "location": "Tower A, level 5 plant room"
+    },
+    "session": {
+     "session_id": "S-0979",
+     "technician": "Joseph Fernandes",
+     "shift": "Day shift (2 days ago)",
+     "started_at": "ago:2d1h",
+     "ended_at": "ago:2d"
+    },
+    "task": {
+     "id": "inspection_round",
+     "label": "Inspection round"
+    },
+    "headline": "Weekly round: F7 bag filter at 230 Pa (change at 250); belt squeal at start-up raised as WO-3105.",
+    "work_order": {
+     "work_order_id": "WO-3105",
+     "status": "OPEN",
+     "priority": "P3",
+     "title": "Supply fan belt squeal at start-up"
+    },
+    "observations": [
+     {
+      "text": "F7 bag filter differential pressure 230 Pa",
+      "source": "technician"
+     },
+     {
+      "text": "Controller shows supply air 14.2 °C, no active alarm",
+      "source": "camera_model",
+      "verified_by": "Joseph Fernandes"
+     },
+     {
+      "text": "Belt squeals for about 10 seconds at fan start-up",
+      "source": "technician"
+     }
+    ],
+    "actions_completed": [
+     {
+      "text": "WO-3105 raised for belt squeal",
+      "verified": true,
+      "ref": "WO-3105"
+     }
+    ],
+    "actions_failed_or_pending": [
+     {
+      "text": "Condensate drain trap flow not checked",
+      "ref": null
+     }
+    ],
+    "parts": [],
+    "ruled_out": [],
+    "open_loops": [
+     {
+      "text": "Fan belts are under-tensioned or glazed",
+      "type": "hypothesis"
+     },
+     {
+      "text": "Condensate drain trap flow not checked",
+      "type": "open_question"
+     }
+    ],
+    "suggested_next_steps": [
+     "Re-read the F7 filter pressure; plan a change before it reaches 250 Pa (suggestion, manual section 3.1).",
+     "Measure belt tension (suggestion, manual section 4.1).",
+     "Check the condensate trap (suggestion)."
+    ],
+    "manual_refs": [
+     "AH20-3.1",
+     "AH20-4.1"
+    ],
+    "spoken_summary": "Two days ago Joseph Fernandes did the weekly round. The bag filter was at 230 pascal, close to the 250 change limit, and the fan belt squeals for about ten seconds at start-up, raised as work order 3105. Still open: belt tension was not measured and the condensate trap was not checked.",
+    "generated_by": "seed (synthetic history)"
+   }
+  }
+ ],
+ "procurement": [
+  {
+   "request_id": "PR-1998",
+   "part_id": "FLT-F7-592",
+   "quantity": 1,
+   "work_order_id": null,
+   "session_id": "S-0979",
+   "status": "PENDING_APPROVAL",
+   "reason": "Bag filter at 230 Pa, change limit 250 Pa",
+   "created_by": "Joseph Fernandes",
+   "supplier": "Northbreeze Spares (demo supplier)",
+   "created_at": "ago:2d1h"
+  }
+ ],
+ "follow_ups": [
+  {
+   "follow_up_id": "FU-4996",
+   "title": "Re-tension or replace AHU-3 fan belts (squeal at start-up)",
+   "due_text": "this week",
+   "due_date": "in:3d",
+   "assignee": "Maintenance planner",
+   "asset_id": "AHU-3",
+   "session_id": "S-0979",
+   "created_by": "Joseph Fernandes",
+   "status": "OPEN",
+   "created_at": "ago:2d"
+  }
+ ]
+}

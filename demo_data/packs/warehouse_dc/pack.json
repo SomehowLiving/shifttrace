@@ -1,0 +1,634 @@
+{
+ "id": "warehouse_dc",
+ "name": "Distribution centre DC-2 (warehouse and logistics)",
+ "description": "Ambient pick zone B at a grocery distribution centre: a pick face below minimum, a delayed inbound rice shipment, an oil count mismatch and a cold room creeping up. All data synthetic.",
+ "manuals": [
+  {
+   "model": "DC2-OPS",
+   "prefix": "DC2",
+   "file": "DC2-OPS_sop.md"
+  }
+ ],
+ "assets": [
+  {
+   "asset_id": "DC2-ZB",
+   "name": "Pick zone B, DC-2",
+   "asset_type": "Warehouse pick zone",
+   "manufacturer": "Northgate Logistics (fictional)",
+   "model": "DC2-OPS",
+   "serial_no": "DC2-ZONE-B",
+   "location": "Distribution centre DC-2, east wing",
+   "status": "DEGRADED",
+   "criticality": "High",
+   "metadata": {
+    "serves": "Grocery store replenishment, two pick waves per shift",
+    "qr": "SHIFTTRACE:DC2-ZB",
+    "persona": {
+     "worker": "associate",
+     "systems": "warehouse and ERP systems"
+    },
+    "tasks": [
+     "warehouse_ops",
+     "onboarding",
+     "shift_briefing"
+    ],
+    "safety_notes": [
+     "Pedestrians stop at aisle ends and make eye contact with the forklift driver before crossing; never stand under a raised load (SOP section 5.1).",
+     "Never climb racking; above level 2 use the order picker with a harness (SOP section 5.2)."
+    ],
+    "limits": [
+     {
+      "label": "cold room temperature",
+      "aliases": [
+       "cold room",
+       "cold room temperature",
+       "chiller",
+       "cr-1",
+       "cr1"
+      ],
+      "unit": "C",
+      "normal": [
+       2.0,
+       8.0
+      ],
+      "limit_high": 8.0,
+      "section": "3.2",
+      "note": "Keep chilled stock between 2 and 8 C.",
+      "action_high": "Above 8 C for 15 minutes: move chilled stock to the backup cold room and call facilities."
+     }
+    ],
+    "panel": {
+     "title": "DC-2 ZONE B BOARD",
+     "subtitle": "PICK ZONE B · DC2-ZB",
+     "lamps": [
+      {
+       "key": "dock",
+       "label": "DOCK 3",
+       "color": "#f5a524"
+      },
+      {
+       "key": "cold",
+       "label": "COLD ROOM",
+       "color": "#5aa9f7"
+      },
+      {
+       "key": "wave",
+       "label": "PICK WAVE",
+       "color": "#2fbf71"
+      },
+      {
+       "key": "fork",
+       "label": "FORKLIFT",
+       "color": "#f5a524"
+      },
+      {
+       "key": "estop",
+       "label": "E-STOP",
+       "color": "#ff3b30"
+      }
+     ],
+     "lit": [
+      "dock",
+      "cold",
+      "wave"
+     ],
+     "alarms": [
+      "SHP-4471 LATE AT DOCK 3",
+      "B-04-2 BELOW MIN",
+      "CR-1 TEMP HIGH",
+      "ALL CLEAR"
+     ],
+     "readings": [
+      {
+       "key": "cr",
+       "label": "COLD ROOM CR-1",
+       "unit": "°C",
+       "value": 7.6,
+       "step": 0.2,
+       "min": 1.0,
+       "max": 12.0,
+       "decimals": 1
+      },
+      {
+       "key": "picks",
+       "label": "OPEN PICKS",
+       "unit": "",
+       "value": 42,
+       "step": 1,
+       "min": 0,
+       "max": 200,
+       "decimals": 0
+      }
+     ]
+    },
+    "training": [
+     {
+      "module_id": "DC2-SAFE-1",
+      "title": "DC-2 forklift and working-at-height safety",
+      "pass_score": 80,
+      "intro": "Three questions on forklifts, raised loads and reaching high locations.",
+      "questions": [
+       {
+        "id": "q1",
+        "ask": "A forklift is coming as you reach the end of an aisle. What do you do before crossing?",
+        "section": "5.1",
+        "min_points": 2,
+        "key_points": [
+         [
+          "stop",
+          "wait"
+         ],
+         [
+          "eye contact",
+          "look at the driver",
+          "the driver sees me",
+          "driver has seen"
+         ]
+        ],
+        "explain": "Stop at the aisle end and make eye contact with the driver before you cross; forklifts give way to pedestrians only in marked walkways."
+       },
+       {
+        "id": "q2",
+        "ask": "Can you walk under a raised load if you are quick?",
+        "section": "5.1",
+        "min_points": 1,
+        "key_points": [
+         [
+          "never",
+          "no",
+          "not allowed",
+          "don't",
+          "do not"
+         ]
+        ],
+        "explain": "Never stand or walk under a raised load, however quick."
+       },
+       {
+        "id": "q3",
+        "ask": "You need a case from level 3. How do you reach it?",
+        "section": "5.2",
+        "min_points": 2,
+        "key_points": [
+         [
+          "order picker",
+          "picker"
+         ],
+         [
+          "harness"
+         ]
+        ],
+        "explain": "Never climb racking. Above level 2 use the order picker with your harness clipped to the anchor point."
+       }
+      ]
+     }
+    ]
+   }
+  }
+ ],
+ "parts": [
+  {
+   "part_id": "SKU-2231",
+   "name": "Basmati rice 5 kg (case of 4)",
+   "description": "Ambient grocery, basmati rice 5 kg bags, case of 4",
+   "locations": {
+    "B-04-2": 2,
+    "R-12": 40
+   },
+   "reorder_threshold": 10,
+   "lead_time_days": 2,
+   "supplier": "Southfield Foods (fictional)",
+   "compatible_models": "DC2-OPS"
+  },
+  {
+   "part_id": "SKU-3307",
+   "name": "Sunflower oil 1 L (case of 12)",
+   "description": "Ambient grocery, sunflower oil 1 litre bottles, case of 12",
+   "locations": {
+    "B-06-1": 18,
+    "R-15": 24
+   },
+   "reorder_threshold": 8,
+   "lead_time_days": 3,
+   "supplier": "Southfield Foods (fictional)",
+   "compatible_models": "DC2-OPS"
+  },
+  {
+   "part_id": "SKU-5520",
+   "name": "Gel cold packs (case of 50)",
+   "description": "Chilled supplies, gel cold packs for chilled orders",
+   "locations": {
+    "CR-1": 6
+   },
+   "reorder_threshold": 4,
+   "lead_time_days": 4,
+   "supplier": "Coldline Supplies (fictional)",
+   "compatible_models": "DC2-OPS"
+  },
+  {
+   "part_id": "SKU-7741",
+   "name": "Stretch wrap roll 500 mm",
+   "description": "Packing consumable, pallet stretch wrap 500 mm",
+   "locations": {
+    "B-01-1": 9
+   },
+   "reorder_threshold": 5,
+   "lead_time_days": 2,
+   "supplier": "Wrapworks (fictional)",
+   "compatible_models": "DC2-OPS"
+  }
+ ],
+ "shipments": [
+  {
+   "shipment_id": "SHP-4471",
+   "asset_id": "DC2-ZB",
+   "direction": "inbound",
+   "carrier": "Bluearrow Freight (fictional)",
+   "carrier_ref": "BAF-889120",
+   "status": "DELAYED",
+   "origin": "Southfield Foods DC (fictional)",
+   "destination": "DC-2 dock 3",
+   "eta": "in:5h",
+   "items": [
+    {
+     "part_id": "SKU-2231",
+     "name": "Basmati rice 5 kg (case of 4)",
+     "quantity": 120
+    }
+   ],
+   "last_event": "Reloaded at Hub 7 after a vehicle breakdown; new ETA this afternoon",
+   "updated_at": "ago:1h",
+   "events": [
+    {
+     "ts": "ago:10h",
+     "location": "Southfield Foods DC (fictional)",
+     "status": "PICKED_UP",
+     "note": "Collected on time"
+    },
+    {
+     "ts": "ago:5h",
+     "location": "Hub 7 (fictional)",
+     "status": "DELAYED",
+     "note": "Vehicle breakdown"
+    },
+    {
+     "ts": "ago:1h",
+     "location": "Hub 7 (fictional)",
+     "status": "IN_TRANSIT",
+     "note": "Reloaded on a new vehicle; ETA moved to this afternoon"
+    }
+   ]
+  },
+  {
+   "shipment_id": "SHP-4480",
+   "asset_id": "DC2-ZB",
+   "direction": "outbound",
+   "carrier": "DC-2 own fleet",
+   "carrier_ref": "RUN-118-AM",
+   "status": "LOADING",
+   "origin": "DC-2 dock 5",
+   "destination": "Store 118 (fictional)",
+   "eta": "in:3h",
+   "items": [
+    {
+     "part_id": "SKU-3307",
+     "name": "Sunflower oil 1 L (case of 12)",
+     "quantity": 30
+    },
+    {
+     "part_id": "SKU-2231",
+     "name": "Basmati rice 5 kg (case of 4)",
+     "quantity": 12
+    }
+   ],
+   "last_event": "Loading at dock 5",
+   "updated_at": "ago:30m",
+   "events": [
+    {
+     "ts": "ago:30m",
+     "location": "DC-2 dock 5",
+     "status": "LOADING",
+     "note": "Picked and staged"
+    }
+   ]
+  },
+  {
+   "shipment_id": "SHP-4462",
+   "asset_id": "DC2-ZB",
+   "direction": "inbound",
+   "carrier": "Bluearrow Freight (fictional)",
+   "carrier_ref": "BAF-887655",
+   "status": "DELIVERED",
+   "origin": "Coldline Supplies (fictional)",
+   "destination": "DC-2 dock 2",
+   "eta": "ago:1d2h",
+   "items": [
+    {
+     "part_id": "SKU-5520",
+     "name": "Gel cold packs (case of 50)",
+     "quantity": 6
+    }
+   ],
+   "last_event": "Delivered and received, no shortages",
+   "updated_at": "ago:1d2h",
+   "events": [
+    {
+     "ts": "ago:1d2h",
+     "location": "DC-2 dock 2",
+     "status": "DELIVERED",
+     "note": "Received against ASN, no shortages"
+    }
+   ]
+  }
+ ],
+ "work_orders": [
+  {
+   "work_order_id": "WO-5102",
+   "asset_id": "DC2-ZB",
+   "title": "Count mismatch at B-06-1 (SKU-3307: system 18, counted 11)",
+   "description": "Night shift cycle count: 11 cases of sunflower oil found at B-06-1; system shows 18.",
+   "priority": "P3",
+   "status": "OPEN",
+   "assigned_to": "Inventory control",
+   "created_at": "ago:8h",
+   "updated_at": "ago:8h"
+  },
+  {
+   "work_order_id": "WO-5095",
+   "asset_id": "DC2-ZB",
+   "title": "Dock 3 door seal torn",
+   "description": "Bottom seal on dock 3 door torn; cold air loss suspected.",
+   "priority": "P3",
+   "status": "IN_PROGRESS",
+   "assigned_to": "Facilities",
+   "created_at": "ago:2d",
+   "updated_at": "ago:20h"
+  }
+ ],
+ "work_order_log": [
+  {
+   "work_order_id": "WO-5095",
+   "ts": "ago:2d",
+   "author": "Shift lead",
+   "status_from": null,
+   "status_to": "OPEN",
+   "note": "Raised after night loading.",
+   "via": "cmms"
+  },
+  {
+   "work_order_id": "WO-5095",
+   "ts": "ago:20h",
+   "author": "Facilities desk",
+   "status_from": "OPEN",
+   "status_to": "IN_PROGRESS",
+   "note": "Seal ordered; temporary strip fitted.",
+   "via": "cmms"
+  },
+  {
+   "work_order_id": "WO-5102",
+   "ts": "ago:8h",
+   "author": "Rohit Desai",
+   "status_from": null,
+   "status_to": "OPEN",
+   "note": "Counted 11, system 18. Not adjusted, per SOP 3.1.",
+   "via": "cmms"
+  }
+ ],
+ "sessions": [
+  {
+   "session_id": "S-0976",
+   "asset_id": "DC2-ZB",
+   "technician": "Rohit Desai",
+   "shift_label": "C shift (last night)",
+   "started_at": "ago:13h",
+   "ended_at": "ago:5h",
+   "status": "ENDED",
+   "summary": "B-04-2 down to 2 cases of rice; inbound SHP-4471 delayed; oil count mismatch at B-06-1; cold room 7.6 C and rising.",
+   "task_id": "warehouse_ops"
+  }
+ ],
+ "evidence": [
+  {
+   "session_id": "S-0976",
+   "ts": "ago:12h",
+   "event_type": "system_record",
+   "source_type": "cmms",
+   "title": "Inbound SHP-4471 (120 cases SKU-2231) delayed at Hub 7",
+   "detail": "Carrier tracking: vehicle breakdown at Hub 7 (fictional)."
+  },
+  {
+   "session_id": "S-0976",
+   "ts": "ago:9h",
+   "event_type": "technician_statement",
+   "source_type": "technician",
+   "title": "Counted 11 cases of SKU-3307 at B-06-1; system shows 18",
+   "detail": "Rohit Desai: \"Only eleven cases of the oil at B six one, system says eighteen.\"",
+   "verified_by": "Rohit Desai"
+  },
+  {
+   "session_id": "S-0976",
+   "ts": "ago:8h50m",
+   "event_type": "open_question",
+   "source_type": "technician",
+   "status": "open",
+   "title": "Was the SKU-3307 shortfall a mis-pick or an unrecorded transfer?",
+   "detail": "Recount needed on the next shift (SOP 3.1)."
+  },
+  {
+   "session_id": "S-0976",
+   "ts": "ago:7h",
+   "event_type": "technician_statement",
+   "source_type": "technician",
+   "title": "Cold room CR-1 at 7.6 C, inside the band but rising",
+   "detail": "Rohit Desai: \"Cold room is seven point six, it was six point one at the start of shift.\"",
+   "verified_by": "Rohit Desai"
+  },
+  {
+   "session_id": "S-0976",
+   "ts": "ago:6h55m",
+   "event_type": "hypothesis",
+   "source_type": "agent_inference",
+   "status": "open",
+   "title": "Torn dock 3 seal is letting warm air into the cold room",
+   "detail": "WO-5095 is open for the seal. A possibility to check, not a cause."
+  },
+  {
+   "session_id": "S-0976",
+   "ts": "ago:5h30m",
+   "event_type": "technician_statement",
+   "source_type": "technician",
+   "title": "B-04-2 pick face down to 2 cases of SKU-2231 (minimum 10)",
+   "detail": "Rohit Desai: \"Rice pick face is down to two cases, no replen done, waiting on the inbound.\"",
+   "verified_by": "Rohit Desai"
+  }
+ ],
+ "learning_records": [
+  {
+   "trainee": "Rohit Desai",
+   "module_id": "DC2-SAFE-1",
+   "title": "DC-2 forklift and working-at-height safety",
+   "asset_id": "DC2-ZB",
+   "status": "PASSED",
+   "score": 100,
+   "attempts": 1,
+   "updated_at": "ago:30d"
+  }
+ ],
+ "handoffs": [
+  {
+   "handoff_id": "H-0034",
+   "asset_id": "DC2-ZB",
+   "session_id": "S-0976",
+   "created_at": "ago:5h1m",
+   "created_by": "Rohit Desai",
+   "status": "PUBLISHED",
+   "report": {
+    "schema": "shifttrace.handoff/v1",
+    "asset": {
+     "asset_id": "DC2-ZB",
+     "name": "Pick zone B, DC-2",
+     "model": "DC2-OPS",
+     "location": "Distribution centre DC-2, east wing"
+    },
+    "session": {
+     "session_id": "S-0976",
+     "technician": "Rohit Desai",
+     "shift": "C shift (last night)",
+     "started_at": "ago:13h",
+     "ended_at": "ago:5h"
+    },
+    "task": {
+     "id": "warehouse_ops",
+     "label": "Warehouse operations"
+    },
+    "headline": "Rice pick face B-04-2 is down to 2 cases and inbound SHP-4471 is delayed; oil count mismatch at B-06-1 unresolved; cold room 7.6 C and rising.",
+    "work_order": {
+     "work_order_id": "WO-5102",
+     "status": "OPEN",
+     "priority": "P3",
+     "title": "Count mismatch at B-06-1 (SKU-3307: system 18, counted 11)"
+    },
+    "observations": [
+     {
+      "text": "Counted 11 cases of SKU-3307 at B-06-1; system shows 18",
+      "source": "technician"
+     },
+     {
+      "text": "Cold room CR-1 at 7.6 C, inside the band but rising",
+      "source": "technician"
+     },
+     {
+      "text": "B-04-2 pick face down to 2 cases of SKU-2231 (minimum 10)",
+      "source": "technician"
+     }
+    ],
+    "actions_completed": [
+     {
+      "text": "WO-5102 raised for the B-06-1 count mismatch (not adjusted, per SOP 3.1)",
+      "verified": true,
+      "ref": "WO-5102"
+     }
+    ],
+    "actions_failed_or_pending": [
+     {
+      "text": "B-04-2 not replenished; waiting on inbound SHP-4471",
+      "ref": null
+     }
+    ],
+    "parts": [],
+    "ruled_out": [],
+    "open_loops": [
+     {
+      "text": "Was the SKU-3307 shortfall a mis-pick or an unrecorded transfer?",
+      "type": "open_question"
+     },
+     {
+      "text": "Torn dock 3 seal is letting warm air into the cold room",
+      "type": "hypothesis"
+     }
+    ],
+    "suggested_next_steps": [
+     "Replenish B-04-2 from reserve R-12 before the first pick wave; the inbound will not arrive in time (suggestion, SOP 2.1).",
+     "Recount B-06-1 with a second associate (suggestion, SOP 3.1).",
+     "Record the cold room temperature at the start of shift and act above 8 C (suggestion, SOP 3.2)."
+    ],
+    "manual_refs": [
+     "DC2-2.1",
+     "DC2-3.1",
+     "DC2-3.2"
+    ],
+    "spoken_summary": "Last night Rohit Desai left the rice pick face at B-04-2 down to two cases because the inbound rice shipment SHP 4471 is delayed. The oil count at B-06-1 is eleven against eighteen in the system, still unexplained. The cold room was seven point six degrees and rising.",
+    "generated_by": "seed (synthetic history)"
+   }
+  }
+ ],
+ "transfers": [
+  {
+   "transfer_id": "TR-5998",
+   "part_id": "SKU-3307",
+   "quantity": 12,
+   "from_location": "R-15",
+   "to_location": "B-06-1",
+   "reason": "Pick face below minimum",
+   "status": "DONE",
+   "session_id": null,
+   "asset_id": "DC2-ZB",
+   "created_by": "Rohit Desai",
+   "confirmed_by": "Rohit Desai",
+   "confirmation_via": "voice",
+   "confirmation_evidence": "\"Yes, move them.\" (earlier voice session)",
+   "erp_ref": "ERP-69998",
+   "created_at": "ago:2d3h",
+   "decided_at": "ago:2d3h"
+  }
+ ],
+ "erp_postings": [
+  {
+   "erp_ref": "ERP-69997",
+   "ts": "ago:1d2h",
+   "doc_type": "GOODS_RECEIPT",
+   "doc_ref": "SHP-4462",
+   "payload": {
+    "part_id": "SKU-5520",
+    "quantity": 6
+   }
+  },
+  {
+   "erp_ref": "ERP-69998",
+   "ts": "ago:2d3h",
+   "doc_type": "STOCK_TRANSFER",
+   "doc_ref": "TR-5998",
+   "payload": {
+    "part_id": "SKU-3307",
+    "quantity": 12,
+    "from_location": "R-15",
+    "to_location": "B-06-1"
+   }
+  }
+ ],
+ "follow_ups": [
+  {
+   "follow_up_id": "FU-4998",
+   "title": "Recount SKU-3307 at B-06-1 with a second associate",
+   "due_text": "next shift",
+   "due_date": "in:0d",
+   "assignee": "A shift",
+   "asset_id": "DC2-ZB",
+   "session_id": "S-0976",
+   "created_by": "Rohit Desai",
+   "status": "OPEN",
+   "created_at": "ago:8h"
+  },
+  {
+   "follow_up_id": "FU-4999",
+   "title": "Replace the torn dock 3 door seal",
+   "due_text": "in 2 days",
+   "due_date": "in:2d",
+   "assignee": "Facilities",
+   "asset_id": "DC2-ZB",
+   "session_id": "S-0976",
+   "created_by": "Rohit Desai",
+   "status": "OPEN",
+   "created_at": "ago:7h"
+  }
+ ]
+}

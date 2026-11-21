@@ -1,0 +1,48 @@
+  img_ds_gauge_1.jpg  by-sa  'Swiss Made'
+  img_ds_gauge_2.jpg  by-sa  'Soviet Locomotive Class FD. 1931-42. Советский паровоз ФД.'
+  img_ds_gauge_3.jpg  by  "Driver's cab"
+  img_ds_conveyor_1.jpg  by  'Mauna Loa Macadamia Nut & Chocolate Factory'
+  img_ds_conveyor_2.jpg  by  'The Children Together'
+  img_ds_conveyor_3.jpg  by-sa  'Mating season -- General Motors Assembly Plant Tour'
+  img_ds_warehouse_1.jpg  by  '20110826-FS-LSC-0071'
+  img_ds_warehouse_2.jpg  by  '20110826-FS-LSC-0046'
+  img_ds_warehouse_3.jpg  by  '20110826-FS-LSC-0425'
+  img_ds_forklift_1.jpg  cc0  'PNG Forklift warehouse clipart, transparent'
+  img_ds_forklift_2.jpg  by  'Sealey Power Products Warehouse'
+  img_ds_hvac_1.jpg  by  'Connector Plus Flexible Duct Connector (Black - Flat)'
+  img_ds_hvac_2.jpg  by  'CM014A - Madison Yard - Supply Air Duct and Vibration Flex Duct Attached to Air Handling Unit 3 - HVAC Room A3060 (10-15-2014)'
+  img_ds_motor_1.jpg  by  'Santa’s Electric'
+  img_ds_motor_2.jpg  by  'Homopolar - 1.jpg'
+  img_ds_compressor_1.jpg  by  'Air Compressor Powered by Car Engine'
+  img_ds_compressor_2.jpg  by-sa  'SH Johnson & Co Ltd, Engineering Works, Carpenters Road Stratford, E15 1978'
+  img_ds_display_1.jpg  by  'Room Thermostat'
+  img_ds_display_2.jpg  pdm  '20120106-OC-AMW-0080'
+  aud_ds_forklift_1.mp3  cc0  'Beeps & Brakes ~Construction Site Trucks'
+  aud_ds_conveyor_1.mp3  by  'Saha, sahalaitos, kuljetin / Saw mill, 1970s. Conveyor belts, noises of the saw mill in the bg'
+[Parsed_concat_12 @ 00000169b09fad00] Input link in0:v0 parameters (size 1280x720, SAR 19168:19175) do not match the corresponding output link in0:v0 parameters (1280x720, SAR 17088:17075)
+[Parsed_concat_12 @ 00000169b09fad00] Failed to configure output pad on Parsed_concat_12
+[fc#0 @ 00000169b0935140] Error reinitializing filters!
+[fc#0 @ 00000169b0935140] Task finished with error code: -22 (Invalid argument)
+[fc#0 @ 00000169b0935140] Terminating thread with return code -22 (Invalid argument)
+[vost#0:0/libvpx @ 00000169b2f65ac0] [enc:libvpx @ 00000169b09ffcc0] Could not open encoder before EOF
+[vost#0:0/libvpx @ 00000169b2f65ac0] Task finished with error code: -22 (Invalid argument)
+[vost#0:0/libvpx @ 00000169b2f65ac0] Terminating thread with return code -22 (Invalid argument)
+[out#0/webm @ 00000169b2ecedc0] Nothing was written into output file, because at least one of its streams received no packets.
+[Parsed_concat_12 @ 0000029b5979f540] Input link in0:v0 parameters (size 1280x720, SAR 1696:1695) do not match the corresponding output link in0:v0 parameters (1280x720, SAR 1026:1025)
+[Parsed_concat_12 @ 0000029b5979f540] Failed to configure output pad on Parsed_concat_12
+[fc#0 @ 0000029b596d5380] Error reinitializing filters!
+[fc#0 @ 0000029b596d5380] Task finished with error code: -22 (Invalid argument)
+[fc#0 @ 0000029b596d5380] Terminating thread with return code -22 (Invalid argument)
+[vost#0:0/libvpx @ 0000029b5ba24cc0] [enc:libvpx @ 0000029b5c1aa180] Could not open encoder before EOF
+[vost#0:0/libvpx @ 0000029b5ba24cc0] Task finished with error code: -22 (Invalid argument)
+[vost#0:0/libvpx @ 0000029b5ba24cc0] Terminating thread with return code -22 (Invalid argument)
+[out#0/webm @ 0000029b597a2b80] Nothing was written into output file, because at least one of its streams received no packets.
+[Parsed_concat_12 @ 00000263d6909c80] Input link in0:v0 parameters (size 1280x720, SAR 191983:192000) do not match the corresponding output link in0:v0 parameters (1280x720, SAR 2276:2275)
+[Parsed_concat_12 @ 00000263d6909c80] Failed to configure output pad on Parsed_concat_12
+[fc#0 @ 00000263d6845b80] Error reinitializing filters!
+[fc#0 @ 00000263d6845b80] Task finished with error code: -22 (Invalid argument)
+[fc#0 @ 00000263d6845b80] Terminating thread with return code -22 (Invalid argument)
+[vost#0:0/libvpx @ 00000263d6911d40] [enc:libvpx @ 00000263d8633e40] Could not open encoder before EOF
+[vost#0:0/libvpx @ 00000263d6911d40] Task finished with error code: -22 (Invalid argument)
+[vost#0:0/libvpx @ 00000263d6911d40] Terminating thread with return code -22 (Invalid argument)
+[out#0/webm @ 00000263d692cc40] Nothing was written into output file, because at least one of its streams received no packets.

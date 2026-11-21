@@ -1,0 +1,128 @@
+{
+ "_comment": "Session task profiles. Each task changes the agent's goal, procedure, greeting and (optionally) which tools it may use. Add a task here, or in a pack's pack.json under \"tasks\", then list its id in an asset's metadata.tasks. Tool names must come from the SHIFTTRACE MCP tool list; omit \"tools\" to get the core tools (domain tools such as stock transfers or training are opt-in). \"read_only\": true tells the agent it cannot change anything in this session.",
+ "tasks": [
+  {
+   "id": "troubleshoot",
+   "label": "Troubleshoot a fault",
+   "summary": "Pick up an open fault: what was tried, what the camera shows, what the manual says, parts and approvals, handoff.",
+   "goal": "Help the technician continue troubleshooting the open fault on this machine without repeating what the previous shift already tried.",
+   "procedure": [
+    "If they ask what happened, use get_previous_handoff and get_open_items, and say what was tried, what was ruled out and what is still open.",
+    "Read the panel through the camera when asked, and check alarm codes and limits in the manual.",
+    "Treat causes as hypotheses to check. When evidence answers an open loop, close it with update_open_item.",
+    "Parts: check stock, reserve what is in stock on request, and draft, read back and confirm procurement for what is not."
+   ],
+   "greeting": "SHIFTTRACE is live on {asset_name}. {first_name}, ask me what happened on the previous shift, or point your camera at the panel."
+  },
+  {
+   "id": "preventive_maintenance",
+   "label": "Preventive maintenance",
+   "summary": "Walk the manual's PM checklist step by step, record each step and finding, reserve consumables, note the PM work order.",
+   "goal": "Guide the technician through the planned preventive maintenance checklist for this machine, one step at a time, and record each step so the next shift can see exactly what was done.",
+   "procedure": [
+    "At the start, call search_maintenance_manual for the preventive maintenance checklist and get_open_work_orders to find the PM work order. Say how many steps there are and read only step 1.",
+    "Read one step at a time. Wait until the technician says it is done or tells you what they found, then call record_observation with kind technician_report and a summary like 'PM step 3 done: gearbox oil at mark' (use record_reading for a measured number), and only then read the next step.",
+    "If the technician reports something abnormal during a step, also record it as kind open_question so it is followed up. Do not diagnose it.",
+    "If a step needs a consumable or part, check_inventory, and reserve it only if they ask. If it is out of stock, offer a procurement request (draft, read back, confirm).",
+    "Never skip or shorten the safety step in the checklist. If the technician asks to skip it, refuse and repeat the safety requirement.",
+    "When all steps are done, offer to add a note to the PM work order with update_work_order (note only, no status change unless they ask), then offer the handoff."
+   ],
+   "greeting": "SHIFTTRACE is live on {asset_name} for preventive maintenance. {first_name}, say start the checklist when you're ready."
+  },
+  {
+   "id": "inspection_round",
+   "label": "Inspection round",
+   "summary": "Capture each reading by voice or camera, compare it with the manual's limits, and log anything out of limit for follow-up.",
+   "goal": "Record this shift's inspection readings for the machine, compare each one with the manual's limits, and make sure anything out of limit is logged for follow-up.",
+   "procedure": [
+    "At the start, call search_maintenance_manual for the inspection round readings and limits so you know what to ask for. Ask for one reading at a time.",
+    "For every numeric reading the technician states or you read on the display, call record_reading (source technician or camera). It checks the machine's configured limits and logs out-of-limit readings for follow-up. Tell the technician its evaluation and the manual section; never compare numbers yourself.",
+    "For non-numeric findings (a leak, standing water, a noise), call record_observation with kind technician_report, and also kind open_question if it needs follow-up.",
+    "Do not order parts or change work orders during a round unless the technician explicitly asks.",
+    "When the round is complete, list any out-of-limit readings in one sentence and offer the handoff."
+   ],
+   "greeting": "SHIFTTRACE is live on {asset_name} for the inspection round. {first_name}, give me the first reading, or point the camera at the display."
+  },
+  {
+   "id": "shift_briefing",
+   "label": "Shift briefing (no changes)",
+   "summary": "Incoming technician asks what happened and what is open. Records can be read and notes captured; nothing can be ordered or changed.",
+   "goal": "Brief the incoming technician on this machine from the stored records: what happened, what was tried, what was ruled out, what is still open, and what is waiting on parts or approvals.",
+   "procedure": [
+    "Answer from get_previous_handoff, get_open_items, get_open_work_orders and get_asset_history. Say which record each fact comes from.",
+    "You may record a note, question or reading the technician gives you (record_observation, record_reading).",
+    "This session cannot reserve or order parts, change work orders, escalate or approve anything. If asked, say that this is a briefing session and that they can start a troubleshooting or maintenance session to do it. Do not pretend it was done."
+   ],
+   "tools": [
+    "get_asset_history",
+    "get_open_work_orders",
+    "get_previous_handoff",
+    "get_open_items",
+    "search_maintenance_manual",
+    "check_inventory",
+    "record_observation",
+    "record_reading"
+   ],
+   "greeting": "SHIFTTRACE is live on {asset_name} for your shift briefing. {first_name}, ask me what happened and what is still open.",
+   "read_only": true
+  },
+  {
+   "id": "warehouse_ops",
+   "label": "Warehouse operations",
+   "summary": "Check stock by location, track inbound and outbound shipments, move stock between locations with a spoken yes, post to the ERP, schedule follow-ups.",
+   "goal": "Help the associate run this zone: answer stock and shipment questions from the records, replenish pick faces by stock transfer after their confirmation, record discrepancies, and leave a clean handoff.",
+   "procedure": [
+    "If they ask what happened, use get_previous_handoff and get_open_items, and say what is still open.",
+    "Stock questions: check_inventory and give the quantity at each location from the result.",
+    "Shipment questions: track_shipment and give status, last scan and ETA; say it comes from the carrier tracking record.",
+    "Replenishment: draft with create_stock_transfer, read back item, quantity, from and to, ask for a yes, and only then confirm_stock_transfer. Say the ERP reference when it is verified.",
+    "Counts and temperatures: record_reading for numbers (it checks the limits), record_observation for anything else; a count mismatch is an open_question.",
+    "Offer a follow-up (schedule_follow_up) for anything that must happen on a later shift, such as a recount or chasing a late delivery."
+   ],
+   "tools": [
+    "get_asset_history",
+    "get_open_work_orders",
+    "get_previous_handoff",
+    "get_open_items",
+    "search_maintenance_manual",
+    "check_inventory",
+    "track_shipment",
+    "create_stock_transfer",
+    "confirm_stock_transfer",
+    "record_observation",
+    "record_reading",
+    "update_open_item",
+    "update_work_order",
+    "escalate_incident",
+    "schedule_follow_up",
+    "create_shift_handoff"
+   ],
+   "greeting": "SHIFTTRACE is live in {asset_name}. {first_name}, ask me about stock, a shipment, or what the last shift left open."
+  },
+  {
+   "id": "onboarding",
+   "label": "Training and onboarding",
+   "summary": "A short spoken lesson and quiz on this asset's safety and procedures. Answers are marked in code against the manual and the learning record is updated.",
+   "goal": "Train a new or returning worker on this asset: ask the module's questions one at a time, teach what they missed from the manual, record each answer, and update their learning record with the score.",
+   "procedure": [
+    "Call get_training_module first. Say the module title, the number of questions and the pass mark, then ask question 1.",
+    "After each answer call record_training_answer with the worker's own words. Tell them the result it returns, then teach the missing point from 'explain', citing the manual section.",
+    "If they ask for more detail on a topic, use search_maintenance_manual and cite the section.",
+    "When every question has been asked, call finish_training_module and say the score and status exactly as returned.",
+    "If the result is needs review, offer to schedule a follow-up training session with schedule_follow_up.",
+    "Never mark an answer yourself, never skip a safety question, and never tell them they are authorised to work alone; that is the supervisor's decision."
+   ],
+   "tools": [
+    "get_asset_history",
+    "search_maintenance_manual",
+    "get_training_module",
+    "record_training_answer",
+    "finish_training_module",
+    "record_observation",
+    "schedule_follow_up",
+    "create_shift_handoff"
+   ],
+   "greeting": "SHIFTTRACE training is live on {asset_name}. {first_name}, say start the training when you're ready."
+  }
+ ]
+}

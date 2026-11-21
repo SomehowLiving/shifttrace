@@ -1,0 +1,290 @@
+{
+ "vision": {
+  "ready_s": 17.8,
+  "steps": [
+   {
+    "name": "panel_read",
+    "said": "What does the panel display show right now?",
+    "heard": "What does the panel display show right now?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "The display shows \"A-17 DISCH TEMP HIGH\" with a discharge temperature of 108\u00b0C. The vibration reading is 7.4 mm/s. I will record this observation now."
+    ],
+    "tools": [],
+    "evidence": [],
+    "latency_ms": 1926,
+    "duration_s": 23.4,
+    "checks": [
+     [
+      "vision: should read A-17/TEMP HIGH/108",
+      true,
+      ""
+     ]
+    ],
+    "camera": "image:panel_alarm.png",
+    "passed": true
+   },
+   {
+    "name": "panel_read",
+    "said": "What does the panel display show right now?",
+    "heard": "What does the panel display show right now?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "The display is blurry, and I can't clearly see the readings. Please hold the camera steady or move closer for a better view."
+    ],
+    "tools": [],
+    "evidence": [],
+    "latency_ms": 2656,
+    "duration_s": 18.4,
+    "checks": [
+     [
+      "vision: blurred: read it or say unclear",
+      true,
+      ""
+     ]
+    ],
+    "camera": "image:panel_alarm.png {'blur': 5}",
+    "passed": true
+   },
+   {
+    "name": "panel_read",
+    "said": "What does the panel display show right now?",
+    "heard": "What does the panel display show right now?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "The display shows \"A-17 DISCH TEMP HIGH\" with a discharge temperature of 108\u00b0C and a vibration reading of 7.4 mm/s. I'll record this observation now."
+    ],
+    "tools": [],
+    "evidence": [],
+    "latency_ms": 3371,
+    "duration_s": 24.6,
+    "checks": [
+     [
+      "vision: dim: read it or say too dark",
+      true,
+      ""
+     ]
+    ],
+    "camera": "image:panel_alarm.png {'bright': 0.3}",
+    "passed": true
+   },
+   {
+    "name": "panel_read",
+    "said": "What does the panel display show right now?",
+    "heard": "What does the panel display show right now?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "The display shows \"A-17 DISCH TEMP HIGH\" with a discharge temperature of 108\u00b0C and a vibration reading of 7.4 mm/s. I will record this observation."
+    ],
+    "tools": [],
+    "evidence": [],
+    "latency_ms": 3159,
+    "duration_s": 25.0,
+    "checks": [
+     [
+      "vision: angled and far",
+      true,
+      ""
+     ]
+    ],
+    "camera": "image:panel_alarm.png {'rotate': 22, 'zoom': 0.55}",
+    "passed": true
+   },
+   {
+    "name": "panel_read",
+    "said": "What does the panel display show right now?",
+    "heard": "What does the panel display show right now?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "The display shows \"A-17 DISCH TEMP HIGH\" with a discharge temperature of 108\u00b0C and a vibration reading of 7.4 mm/s. I will record this observation now."
+    ],
+    "tools": [],
+    "evidence": [],
+    "latency_ms": 4130,
+    "duration_s": 27.1,
+    "checks": [
+     [
+      "vision: glare",
+      true,
+      ""
+     ]
+    ],
+    "camera": "image:panel_alarm.png {'glare': True}",
+    "passed": true
+   },
+   {
+    "name": "panel_read",
+    "said": "What does the panel display show right now?",
+    "heard": "What does the panel display show right now?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "The display shows \"NO ACTIVE ALARM\" with a discharge temperature of 96\u00b0C and a vibration reading of 2.6 mm/s. I'll record this observation now."
+    ],
+    "tools": [],
+    "evidence": [],
+    "latency_ms": 3815,
+    "duration_s": 24.5,
+    "checks": [
+     [
+      "vision: normal panel: must NOT report A-17",
+      true,
+      ""
+     ]
+    ],
+    "camera": "image:panel_normal.png",
+    "passed": true
+   },
+   {
+    "name": "panel_read",
+    "said": "What does the panel display show right now?",
+    "heard": "What does the panel display show right now?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "The display shows \"A-22 VIBRATION HIGH\" with a discharge temperature of 97\u00b0C and a vibration reading of 9.2 mm/s. I'll record this observation now."
+    ],
+    "tools": [],
+    "evidence": [],
+    "latency_ms": 4762,
+    "duration_s": 25.9,
+    "checks": [
+     [
+      "vision: should read A-22 / 9.2 (not the previous frame)",
+      true,
+      ""
+     ]
+    ],
+    "camera": "image:panel_a22.png",
+    "passed": true
+   },
+   {
+    "name": "alarm_code",
+    "said": "Read me the alarm code on the display.",
+    "heard": "Read me the alarm code on the display.",
+    "asr_similarity": 1.0,
+    "replies": [
+     "I can't see the display right now. Please adjust the camera for better visibility."
+    ],
+    "tools": [],
+    "evidence": [],
+    "latency_ms": 4333,
+    "duration_s": 16.4,
+    "checks": [
+     [
+      "vision: blank camera: must not invent a code",
+      true,
+      ""
+     ]
+    ],
+    "camera": "blank:",
+    "passed": true
+   },
+   {
+    "name": "what_machine",
+    "said": "What kind of equipment am I looking at?",
+    "heard": "What kind of equipment am I looking at?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "You're looking at a diagram of a Westinghouse air compressor. It illustrates various components and their connections, such as valves and gauges, related to the operation of the compressor."
+    ],
+    "tools": [],
+    "evidence": [],
+    "latency_ms": 4297,
+    "duration_s": 23.4,
+    "checks": [
+     [
+      "vision: real photo (Flickr): old compressor",
+      true,
+      ""
+     ]
+    ],
+    "camera": "image:img_real_westinghouse.jpg",
+    "passed": true
+   },
+   {
+    "name": "alarm_code",
+    "said": "Read me the alarm code on the display.",
+    "heard": "Read me the alarm code on the display.",
+    "asr_similarity": 1.0,
+    "replies": [
+     "I can't see the alarm code from the display. Please point closer to the relevant area for visibility."
+    ],
+    "tools": [],
+    "evidence": [],
+    "latency_ms": 4177,
+    "duration_s": 17.1,
+    "checks": [
+     [
+      "vision: real industrial panel: must not carry over A-17 from earlier frames",
+      true,
+      ""
+     ]
+    ],
+    "camera": "image:img_real_panel_1.jpg",
+    "passed": true
+   },
+   {
+    "name": "what_machine",
+    "said": "What kind of equipment am I looking at?",
+    "heard": "What kind of equipment am I looking at?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "You're looking at a set of gauges, specifically a vacuum gauge and an oil pressure gauge. These are used for measuring the pressure and vacuum in various systems, likely in industrial or mechanical applications."
+    ],
+    "tools": [],
+    "evidence": [],
+    "latency_ms": 5153,
+    "duration_s": 25.9,
+    "checks": [
+     [
+      "vision: real photo: pressure gauge",
+      true,
+      ""
+     ]
+    ],
+    "camera": "image:img_real_gauge.jpg",
+    "passed": true
+   },
+   {
+    "name": "what_machine",
+    "said": "What kind of equipment am I looking at?",
+    "heard": "What kind of equipment am I looking at?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "You're looking at a control panel for a steam system or thermal power plant. It shows various components such as boilers, condensers, and pumps, along with their connections and operational parameters for monitoring and control."
+    ],
+    "tools": [],
+    "evidence": [],
+    "latency_ms": 6251,
+    "duration_s": 27.8,
+    "checks": [
+     [
+      "vision: real panel, moving camera video",
+      true,
+      ""
+     ]
+    ],
+    "camera": "video:vid_real_panel_pan.webm",
+    "passed": true
+   }
+  ],
+  "session_id": "S-1001",
+  "audio": "C:\\Users\\nidhi\\dev\\voice\\shifttrace\\experiments\\scenarios\\20261120-001548\\audio\\vision.webm",
+  "page_errors": [],
+  "agent_config_tts": {
+   "vendor": "murf",
+   "params": {
+    "api_key": "***redacted***",
+    "base_url": "wss://global.api.murf.ai/v1/speech/stream-input",
+    "voiceId": "en-IN-isha",
+    "locale": "en-IN",
+    "model": "FALCON",
+    "sample_rate": 24000
+   }
+  },
+  "audio_level": {
+   "mean_db": -22.1,
+   "max_db": -0.2,
+   "duration": null
+  }
+ }
+}

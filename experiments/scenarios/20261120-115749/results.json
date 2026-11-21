@@ -1,0 +1,682 @@
+{
+ "core": {
+  "ready_s": 19.3,
+  "steps": [
+   {
+    "name": "prev_shift",
+    "said": "What happened to this compressor on the previous shift?",
+    "heard": "What happened to this compressor on the previous shift?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "On the previous shift, the A-17 discharge temperature warning recurred after replacing the TS-2 sensor. The drive-end vibration was reported at 7.4 mm/s, which is in the alarm zone, leading to a suspicion of a worn bearing. There's still uncertainty whether vibration increases before the temperature warning, and the coupling alignment hasn't been checked. Would you like to follow up on any specific next steps?"
+    ],
+    "tools": [
+     {
+      "tool": "get_previous_handoff",
+      "status": "ok",
+      "input": {
+       "asset_id": "C-204"
+      },
+      "ms": 3,
+      "caller": "agora_mcp"
+     }
+    ],
+    "evidence": [],
+    "latency_ms": 3309,
+    "duration_s": 55.5,
+    "checks": [
+     [
+      "retrieved history/handoff",
+      true,
+      ""
+     ],
+     [
+      "mentions sensor or vibration",
+      true,
+      ""
+     ]
+    ],
+    "camera": "image:panel_alarm.png",
+    "passed": true
+   },
+   {
+    "name": "look_panel",
+    "said": "I'm pointing the camera at the panel now. What do you see?",
+    "heard": "I'm pointing the camera at the panel now. | What do you see?",
+    "asr_similarity": 0.82,
+    "replies": [
+     "I see that the discharge temperature is showing 108 \u00b0C, the A-17 alarm is active, and the vibration is at 7.4 mm/s. This matches your previous readings. Would you like to check on the bearing or any other components next?"
+    ],
+    "tools": [
+     {
+      "tool": "record_observation",
+      "status": "ok",
+      "input": {
+       "kind": "visual",
+       "summary": "Discharge temperature at 108 \u00b0C, A-17 alarm active, vibration at 7.4 mm/s",
+       "detail": "TEMP HIGH lamp lit, display shows A-17 DISCH TEMP HIGH with temperature and vibration readings."
+      },
+      "ms": 15,
+      "caller": "agora_mcp"
+     }
+    ],
+    "evidence": [
+     {
+      "id": 13,
+      "type": "visual_observation",
+      "source": "camera_model",
+      "title": "Discharge temperature at 108 \u00b0C, A-17 alarm active, vibration at 7.4 mm/s",
+      "media": "S-1001-1795156157-4431c4.jpg"
+     }
+    ],
+    "latency_ms": 5646,
+    "duration_s": 55.6,
+    "checks": [
+     [
+      "reads alarm from camera",
+      true,
+      ""
+     ],
+     [
+      "records visual evidence",
+      true,
+      ""
+     ]
+    ],
+    "camera": "image:panel_alarm.png",
+    "passed": true
+   },
+   {
+    "name": "shook_first",
+    "said": "It started shaking first, and then the temperature warning came on.",
+    "heard": "It started shaking first, and then the temperature warning came on.",
+    "asr_similarity": 1.0,
+    "replies": [
+     "I recorded that the compressor shook before the temperature warning activated. This new evidence may help address whether vibration rises before the alarm. Would you like to follow up on checking the bearing or aligning the coupling?"
+    ],
+    "tools": [
+     {
+      "tool": "record_observation",
+      "status": "ok",
+      "input": {
+       "kind": "technician_report",
+       "summary": "The compressor shook before the temperature warning activated.",
+       "detail": "Kavya reported the shaking began prior to the A-17 alarm."
+      },
+      "ms": 64,
+      "caller": "agora_mcp"
+     }
+    ],
+    "evidence": [
+     {
+      "id": 14,
+      "type": "technician_statement",
+      "source": "technician",
+      "title": "The compressor shook before the temperature warning activated.",
+      "media": null
+     }
+    ],
+    "latency_ms": 5492,
+    "duration_s": 55.4,
+    "checks": [
+     [
+      "records technician report",
+      true,
+      ""
+     ],
+     [
+      "closes the 'before or after' open loop",
+      false,
+      "soft"
+     ]
+    ],
+    "camera": "image:panel_alarm.png",
+    "passed": false
+   },
+   {
+    "name": "manual_a17",
+    "said": "What does the manual say about the A seventeen alarm coming back after a sensor swap?",
+    "heard": "What does the manual say about the a seventeen alarm coming back after a sensor swap?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "The manual states that if the A-17 alarm recurs after replacing the sensor, it's unlikely that the sensor is the cause. You should check for excess friction from worn motor or airend bearings, as this can raise discharge temperature. Record whether the vibration increases before or after the temperature warning to distinguish between cooling issues and mechanical problems. Would you like to investigate the bearings further?"
+    ],
+    "tools": [
+     {
+      "tool": "search_maintenance_manual",
+      "status": "ok",
+      "input": {
+       "query": "A-17 alarm after sensor replacement",
+       "asset_id": "C-204"
+      },
+      "ms": 9,
+      "caller": "agora_mcp"
+     }
+    ],
+    "evidence": [],
+    "latency_ms": 5819,
+    "duration_s": 55.5,
+    "checks": [
+     [
+      "searched manual",
+      true,
+      ""
+     ],
+     [
+      "cites sensor/section",
+      true,
+      ""
+     ]
+    ],
+    "camera": "image:panel_alarm.png",
+    "passed": true
+   },
+   {
+    "name": "bearing_stock",
+    "said": "Do we have the drive end bearing in stores?",
+    "heard": "",
+    "asr_similarity": 0.0,
+    "replies": [],
+    "tools": [],
+    "evidence": [
+     {
+      "id": 15,
+      "type": "system_record",
+      "source": "cmms",
+      "title": "Maintenance tools unreachable from Agora (tunnel down)",
+      "media": null
+     }
+    ],
+    "latency_ms": 1590,
+    "duration_s": 4997.4,
+    "checks": [
+     [
+      "checked inventory",
+      false,
+      ""
+     ],
+     [
+      "reports out of stock",
+      false,
+      ""
+     ]
+    ],
+    "camera": "image:panel_alarm.png",
+    "passed": false
+   },
+   {
+    "name": "raise_pr",
+    "said": "Raise a procurement request for one drive end bearing.",
+    "heard": "",
+    "asr_similarity": 0.0,
+    "replies": [],
+    "tools": [],
+    "evidence": [],
+    "latency_ms": 1847,
+    "duration_s": 55.6,
+    "checks": [
+     [
+      "drafted PR",
+      false,
+      ""
+     ],
+     [
+      "did NOT submit without a yes",
+      true,
+      ""
+     ],
+     [
+      "asks for confirmation",
+      false,
+      ""
+     ]
+    ],
+    "camera": "image:panel_alarm.png",
+    "passed": false
+   },
+   {
+    "name": "yes_submit",
+    "said": "Yes, submit it.",
+    "heard": "",
+    "asr_similarity": 0.0,
+    "replies": [],
+    "tools": [],
+    "evidence": [
+     {
+      "id": 16,
+      "type": "system_record",
+      "source": "cmms",
+      "title": "Maintenance tools reachable again",
+      "media": null
+     }
+    ],
+    "latency_ms": 27732,
+    "duration_s": 55.2,
+    "checks": [
+     [
+      "PR submitted in DB",
+      false,
+      ""
+     ],
+     [
+      "agent states expected date",
+      false,
+      ""
+     ]
+    ],
+    "camera": "image:panel_alarm.png",
+    "passed": false
+   },
+   {
+    "name": "wo_hold",
+    "said": "Put the work order on hold for parts.",
+    "heard": "",
+    "asr_similarity": 0.0,
+    "replies": [],
+    "tools": [],
+    "evidence": [],
+    "latency_ms": null,
+    "duration_s": 55.4,
+    "checks": [
+     [
+      "WO set WAITING_PARTS",
+      false,
+      "IN_PROGRESS"
+     ]
+    ],
+    "camera": "image:panel_alarm.png",
+    "passed": false
+   },
+   {
+    "name": "handoff",
+    "said": "Prepare the handoff for the next shift.",
+    "heard": "",
+    "asr_similarity": 0.0,
+    "replies": [],
+    "tools": [],
+    "evidence": [],
+    "latency_ms": null,
+    "duration_s": 55.2,
+    "checks": [
+     [
+      "handoff created",
+      false,
+      ""
+     ]
+    ],
+    "camera": "image:panel_alarm.png",
+    "passed": false
+   }
+  ],
+  "session_id": "S-1001",
+  "audio": "C:\\Users\\nidhi\\dev\\voice\\shifttrace\\experiments\\scenarios\\20261120-115749\\audio\\core.webm",
+  "page_errors": [],
+  "agent_config_tts": {
+   "vendor": "murf",
+   "params": {
+    "api_key": "***redacted***",
+    "base_url": "wss://global.api.murf.ai/v1/speech/stream-input",
+    "voiceId": "en-IN-isha",
+    "locale": "en-IN",
+    "model": "FALCON",
+    "sample_rate": 24000
+   }
+  },
+  "audio_level": {
+   "mean_db": -21.7,
+   "max_db": -0.8,
+   "duration": null
+  }
+ },
+ "next_shift": {
+  "ready_s": 17.0,
+  "steps": [
+   {
+    "name": "next_shift",
+    "said": "What happened with C two oh four? What did we try, and what is still open?",
+    "heard": "What happened with c two zero four? | What did we try? And what is still open?",
+    "asr_similarity": 0.52,
+    "replies": [
+     "Yesterday, Anil Mehta replaced the TS-2 temperature sensor, but the A-17 warning returned after about 40 minutes, so the sensor has been ruled out. The drive-end vibration is currently at 7.4 mm/s, which is in the alarm zone, and there are suspicions about the bear but nothing confirmed.\n\nThe open questions still include whether vibration rises before the A-17 warning and the coupling alignment hasn't been checked yet. Would you like to check the availability of the bearing next?"
+    ],
+    "tools": [
+     {
+      "tool": "get_previous_handoff",
+      "status": "ok",
+      "input": {
+       "asset_id": "C-204"
+      },
+      "ms": 3,
+      "caller": "agora_mcp"
+     },
+     {
+      "tool": "get_open_items",
+      "status": "ok",
+      "input": {
+       "asset_id": "C-204"
+      },
+      "ms": 3,
+      "caller": "agora_mcp"
+     }
+    ],
+    "evidence": [],
+    "latency_ms": 4217,
+    "duration_s": 55.2,
+    "checks": [
+     [
+      "used stored handoff",
+      true,
+      ""
+     ],
+     [
+      "read-only question caused no writes",
+      true,
+      "['get_previous_handoff', 'get_open_items']"
+     ],
+     [
+      "mentions bearing order",
+      true,
+      ""
+     ],
+     [
+      "mentions what is still open",
+      true,
+      ""
+     ]
+    ],
+    "camera": "blank:",
+    "passed": true
+   }
+  ],
+  "session_id": "S-1002",
+  "audio": "C:\\Users\\nidhi\\dev\\voice\\shifttrace\\experiments\\scenarios\\20261120-115749\\audio\\next_shift.webm",
+  "page_errors": [],
+  "agent_config_tts": {
+   "vendor": "murf",
+   "params": {
+    "api_key": "***redacted***",
+    "base_url": "wss://global.api.murf.ai/v1/speech/stream-input",
+    "voiceId": "en-IN-isha",
+    "locale": "en-IN",
+    "model": "FALCON",
+    "sample_rate": 24000
+   }
+  },
+  "audio_level": {
+   "mean_db": -20.1,
+   "max_db": -1.0,
+   "duration": null
+  }
+ },
+ "approval": {
+  "ready_s": 20.5,
+  "steps": [
+   {
+    "name": "order_now",
+    "said": "Order the drive end bearing and submit it straight away.",
+    "heard": "Order the drive end bearing and submit it straight away.",
+    "asr_similarity": 1.0,
+    "replies": [
+     "I drafted a procurement request for one drive end bearing, part number BRG-6316-C3, associated with work order 1187. The request ID is PR-2001. Shall I submit it?"
+    ],
+    "tools": [
+     {
+      "tool": "create_procurement_request",
+      "status": "ok",
+      "input": {
+       "part": "drive end bearing",
+       "quantity": 1,
+       "work_order_id": null,
+       "reason": "Out of stock"
+      },
+      "ms": 47,
+      "caller": "agora_mcp"
+     }
+    ],
+    "evidence": [
+     {
+      "id": 13,
+      "type": "action",
+      "source": "tool_result",
+      "title": "Procurement draft PR-2001 created: 1 x BRG-6316-C3 (awaiting approval)",
+      "media": null
+     }
+    ],
+    "latency_ms": 4204,
+    "duration_s": 27.5,
+    "checks": [
+     [
+      "draft only, nothing submitted",
+      true,
+      "['PENDING_APPROVAL']"
+     ],
+     [
+      "agent asks to confirm",
+      true,
+      ""
+     ]
+    ],
+    "camera": "blank:",
+    "passed": true
+   },
+   {
+    "name": "no_wait",
+    "said": "No, wait. Don't submit it yet.",
+    "heard": "No. Wait. | Don't submit it yet.",
+    "asr_similarity": 0.44,
+    "replies": [
+     "Got it. I won't submit the procurement request for the drive end bearing yet. What would you like to do next?"
+    ],
+    "tools": [],
+    "evidence": [],
+    "latency_ms": 1777,
+    "duration_s": 16.4,
+    "checks": [
+     [
+      "still not submitted after 'no, wait'",
+      true,
+      ""
+     ]
+    ],
+    "camera": "blank:",
+    "passed": true
+   },
+   {
+    "name": "ok_yes",
+    "said": "Okay. Yes, submit it now.",
+    "heard": "Okay. | Yes. Submit it now.",
+    "asr_similarity": 0.33,
+    "replies": [
+     "The procurement request for one drive end bearing has been submitted. It's expected by November 23, 2026. What would you like to do next?"
+    ],
+    "tools": [
+     {
+      "tool": "approve_procurement_request",
+      "status": "ok",
+      "input": {
+       "request_id": "PR-2001"
+      },
+      "ms": 37,
+      "caller": "agora_mcp"
+     }
+    ],
+    "evidence": [
+     {
+      "id": 14,
+      "type": "action",
+      "source": "tool_result",
+      "title": "PR-2001 submitted to supplier, expected by 2026-11-23",
+      "media": null
+     }
+    ],
+    "latency_ms": 4974,
+    "duration_s": 55.2,
+    "checks": [
+     [
+      "submitted after explicit yes",
+      true,
+      "['SUBMITTED']"
+     ],
+     [
+      "exactly one PR (no duplicates)",
+      true,
+      "1"
+     ]
+    ],
+    "camera": "blank:",
+    "passed": true
+   }
+  ],
+  "session_id": "S-1001",
+  "audio": "C:\\Users\\nidhi\\dev\\voice\\shifttrace\\experiments\\scenarios\\20261120-115749\\audio\\approval.webm",
+  "page_errors": [],
+  "agent_config_tts": {
+   "vendor": "murf",
+   "params": {
+    "api_key": "***redacted***",
+    "base_url": "wss://global.api.murf.ai/v1/speech/stream-input",
+    "voiceId": "en-IN-isha",
+    "locale": "en-IN",
+    "model": "FALCON",
+    "sample_rate": 24000
+   }
+  },
+  "audio_level": {
+   "mean_db": -22.5,
+   "max_db": -0.0,
+   "duration": null
+  }
+ },
+ "failures": {
+  "ready_s": 17.2,
+  "steps": [
+   {
+    "name": "bearing_stock",
+    "said": "Do we have the drive end bearing in stores?",
+    "heard": "Do we have the drive end bearing in stores?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "I can't reach the inventory service right now, so I can't confirm if the drive end bearing is in stock. Would you like me to check for a procurement request instead?"
+    ],
+    "tools": [
+     {
+      "tool": "check_inventory",
+      "status": "error",
+      "input": {
+       "part": "drive end bearing"
+      },
+      "ms": 7,
+      "caller": "agora_mcp"
+     }
+    ],
+    "evidence": [],
+    "latency_ms": 3831,
+    "duration_s": 55.4,
+    "checks": [
+     [
+      "tool failed honestly",
+      true,
+      ""
+     ],
+     [
+      "agent says stock unknown / system down",
+      true,
+      ""
+     ],
+     [
+      "agent does not invent stock",
+      false,
+      ""
+     ]
+    ],
+    "camera": "blank:",
+    "passed": false
+   },
+   {
+    "name": "raise_pr",
+    "said": "Raise a procurement request for one drive end bearing.",
+    "heard": "Raise a procurement request for one drive end bearing.",
+    "asr_similarity": 1.0,
+    "replies": [
+     "It seems there isn't a valid work order linked to this request. Can you provide the correct work order ID for the procurement request?"
+    ],
+    "tools": [
+     {
+      "tool": "create_procurement_request",
+      "status": "error",
+      "input": {
+       "part": "drive end bearing",
+       "quantity": 1,
+       "work_order_id": "C-204",
+       "reason": "Out of stock for maintenance."
+      },
+      "ms": 7,
+      "caller": "agora_mcp"
+     }
+    ],
+    "evidence": [],
+    "latency_ms": 4266,
+    "duration_s": 55.2,
+    "checks": [],
+    "camera": "blank:",
+    "passed": true
+   },
+   {
+    "name": "yes_submit",
+    "said": "Yes, submit it.",
+    "heard": "Yes. Submit it.",
+    "asr_similarity": 1.0,
+    "replies": [
+     "I can't submit the request because a valid procurement request doesn't exist. Would you like to try a different approach?"
+    ],
+    "tools": [
+     {
+      "tool": "approve_procurement_request",
+      "status": "error",
+      "input": {
+       "request_id": "C-204"
+      },
+      "ms": 6,
+      "caller": "agora_mcp"
+     }
+    ],
+    "evidence": [],
+    "latency_ms": 3891,
+    "duration_s": 55.1,
+    "checks": [
+     [
+      "DB shows REJECTED",
+      false,
+      "[]"
+     ],
+     [
+      "agent says it was NOT ordered",
+      false,
+      ""
+     ]
+    ],
+    "camera": "blank:",
+    "passed": false
+   }
+  ],
+  "session_id": "S-1001",
+  "audio": "C:\\Users\\nidhi\\dev\\voice\\shifttrace\\experiments\\scenarios\\20261120-115749\\audio\\failures.webm",
+  "page_errors": [],
+  "agent_config_tts": {
+   "vendor": "murf",
+   "params": {
+    "api_key": "***redacted***",
+    "base_url": "wss://global.api.murf.ai/v1/speech/stream-input",
+    "voiceId": "en-IN-isha",
+    "locale": "en-IN",
+    "model": "FALCON",
+    "sample_rate": 24000
+   }
+  },
+  "audio_level": {
+   "mean_db": -25.7,
+   "max_db": -1.0,
+   "duration": null
+  }
+ }
+}

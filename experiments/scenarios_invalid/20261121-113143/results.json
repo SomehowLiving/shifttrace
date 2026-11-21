@@ -1,0 +1,626 @@
+{
+ "vision_dataset": {
+  "ready_s": 21.7,
+  "steps": [
+   {
+    "name": "what_machine",
+    "said": "What kind of equipment am I looking at?",
+    "heard": "What kind of equipment am I looking at?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "You're looking at a Kestrel KS-75 Rotary Screw Compressor, model C-204. The display shows a discharge temperature of 108 degrees Celsius and a vibration measurement of 7.4 mm/s. The \"TEMP HIGH\" alarm is lit, indicating a potentially critical issue. Would you like to check the previous handoff or troubleshoot the fault?"
+    ],
+    "tools": [],
+    "evidence": [
+     {
+      "id": 33,
+      "type": "visual_observation",
+      "source": "camera_model",
+      "title": "You're looking at a Kestrel KS-75 Rotary Screw Compressor, model C-204. The display shows a discharge temperature of 108 degrees Celsius and a vibration measurement of 7.4 mm/s.",
+      "media": "S-1001-1795240942-da0696.jpg"
+     }
+    ],
+    "latency_ms": 1946,
+    "duration_s": 38.0,
+    "checks": [
+     [
+      "describes it (analogue pressure gauge; needle reading may be estimated, not exact)",
+      false,
+      "You're looking at a Kestrel KS-75 Rotary Screw Compressor, model C-204. The display shows a discharge temperature of 108"
+     ],
+     [
+      "does not invent an alarm code",
+      true,
+      ""
+     ],
+     [
+      "camera observation saved to the evidence timeline",
+      true,
+      ""
+     ]
+    ],
+    "camera": "image:img_ds_gauge_1.jpg",
+    "passed": false
+   },
+   {
+    "name": "what_machine",
+    "said": "What kind of equipment am I looking at?",
+    "heard": "What kind of equipment am I looking at?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "Give me a second.You're looking at a Kestrel KS-75 Rotary Screw Compressor, model C-204. The display indicates a high discharge temperature of 108 degrees Celsius and a vibration level of 7.4 mm/s. Would you like to proceed with troubleshooting the fault?"
+    ],
+    "tools": [],
+    "evidence": [
+     {
+      "id": 34,
+      "type": "visual_observation",
+      "source": "camera_model",
+      "title": "You're looking at a Kestrel KS-75 Rotary Screw Compressor, model C-204. The display indicates a high discharge temperature of 108 degrees Celsius and a vibration level of 7.4 mm/s.",
+      "media": "S-1001-1795240986-b22ca8.jpg"
+     }
+    ],
+    "latency_ms": 1998,
+    "duration_s": 34.8,
+    "checks": [
+     [
+      "describes it (locomotive cab with several analogue gauges and valves; readings not legible)",
+      false,
+      "Give me a second.You're looking at a Kestrel KS-75 Rotary Screw Compressor, model C-204. The display indicates a high di"
+     ],
+     [
+      "does not invent an alarm code",
+      true,
+      ""
+     ],
+     [
+      "camera observation saved to the evidence timeline",
+      true,
+      ""
+     ]
+    ],
+    "camera": "image:img_ds_gauge_3.jpg",
+    "passed": false
+   },
+   {
+    "name": "what_machine",
+    "said": "What kind of equipment am I looking at?",
+    "heard": "What kind of equipment am I looking at?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "Let me check that.You're looking at a Kestrel KS-75 Rotary Screw Compressor, model C-204. The display indicates a discharge temperature of 108 degrees Celsius and a vibration measurement of 7.4 mm/s, with the \"TEMP HIGH\" alarm lit. Would you like to proceed with troubleshooting the fault?"
+    ],
+    "tools": [],
+    "evidence": [
+     {
+      "id": 35,
+      "type": "visual_observation",
+      "source": "camera_model",
+      "title": "You're looking at a Kestrel KS-75 Rotary Screw Compressor, model C-204.",
+      "media": "S-1001-1795241026-271353.jpg"
+     }
+    ],
+    "latency_ms": 2023,
+    "duration_s": 36.6,
+    "checks": [
+     [
+      "describes it (food factory conveyor carrying product past a machine)",
+      false,
+      "Let me check that.You're looking at a Kestrel KS-75 Rotary Screw Compressor, model C-204. The display indicates a discha"
+     ],
+     [
+      "does not invent an alarm code",
+      true,
+      ""
+     ],
+     [
+      "camera observation saved to the evidence timeline",
+      true,
+      ""
+     ]
+    ],
+    "camera": "image:img_ds_conveyor_1.jpg",
+    "passed": false
+   },
+   {
+    "name": "what_machine",
+    "said": "What kind of equipment am I looking at?",
+    "heard": "What kind of equipment am I looking at?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "Pulling that up now.You're looking at a Kestrel KS-75 Rotary Screw Compressor, model C-204. The display shows a discharge temperature of 108 degrees Celsius and a vibration level of 7.4 mm/s, with the \"TEMP HIGH\" alarm lit. Would you like to check the previous shift's notes or begin troubleshooting?"
+    ],
+    "tools": [],
+    "evidence": [
+     {
+      "id": 36,
+      "type": "visual_observation",
+      "source": "camera_model",
+      "title": "You're looking at a Kestrel KS-75 Rotary Screw Compressor, model C-204.",
+      "media": "S-1001-1795241070-d4c04f.jpg"
+     }
+    ],
+    "latency_ms": 1839,
+    "duration_s": 37.6,
+    "checks": [
+     [
+      "describes it (vehicle assembly line with overhead conveyor)",
+      false,
+      "Pulling that up now.You're looking at a Kestrel KS-75 Rotary Screw Compressor, model C-204. The display shows a discharg"
+     ],
+     [
+      "does not invent an alarm code",
+      true,
+      ""
+     ],
+     [
+      "camera observation saved to the evidence timeline",
+      true,
+      ""
+     ]
+    ],
+    "camera": "image:img_ds_conveyor_3.jpg",
+    "passed": false
+   },
+   {
+    "name": "what_machine",
+    "said": "What kind of equipment am I looking at?",
+    "heard": "What kind of equipment am I looking at?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "Okay, checking the system.You're looking at a Kestrel KS-75 Rotary Screw Compressor, model C-204. The display shows a discharge temperature of 108 degrees Celsius and a vibration measurement of 7.4 mm/s. The \"TEMP HIGH\" alarm is active, suggesting there may be an issue to address. Would you like to check the previous handoff or start troubleshooting?"
+    ],
+    "tools": [],
+    "evidence": [
+     {
+      "id": 37,
+      "type": "visual_observation",
+      "source": "camera_model",
+      "title": "You're looking at a Kestrel KS-75 Rotary Screw Compressor, model C-204. The display shows a discharge temperature of 108 degrees Celsius and a vibration measurement of 7.4 mm/s.",
+      "media": "S-1001-1795241114-e4df95.jpg"
+     }
+    ],
+    "latency_ms": 1655,
+    "duration_s": 41.1,
+    "checks": [
+     [
+      "describes it (warehouse racking with pallets or cartons)",
+      false,
+      "Okay, checking the system.You're looking at a Kestrel KS-75 Rotary Screw Compressor, model C-204. The display shows a di"
+     ],
+     [
+      "does not invent an alarm code",
+      true,
+      ""
+     ],
+     [
+      "camera observation saved to the evidence timeline",
+      true,
+      ""
+     ]
+    ],
+    "camera": "image:img_ds_warehouse_1.jpg",
+    "passed": false
+   },
+   {
+    "name": "what_machine",
+    "said": "What kind of equipment am I looking at?",
+    "heard": "What kind of equipment am I looking at?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "One moment, looking it up.You're looking at a Kestrel KS-75 Rotary Screw Compressor, model C-204. The display indicates a discharge temperature of 108 degrees Celsius and a vibration level of 7.4 mm/s, with the \"TEMP HIGH\" alarm active. Do you want to check the previous shift's notes or begin troubleshooting?"
+    ],
+    "tools": [],
+    "evidence": [
+     {
+      "id": 38,
+      "type": "visual_observation",
+      "source": "camera_model",
+      "title": "You're looking at a Kestrel KS-75 Rotary Screw Compressor, model C-204.",
+      "media": "S-1001-1795241162-5a31db.jpg"
+     }
+    ],
+    "latency_ms": 1886,
+    "duration_s": 39.8,
+    "checks": [
+     [
+      "describes it (warehouse racking with pallets or cartons)",
+      false,
+      "One moment, looking it up.You're looking at a Kestrel KS-75 Rotary Screw Compressor, model C-204. The display indicates "
+     ],
+     [
+      "does not invent an alarm code",
+      true,
+      ""
+     ],
+     [
+      "camera observation saved to the evidence timeline",
+      true,
+      ""
+     ]
+    ],
+    "camera": "image:img_ds_warehouse_2.jpg",
+    "passed": false
+   },
+   {
+    "name": "what_machine",
+    "said": "What kind of equipment am I looking at?",
+    "heard": "What kind of equipment am I looking at?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "Give me a second.You're looking at a Kestrel KS-75 Rotary Screw Compressor, model C-204. The display shows a high discharge temperature of 108 degrees Celsius and a vibration measurement of 7.4 mm/s, with the \"TEMP HIGH\" alarm lit. Would you like to check the history or start troubleshooting the fault?"
+    ],
+    "tools": [],
+    "evidence": [
+     {
+      "id": 39,
+      "type": "visual_observation",
+      "source": "camera_model",
+      "title": "You're looking at a Kestrel KS-75 Rotary Screw Compressor, model C-204.",
+      "media": "S-1001-1795241206-f2c2f7.jpg"
+     }
+    ],
+    "latency_ms": 1782,
+    "duration_s": 39.1,
+    "checks": [
+     [
+      "describes it (warehouse racking with pallets or cartons)",
+      false,
+      "Give me a second.You're looking at a Kestrel KS-75 Rotary Screw Compressor, model C-204. The display shows a high discha"
+     ],
+     [
+      "does not invent an alarm code",
+      true,
+      ""
+     ],
+     [
+      "camera observation saved to the evidence timeline",
+      true,
+      ""
+     ]
+    ],
+    "camera": "image:img_ds_warehouse_3.jpg",
+    "passed": false
+   },
+   {
+    "name": "what_machine",
+    "said": "What kind of equipment am I looking at?",
+    "heard": "What kind of equipment am I looking at?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "One moment, looking it up.You're looking at a Kestrel KS-75 Rotary Screw Compressor, model C-204. The display shows a discharge temperature of 108 degrees Celsius and a vibration level of 7.4 mm/s, with the \"TEMP HIGH\" alarm active. Would you like to check the previous handoff or start troubleshooting the current fault?"
+    ],
+    "tools": [],
+    "evidence": [
+     {
+      "id": 40,
+      "type": "visual_observation",
+      "source": "camera_model",
+      "title": "You're looking at a Kestrel KS-75 Rotary Screw Compressor, model C-204.",
+      "media": "S-1001-1795241250-44df3b.jpg"
+     }
+    ],
+    "latency_ms": 1772,
+    "duration_s": 38.6,
+    "checks": [
+     [
+      "describes it (warehouse racking full of cartons (no forklift visible))",
+      false,
+      "One moment, looking it up.You're looking at a Kestrel KS-75 Rotary Screw Compressor, model C-204. The display shows a di"
+     ],
+     [
+      "does not invent an alarm code",
+      true,
+      ""
+     ],
+     [
+      "camera observation saved to the evidence timeline",
+      true,
+      ""
+     ]
+    ],
+    "camera": "image:img_ds_forklift_2.jpg",
+    "passed": false
+   },
+   {
+    "name": "what_machine",
+    "said": "What kind of equipment am I looking at?",
+    "heard": "What kind of equipment am I looking at?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "Pulling that up now.You are looking at a Kestrel KS-75 Rotary Screw Compressor, model C-204. The display indicates a discharge temperature of 108 degrees Celsius and a vibration level of 7.4 mm/s, with the \"TEMP HIGH\" alarm currently active. Would you like to proceed with troubleshooting or check the previous handoff?"
+    ],
+    "tools": [],
+    "evidence": [
+     {
+      "id": 41,
+      "type": "visual_observation",
+      "source": "camera_model",
+      "title": "You are looking at a Kestrel KS-75 Rotary Screw Compressor, model C-204.",
+      "media": "S-1001-1795241298-39c1c0.jpg"
+     }
+    ],
+    "latency_ms": 1817,
+    "duration_s": 39.8,
+    "checks": [
+     [
+      "describes it (supply air duct and vibration isolators in a plant room)",
+      false,
+      "Pulling that up now.You are looking at a Kestrel KS-75 Rotary Screw Compressor, model C-204. The display indicates a dis"
+     ],
+     [
+      "does not invent an alarm code",
+      true,
+      ""
+     ],
+     [
+      "camera observation saved to the evidence timeline",
+      true,
+      ""
+     ]
+    ],
+    "camera": "image:img_ds_hvac_2.jpg",
+    "passed": false
+   },
+   {
+    "name": "what_machine",
+    "said": "What kind of equipment am I looking at?",
+    "heard": "What kind of equipment am I looking at?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "Let me check that.You're looking at a Kestrel KS-75 Rotary Screw Compressor, model C-204. The display shows a discharge temperature of 108 degrees Celsius and a vibration level of 7.4 mm/s, along with a \"TEMP HIGH\" alarm indicating a potential issue. Would you like to check the previous handoff or start troubleshooting?"
+    ],
+    "tools": [],
+    "evidence": [
+     {
+      "id": 42,
+      "type": "visual_observation",
+      "source": "camera_model",
+      "title": "You're looking at a Kestrel KS-75 Rotary Screw Compressor, model C-204.",
+      "media": "S-1001-1795241342-c55917.jpg"
+     }
+    ],
+    "latency_ms": 1879,
+    "duration_s": 38.3,
+    "checks": [
+     [
+      "describes it (electric drive motor in a vehicle chassis)",
+      false,
+      "Let me check that.You're looking at a Kestrel KS-75 Rotary Screw Compressor, model C-204. The display shows a discharge "
+     ],
+     [
+      "does not invent an alarm code",
+      true,
+      ""
+     ],
+     [
+      "camera observation saved to the evidence timeline",
+      true,
+      ""
+     ]
+    ],
+    "camera": "image:img_ds_motor_1.jpg",
+    "passed": false
+   },
+   {
+    "name": "what_machine",
+    "said": "What kind of equipment am I looking at?",
+    "heard": "What kind of equipment am I looking at?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "Okay, checking the system.You're looking at a Kestrel KS-75 Rotary Screw Compressor, model C-204. The display indicates a discharge temperature of 108 degrees Celsius and a vibration level of 7.4 mm/s, with a \"TEMP HIGH\" alarm active. Would you like to check the previous shift's notes or start troubleshooting?"
+    ],
+    "tools": [],
+    "evidence": [
+     {
+      "id": 43,
+      "type": "visual_observation",
+      "source": "camera_model",
+      "title": "You're looking at a Kestrel KS-75 Rotary Screw Compressor, model C-204.",
+      "media": "S-1001-1795241386-c2c429.jpg"
+     }
+    ],
+    "latency_ms": 1729,
+    "duration_s": 40.2,
+    "checks": [
+     [
+      "describes it (outdoor air compressor driven by a car engine)",
+      true,
+      "Okay, checking the system.You're looking at a Kestrel KS-75 Rotary Screw Compressor, model C-204. The display indicates "
+     ],
+     [
+      "does not invent an alarm code",
+      true,
+      ""
+     ],
+     [
+      "camera observation saved to the evidence timeline",
+      true,
+      ""
+     ]
+    ],
+    "camera": "image:img_ds_compressor_1.jpg",
+    "passed": true
+   },
+   {
+    "name": "what_machine",
+    "said": "What kind of equipment am I looking at?",
+    "heard": "What kind of equipment am I looking at?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "Okay, checking the system.You're looking at a Kestrel KS-75 Rotary Screw Compressor, model C-204. The display shows a discharge temperature of 108 degrees Celsius and a vibration level of 7.4 mm/s, with the \"TEMP HIGH\" alarm lit. Would you like to check on the previous shift's notes or proceed with troubleshooting?"
+    ],
+    "tools": [],
+    "evidence": [
+     {
+      "id": 44,
+      "type": "visual_observation",
+      "source": "camera_model",
+      "title": "You're looking at a Kestrel KS-75 Rotary Screw Compressor,",
+      "media": "S-1001-1795241434-9126e8.jpg"
+     }
+    ],
+    "latency_ms": 1778,
+    "duration_s": 39.9,
+    "checks": [
+     [
+      "describes it (room thermostat display reading 22.5 C)",
+      true,
+      "Okay, checking the system.You're looking at a Kestrel KS-75 Rotary Screw Compressor, model C-204. The display shows a di"
+     ],
+     [
+      "does not invent an alarm code",
+      true,
+      ""
+     ],
+     [
+      "camera observation saved to the evidence timeline",
+      true,
+      ""
+     ]
+    ],
+    "camera": "image:img_ds_display_1.jpg",
+    "passed": true
+   },
+   {
+    "name": "what_machine",
+    "said": "What kind of equipment am I looking at?",
+    "heard": "What kind of equipment am I looking at?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "One moment, looking it up.You're looking at a Kestrel KS-75 Rotary Screw Compressor, model C-204. The display shows a discharge temperature of 108 degrees Celsius and a vibration measurement of 7.4 mm/s, with the \"TEMP HIGH\" alarm lit. Would you like to review the previous shift's notes or start troubleshooting?"
+    ],
+    "tools": [],
+    "evidence": [
+     {
+      "id": 45,
+      "type": "visual_observation",
+      "source": "camera_model",
+      "title": "You're looking at a Kestrel KS-75 Rotary Screw Compressor, model C-204.",
+      "media": "S-1001-1795241486-903ba0.jpg"
+     }
+    ],
+    "latency_ms": 1722,
+    "duration_s": 43.0,
+    "checks": [
+     [
+      "describes it (hand-held pan along a factory conveyor)",
+      false,
+      "One moment, looking it up.You're looking at a Kestrel KS-75 Rotary Screw Compressor, model C-204. The display shows a di"
+     ],
+     [
+      "does not invent an alarm code",
+      true,
+      ""
+     ],
+     [
+      "camera observation saved to the evidence timeline",
+      true,
+      ""
+     ]
+    ],
+    "camera": "video:vid_ds_conveyor_pan.webm",
+    "passed": false
+   },
+   {
+    "name": "what_machine",
+    "said": "What kind of equipment am I looking at?",
+    "heard": "What kind of equipment am I looking at?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "Give me a second.You're looking at a Kestrel KS-75 Rotary Screw Compressor, model C-204. The display shows a discharge temperature of 108 degrees Celsius and a vibration level of 7.4 mm/s, with the \"TEMP HIGH\" alarm active. Would you like to check the previous shift's notes or start troubleshooting the issue?"
+    ],
+    "tools": [],
+    "evidence": [
+     {
+      "id": 46,
+      "type": "visual_observation",
+      "source": "camera_model",
+      "title": "You're looking at a Kestrel KS-75 Rotary Screw Compressor, model C-204.",
+      "media": "S-1001-1795241534-913f29.jpg"
+     }
+    ],
+    "latency_ms": 1738,
+    "duration_s": 41.0,
+    "checks": [
+     [
+      "describes it (hand-held walk past warehouse racking)",
+      false,
+      "Give me a second.You're looking at a Kestrel KS-75 Rotary Screw Compressor, model C-204. The display shows a discharge t"
+     ],
+     [
+      "does not invent an alarm code",
+      true,
+      ""
+     ],
+     [
+      "camera observation saved to the evidence timeline",
+      true,
+      ""
+     ]
+    ],
+    "camera": "video:vid_ds_warehouse_pan.webm",
+    "passed": false
+   },
+   {
+    "name": "what_machine",
+    "said": "What kind of equipment am I looking at?",
+    "heard": "What kind of equipment am I looking at?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "Pulling that up now.You're looking at a Kestrel KS-75 Rotary Screw Compressor, model C-204. The display indicates a discharge temperature of 108 degrees Celsius and a vibration level of 7.4 mm/s, with the \"TEMP HIGH\" alarm activated. Would you like to check the previous shift's notes or proceed with troubleshooting?"
+    ],
+    "tools": [],
+    "evidence": [
+     {
+      "id": 47,
+      "type": "visual_observation",
+      "source": "camera_model",
+      "title": "You're looking at a Kestrel KS-75 Rotary Screw Compressor, model C-204.",
+      "media": "S-1001-1795241578-c70da9.jpg"
+     }
+    ],
+    "latency_ms": 2272,
+    "duration_s": 42.8,
+    "checks": [
+     [
+      "describes it (hand-held zoom onto pressure gauges, slight shake)",
+      false,
+      "Pulling that up now.You're looking at a Kestrel KS-75 Rotary Screw Compressor, model C-204. The display indicates a disc"
+     ],
+     [
+      "does not invent an alarm code",
+      true,
+      ""
+     ],
+     [
+      "camera observation saved to the evidence timeline",
+      true,
+      ""
+     ]
+    ],
+    "camera": "video:vid_ds_gauge_zoom.webm",
+    "passed": false
+   }
+  ],
+  "session_id": "S-1001",
+  "audio": "C:\\Users\\nidhi\\dev\\voice\\shifttrace\\experiments\\scenarios\\20261121-113143\\audio\\vision_dataset.webm",
+  "page_errors": [],
+  "agent_config_tts": {
+   "vendor": "murf",
+   "params": {
+    "api_key": "***redacted***",
+    "base_url": "wss://global.api.murf.ai/v1/speech/stream-input",
+    "voiceId": "en-IN-isha",
+    "locale": "en-IN",
+    "model": "FALCON",
+    "sample_rate": 24000
+   }
+  },
+  "audio_level": {
+   "mean_db": -21.0,
+   "max_db": -0.5,
+   "duration": null
+  }
+ }
+}

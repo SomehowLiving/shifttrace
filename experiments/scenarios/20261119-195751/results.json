@@ -1,0 +1,5 @@
+{
+ "core": {
+  "error": "TimeoutError: agent not ready after 60s; state={'st': {'rtc': 'CONNECTED', 'agentJoined': True, 'agentState': 'silent', 'rtm': 'CONNECTED'}, 'n': 7} errors=[]"
+ }
+}

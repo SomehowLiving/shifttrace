@@ -1,0 +1,271 @@
+{
+ "approval": {
+  "ready_s": 21.6,
+  "steps": [
+   {
+    "name": "order_now",
+    "said": "Order the drive end bearing and submit it straight away.",
+    "heard": "Order the drive end bearing and submit it straight away.",
+    "asr_similarity": 1.0,
+    "replies": [
+     "I've drafted a procurement request for one drive end bearing, part number BRG-6316-C3, for work order 1187. Shall I submit it?"
+    ],
+    "tools": [
+     {
+      "tool": "create_procurement_request",
+      "status": "ok",
+      "input": {
+       "part": "drive end bearing",
+       "quantity": 1,
+       "work_order_id": "1187",
+       "reason": "out of stock"
+      },
+      "ms": 22,
+      "caller": "agora_mcp"
+     }
+    ],
+    "evidence": [
+     {
+      "id": 13,
+      "type": "action",
+      "source": "tool_result",
+      "title": "Procurement draft PR-2001 created: 1 x BRG-6316-C3 (awaiting approval)",
+      "media": null
+     }
+    ],
+    "latency_ms": 4568,
+    "duration_s": 55.7,
+    "checks": [
+     [
+      "draft only, nothing submitted",
+      true,
+      "['PENDING_APPROVAL']"
+     ],
+     [
+      "agent asks to confirm",
+      true,
+      ""
+     ]
+    ],
+    "camera": "blank:",
+    "passed": true
+   },
+   {
+    "name": "no_wait",
+    "said": "No, wait. Don't submit it yet.",
+    "heard": "No. Wait. | Don't submit it yet.",
+    "asr_similarity": 0.44,
+    "replies": [
+     "Understood. I'll hold off on the submission for the drive end bearing. Let me know when you're ready."
+    ],
+    "tools": [],
+    "evidence": [],
+    "latency_ms": 2043,
+    "duration_s": 18.8,
+    "checks": [
+     [
+      "still not submitted after 'no, wait'",
+      true,
+      ""
+     ]
+    ],
+    "camera": "blank:",
+    "passed": true
+   },
+   {
+    "name": "ok_yes",
+    "said": "Okay. Yes, submit it now.",
+    "heard": "Okay. | Yes. Submit it now.",
+    "asr_similarity": 0.33,
+    "replies": [
+     "The procurement request for the drive end bearing has been submitted. It's coming from Southfield Bearings with an expected arrival by November 22, 2026. Would you like to proceed with any other tasks?"
+    ],
+    "tools": [
+     {
+      "tool": "approve_procurement_request",
+      "status": "ok",
+      "input": {
+       "request_id": "PR-2001"
+      },
+      "ms": 234,
+      "caller": "agora_mcp"
+     }
+    ],
+    "evidence": [
+     {
+      "id": 14,
+      "type": "action",
+      "source": "tool_result",
+      "title": "PR-2001 submitted to supplier, expected by 2026-11-22",
+      "media": null
+     }
+    ],
+    "latency_ms": 9515,
+    "duration_s": 55.1,
+    "checks": [
+     [
+      "submitted after explicit yes",
+      true,
+      "['SUBMITTED']"
+     ],
+     [
+      "exactly one PR (no duplicates)",
+      true,
+      "1"
+     ]
+    ],
+    "camera": "blank:",
+    "passed": true
+   }
+  ],
+  "session_id": "S-1001",
+  "audio": "C:\\Users\\nidhi\\dev\\voice\\shifttrace\\experiments\\scenarios\\20261119-235823\\audio\\approval.webm",
+  "page_errors": [],
+  "agent_config_tts": {
+   "vendor": "murf",
+   "params": {
+    "api_key": "***redacted***",
+    "base_url": "wss://global.api.murf.ai/v1/speech/stream-input",
+    "voiceId": "en-IN-isha",
+    "locale": "en-IN",
+    "model": "FALCON",
+    "sample_rate": 24000
+   }
+  },
+  "audio_level": {
+   "mean_db": -24.6,
+   "max_db": -0.7,
+   "duration": null
+  }
+ },
+ "vision": {
+  "error": "TimeoutError: agent not ready after 60s; state={'st': {'rtc': 'CONNECTED', 'agentJoined': True, 'agentState': None, 'rtm': 'DISCONNECTED'}, 'n': 9} errors=[]"
+ },
+ "noise": {
+  "ready_s": 19.4,
+  "steps": [
+   {
+    "name": "bearing_stock",
+    "said": "Do we have the drive end bearing in stores?",
+    "heard": "",
+    "asr_similarity": 0.0,
+    "replies": [
+     "I can't reach the maintenance system right now, so I can't provide any historical data or updates. What would you like to check on the machine?"
+    ],
+    "tools": [],
+    "evidence": [],
+    "latency_ms": null,
+    "duration_s": 8.3,
+    "checks": [
+     [
+      "ASR under noise_factory_1.wav @ -14 dB (similarity >= 0.6)",
+      false,
+      "0.0: "
+     ],
+     [
+      "still checked inventory",
+      false,
+      ""
+     ]
+    ],
+    "camera": "noise noise_factory_1.wav -14 dB",
+    "passed": false
+   },
+   {
+    "name": "bearing_stock",
+    "said": "Do we have the drive end bearing in stores?",
+    "heard": "",
+    "asr_similarity": 0.0,
+    "replies": [
+     "The maintenance system is reachable now. Would you like me to check the machine's history or any open work orders?",
+     "SHIFTTRACE is live on Compressor C-204. Kavya, ask me what happened on the previous shift, or point your camera at the panel."
+    ],
+    "tools": [],
+    "evidence": [
+     {
+      "id": 14,
+      "type": "system_record",
+      "source": "cmms",
+      "title": "Maintenance tools reachable again",
+      "media": null
+     }
+    ],
+    "latency_ms": 7535,
+    "duration_s": 37.5,
+    "checks": [
+     [
+      "ASR under noise_factory_1.wav @ -6 dB (similarity >= 0.6)",
+      false,
+      "0.0: "
+     ],
+     [
+      "still checked inventory",
+      false,
+      ""
+     ]
+    ],
+    "camera": "noise noise_factory_1.wav -6 dB",
+    "passed": false
+   },
+   {
+    "name": "bearing_stock",
+    "said": "Do we have the drive end bearing in stores?",
+    "heard": "Do we have the drive end bearing in stores?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "The drive end bearing, part ID BRG-6316-C3, is out of stock with none available at stores A-14. The lead time for procurement is three days. Would you like to request a new order for it?"
+    ],
+    "tools": [
+     {
+      "tool": "check_inventory",
+      "status": "ok",
+      "input": {
+       "part": "drive end bearing"
+      },
+      "ms": 54,
+      "caller": "agora_mcp"
+     }
+    ],
+    "evidence": [],
+    "latency_ms": 10971,
+    "duration_s": 55.5,
+    "checks": [
+     [
+      "ASR under noise_factory_2.wav @ -6 dB (similarity >= 0.6)",
+      true,
+      "1.0: Do we have the drive end bearing in stores?"
+     ],
+     [
+      "still checked inventory",
+      true,
+      ""
+     ]
+    ],
+    "camera": "noise noise_factory_2.wav -6 dB",
+    "passed": true
+   }
+  ],
+  "session_id": "S-1001",
+  "audio": "C:\\Users\\nidhi\\dev\\voice\\shifttrace\\experiments\\scenarios\\20261119-235823\\audio\\noisy_floor.webm",
+  "page_errors": [
+   "AgoraRTCError UNEXPECTED_ERROR: Cannot P2PChannel.connect before P2PChannel.startP2PConnection .",
+   "AgoraRTCError CAN_NOT_PUBLISH_MULTIPLE_VIDEO_TRACKS: "
+  ],
+  "agent_config_tts": {
+   "vendor": "murf",
+   "params": {
+    "api_key": "***redacted***",
+    "base_url": "wss://global.api.murf.ai/v1/speech/stream-input",
+    "voiceId": "en-IN-isha",
+    "locale": "en-IN",
+    "model": "FALCON",
+    "sample_rate": 24000
+   }
+  },
+  "audio_level": {
+   "mean_db": -91.0,
+   "max_db": -90.3,
+   "duration": null
+  }
+ }
+}

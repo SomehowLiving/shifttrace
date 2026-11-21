@@ -1,0 +1,32 @@
+# Render blueprint. Secrets are set in the Render dashboard (sync: false), never in this file.
+services:
+  - type: web
+    name: shifttrace
+    runtime: docker
+    plan: free
+    healthCheckPath: /healthz
+    envVars:
+      - key: SHIFTTRACE_SINGLE_PORT
+        value: "1"
+      - key: CONSOLE_PASSWORD      # required: the console has no accounts and can start paid Agora sessions
+        sync: false
+      - key: MCP_PUBLIC_URL        # this service's https URL, e.g. https://shifttrace.onrender.com
+        sync: false
+      - key: MCP_TOKEN
+        generateValue: true
+      - key: AGORA_APP_ID
+        sync: false
+      - key: AGORA_APP_CERTIFICATE
+        sync: false
+      - key: AGORA_CUSTOMER_ID
+        sync: false
+      - key: AGORA_CUSTOMER_SECRET
+        sync: false
+      - key: MURF_API_KEY
+        sync: false
+      - key: MURF_VOICE_ID
+        value: en-IN-isha
+      - key: MURF_LOCALE
+        value: en-IN
+      - key: AGORA_LLM_MODEL
+        value: gpt-4o-mini

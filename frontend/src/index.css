@@ -1,0 +1,147 @@
+@import "tailwindcss";
+@import "@fontsource-variable/instrument-sans/wdth.css";
+@import "@fontsource-variable/geist-mono";
+
+/*
+  Direction (v2): calm like a high-performance industrial HMI (ISA-101). Graphite greyscale while things are normal;
+  colour appears only when it means something. Tonal layers and hairlines instead of heavy rules; Instrument Sans,
+  headings slightly condensed like an equipment nameplate.
+  Earlier direction: an operations console built on a shift log. A time margin, a band per shift and one continuous trace line
+  join every entry. Dark by default (control room); a light theme is one click away. See docs/UI_DESIGN.md.
+*/
+:root {
+  /* Default: dark operations console. Colour carries meaning only: red live/failed, amber needs a person or is
+     unverified, teal verified, violet model or recorded input, blue the technician. */
+  --paper: #0d0f11;
+  --sheet: #14171a;
+  --raised: #1a1e22;
+  --rule: #23282d;
+  --rule-strong: #363d44;
+  --ink: #eceff1;
+  --ink-2: #a9b1b8;
+  --pencil: #737c84;
+  --red: #ef6a5f;
+  --ochre: #e8a53a;
+  --ochre-wash: #241d12;
+  --green: #4cc39a;
+  --violet: #a99af0;
+  --blue: #7aa7f0;
+  /* Brand accent: hi-vis safety yellow-green, the colour of vests and tags on the floor. Used for the brand, the
+     primary action and the one priority block, never for status. */
+  --teal: #c8f135;
+  --on-accent: #0d0f11;
+  --hi: rgb(255 255 255 / .035);
+  --shadow: 0 1px 2px rgb(0 0 0 / .35), 0 8px 24px -12px rgb(0 0 0 / .5);
+  color-scheme: dark;
+}
+:root[data-theme="light"] {
+  --paper: #f2f3f1; --sheet: #ffffff; --raised: #f7f8f6; --rule: #e1e4e2; --rule-strong: #b9bfbd; --ink: #15191d; --ink-2: #434b52; --pencil: #6c747b;
+  --red: #b3261e; --ochre: #9a5f00; --ochre-wash: #f8ecd4; --green: #1d7a58; --violet: #5a4aa6; --blue: #2457a0; --teal: #4f6b00; --on-accent: #ffffff;
+  --hi: rgb(255 255 255 / .7); --shadow: 0 1px 2px rgb(20 25 30 / .06), 0 8px 24px -14px rgb(20 25 30 / .18);
+  color-scheme: light;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-sheet: var(--sheet);
+  --color-raised: var(--raised);
+  --color-rule: var(--rule);
+  --color-rule-strong: var(--rule-strong);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-pencil: var(--pencil);
+  --color-red: var(--red);
+  --color-ochre: var(--ochre);
+  --color-ochre-wash: var(--ochre-wash);
+  --color-green: var(--green);
+  --color-violet: var(--violet);
+  --color-blue: var(--blue);
+  --color-teal: var(--teal);
+  --color-accent: var(--teal);
+  --color-on-accent: var(--on-accent);
+  --font-sans: "Instrument Sans Variable", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "Geist Mono Variable", "Cascadia Mono", Consolas, ui-monospace, monospace;
+}
+
+html, body, #root { height: 100%; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.5;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "ss01", "cv11";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+/* Headings read like an equipment nameplate: semi-condensed, firm, tight. */
+h1, h2, h3, .nameplate { font-stretch: 88%; letter-spacing: -0.015em; }
+h1 { letter-spacing: -0.035em; }
+::selection { background: color-mix(in oklab, var(--teal) 35%, transparent); }
+* { scrollbar-color: var(--rule-strong) transparent; scrollbar-width: thin; }
+button { cursor: pointer; }
+button:disabled { cursor: not-allowed; opacity: .45; }
+:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; border-radius: 4px; }
+summary::-webkit-details-marker { display: none; }
+a { text-underline-offset: 3px; }
+
+/* The trace: one continuous line down the margin, joining every entry. */
+.trace { position: relative; }
+.trace::before { content: ""; position: absolute; top: 0; bottom: 0; left: var(--rail-x, 79px); width: 2px; background: var(--rule-strong); opacity: .55; }
+
+@keyframes now { 0% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--red) 55%, transparent); } 100% { box-shadow: 0 0 0 9px transparent; } }
+.now-dot { animation: now 1.6s ease-out infinite; }
+@keyframes think { 0%, 80%, 100% { opacity: .25; } 40% { opacity: 1; } }
+.think > span { animation: think 1.2s infinite; }
+.think > span:nth-child(2) { animation-delay: .15s; }
+.think > span:nth-child(3) { animation-delay: .3s; }
+@keyframes speak { 0%, 100% { transform: scaleY(.35); } 50% { transform: scaleY(1); } }
+.speak > span { animation: speak .9s ease-in-out infinite; transform-origin: center; }
+.speak > span:nth-child(2) { animation-delay: .12s; }
+.speak > span:nth-child(3) { animation-delay: .24s; }
+.speak > span:nth-child(4) { animation-delay: .36s; }
+@keyframes ink-in { from { background: var(--ochre-wash); } to { background: transparent; } }
+.ink-in { animation: ink-in 2.2s ease-out; }
+@media (prefers-reduced-motion: reduce) {
+  .now-dot, .think > span, .speak > span, .ink-in { animation: none; }
+}
+@media print {
+  body { background: #fff; }
+  header, .no-print { display: none !important; }
+}
+
+@keyframes wave { 0%, 100% { transform: scaleY(.3); } 50% { transform: scaleY(1); } }
+.wave-bar { transform-origin: center; }
+.speaking .wave-bar { animation: wave .9s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .speaking .wave-bar { animation: none; } }
+
+/* ---------- marketing / showcase helpers ---------- */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, var(--ink) 6%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--ink) 6%, transparent) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 40%, transparent 100%);
+}
+.text-brand { color: var(--ink); }
+.glow { box-shadow: var(--shadow), inset 0 1px 0 var(--hi); }
+/* Surfaces: tonal layers with a hairline and a faint top highlight (anodised panel), no gradients or glows. */
+.card { background: var(--sheet); border: 1px solid var(--rule); border-radius: 12px; box-shadow: inset 0 1px 0 var(--hi); }
+.surface { background: var(--raised); border: 1px solid var(--rule); border-radius: 12px; box-shadow: var(--shadow), inset 0 1px 0 var(--hi); }
+.hairline { border-color: var(--rule); }
+.kbd { display: inline-flex; align-items: center; height: 20px; padding: 0 6px; border: 1px solid var(--rule-strong); border-bottom-width: 2px; border-radius: 5px; font: 500 11px/1 var(--font-mono); color: var(--ink-2); }
+/* Small tracked mono label, used sparingly: page dates, readings, breadcrumbs. */
+.label { font: 500 11.5px/1.2 var(--font-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--pencil); }
+.display { font-stretch: 86%; font-weight: 600; letter-spacing: -0.032em; line-height: .94; }
+.code { font-family: var(--font-mono); font-size: .86em; letter-spacing: -0.01em; }
+@keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.rise { animation: rise .45s ease-out both; }
+@media (prefers-reduced-motion: reduce) { .rise { animation: none; } }
+/* hero live feed: a new beat grows in from zero height so older beats glide up instead of jumping */
+@keyframes feed-in { from { opacity: 0; max-height: 0; transform: translateY(10px); } 60% { opacity: .4; } to { opacity: 1; max-height: 120px; transform: none; } }
+.feed-in { animation: feed-in .55s cubic-bezier(.2,.7,.2,1) both; overflow: hidden; }
+@keyframes approve-pulse { 0%, 100% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--ochre) 0%, transparent); } 50% { box-shadow: 0 0 0 4px color-mix(in oklab, var(--ochre) 28%, transparent); } }
+.approve-pulse { animation: approve-pulse 1.4s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .feed-in, .approve-pulse { animation: none; } }

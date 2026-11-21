@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Shifttrace description: select all, copy, paste</title>
+<style>body{font:15px/1.55 system-ui,Segoe UI,sans-serif;max-width:860px;margin:24px auto;padding:0 16px;color:#16202a}.tip{user-select:none;-webkit-user-select:none;background:#fff6d6;border:1px solid #e8c45a;padding:8px 12px;border-radius:6px;font-size:13px}code{font-family:inherit}</style></head>
+<body>
+<p class="tip">Click inside this page, press <b>Ctrl+A</b> then <b>Ctrl+C</b>, and paste into the Commudle description box with <b>Ctrl+V</b>.</p>
+
+<p><strong>Every shift hands over. Nothing gets lost.</strong></p>
+
+<p>Frontline teams lose knowledge at every shift change. What a technician saw, tried and ruled out ends up in their head or a chat thread, so the next shift starts over. Shifttrace is a hands-free voice and camera agent for frontline workers that remembers every shift and only acts on a spoken yes.</p>
+
+<p><strong>How it works</strong><br>A worker starts a voice session at a machine and talks naturally, with a headset or a rugged handheld.</p>
+<ul>
+<li>The agent recalls the previous shift's handoff, open questions and work orders.</li>
+<li>It reads the machine panel through the live camera. Readings are saved as model observations, never as a confirmed diagnosis.</li>
+<li>It looks up the manual, stock and history through 22 tools over MCP.</li>
+<li>It drafts consequential actions (a part order, a stock transfer) and reads them back. Nothing happens until the worker says yes out loud. The AI can never approve its own action.</li>
+<li>Every change is re-read from the database before the agent may say it is done. A claim guard catches the agent if it says something happened that did not.</li>
+<li>At the end it writes a shift handoff where every line traces to a record. The handoff goes to the team's Slack, Teams, Telegram, WhatsApp, Excel or calendar, with the report attached.</li>
+</ul>
+
+<p><strong>Architecture: seven layers</strong></p>
+<ol>
+<li><strong>Device:</strong> a browser on a phone, laptop or rugged handheld, with mic, camera, push-to-talk and a barcode scanner.</li>
+<li><strong>Real-time voice:</strong> Agora RTC carries audio and video, and Agora RTM carries transcripts and agent state. The Agora Conversational AI Engine runs speech recognition (Deepgram nova-3, managed), a vision-capable LLM (gpt-4o-mini, managed) and Murf Falcon text-to-speech.</li>
+<li><strong>Tools:</strong> the Shifttrace MCP server (FastMCP, streamable HTTP). It is the only port exposed to the internet, and Agora must present a bearer token to call it.</li>
+<li><strong>Trust:</strong> a spoken-approval gate, a re-read before anything is reported as done, a claim guard, and provenance on every record.</li>
+<li><strong>Records:</strong> SQLite as the system of record, an audit log of every tool call, and site "packs" (JSON configuration for machines, manuals, limits and tasks).</li>
+<li><strong>Integrations:</strong> Slack, Microsoft Teams, Telegram, WhatsApp, Excel / Google Sheets, Jira, GitHub, signed webhooks, and calendar links.</li>
+<li><strong>Console:</strong> a React app with the shift board, live session trace, handoff, audit log, records, agent quality page and a 3D floor view.</li>
+</ol>
+
+<p><strong>The 22 MCP tools</strong><br>The agent can act only through these tools. Each task has its own allowlist, enforced twice: in Agora's allowed tools and again on the server. A read-only briefing cannot reach a write tool, even if the model tries.</p>
+
+<p><em>Core tools (16), available in every task:</em></p>
+<ul>
+<li><strong>get_asset_history:</strong> the machine's memory, with work orders, their log and recent technician entries</li>
+<li><strong>get_previous_handoff:</strong> the last shift's handoff, with what was seen, what was verified and what was left open</li>
+<li><strong>get_open_items:</strong> hypotheses and questions that no shift has closed yet</li>
+<li><strong>get_open_work_orders:</strong> open work orders with status, priority and notes</li>
+<li><strong>search_maintenance_manual:</strong> searches the machine's manual (BM25); the agent quotes the section number</li>
+<li><strong>check_inventory:</strong> stock by part, with quantity, location, lead time and open orders</li>
+<li><strong>reserve_spare_part:</strong> reserves an in-stock part against a work order</li>
+<li><strong>create_procurement_request:</strong> drafts an order for an out-of-stock part; nothing is ordered yet</li>
+<li><strong>approve_procurement_request:</strong> submits the order, only after the worker's spoken yes</li>
+<li><strong>update_work_order:</strong> adds a note and changes the status</li>
+<li><strong>escalate_incident:</strong> raises an escalation to the supervisor with a severity and a reason</li>
+<li><strong>record_observation:</strong> saves what was seen or suspected, tagged with its source</li>
+<li><strong>record_reading:</strong> saves a numeric reading and checks it against the machine's limits</li>
+<li><strong>update_open_item:</strong> closes a hypothesis or question as confirmed, ruled out or answered, with the evidence</li>
+<li><strong>create_shift_handoff:</strong> writes the handoff from stored records only</li>
+<li><strong>schedule_follow_up:</strong> schedules what, when and who, from spoken due dates</li>
+</ul>
+
+<p><em>Domain tools (6), switched on per task:</em></p>
+<ul>
+<li><strong>track_shipment:</strong> carrier status, last scan, ETA and items on board</li>
+<li><strong>create_stock_transfer:</strong> drafts a stock move between locations</li>
+<li><strong>confirm_stock_transfer:</strong> moves the stock and posts it to the ERP, only after a spoken yes</li>
+<li><strong>get_training_module:</strong> starts a training module, with its questions and pass mark</li>
+<li><strong>record_training_answer:</strong> marks a spoken answer in code against the manual (the model never sees the answer key)</li>
+<li><strong>finish_training_module:</strong> scores the module and updates the learning record</li>
+</ul>
+
+<p><strong>One order, step by step</strong><br>get_previous_handoff → record_observation (camera: "A-17 DISCH TEMP HIGH, 108 °C") → search_maintenance_manual ("A-17") → check_inventory (0 in stock) → create_procurement_request (draft PR-2001, read back) → the worker says "Yes, order it." → approve_procurement_request (checked against the transcript, submitted, re-read) → event sent to Slack, Telegram and Excel → create_shift_handoff.</p>
+
+<p><strong>Covers the whole Voice AI at Work track</strong></p>
+<ul>
+<li>Field technician troubleshooting</li>
+<li>Factory floor preventive maintenance</li>
+<li>Facilities inspection rounds</li>
+<li>Warehouse and logistics: stock transfers, shipments, barcode scans</li>
+<li>Training and onboarding, with answers marked in code, not by the model</li>
+<li>Read-only shift briefings</li>
+</ul>
+<p>Each use case is configuration (packs and tasks), not new code.</p>
+
+<p><strong>Built with</strong></p>
+<ul>
+<li>Agora Conversational AI Engine for real-time voice, with the agent's tools served over MCP, and Agora RTC/RTM for audio, camera and transcripts</li>
+<li>Murf Falcon text-to-speech for the agent's voice</li>
+<li>A vision-capable LLM for reading the camera</li>
+<li>FastAPI, SQLite, React and three.js</li>
+</ul>
+
+<p><strong>Built for the floor, priced for it</strong></p>
+<ul>
+<li>Idle pause, camera on demand and push-to-talk mean nothing streams all day.</li>
+<li>A live cost meter shows the cost per session and per shift.</li>
+<li>Works with Zebra DataWedge and keyboard-wedge barcode scanners, or the device camera.</li>
+</ul>
+
+<p><strong>Proof, not slides</strong></p>
+<ul>
+<li>44 failures found in live runs against the real Agora agent are logged with their root cause and fix.</li>
+<li>89 automated tests pin those fixes.</li>
+<li>An Agent quality page shows the improvement loop.</li>
+</ul>
+
+<p>All demo data is synthetic.</p>
+</body></html>

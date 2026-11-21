@@ -1,0 +1,290 @@
+{
+ "vision": {
+  "ready_s": 23.4,
+  "steps": [
+   {
+    "name": "panel_read",
+    "said": "What does the panel display show right now?",
+    "heard": "What does the panel do? Display show right now?",
+    "asr_similarity": 0.94,
+    "replies": [
+     "The panel shows a discharge temperature of 108\u00b0C and a vibration reading of 7.4 mm/s. The \"TEMP HIGH\" lamp is lit, indicating a high temperature condition. Would you like to check the manual for possible causes?"
+    ],
+    "tools": [],
+    "evidence": [],
+    "latency_ms": 11358,
+    "duration_s": 28.7,
+    "checks": [
+     [
+      "vision: should read A-17/TEMP HIGH/108",
+      true,
+      ""
+     ]
+    ],
+    "camera": "image:panel_alarm.png",
+    "passed": true
+   },
+   {
+    "name": "panel_read",
+    "said": "What does the panel display show right now?",
+    "heard": "What does the panel display show right now?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "The panel currently displays a discharge temperature of 108\u00b0C and a vibration reading of 7.4 mm/s. The \"TEMP HIGH\" lamp is still illuminated. Please hold the camera steady for clearer details if needed."
+    ],
+    "tools": [],
+    "evidence": [],
+    "latency_ms": 6704,
+    "duration_s": 27.9,
+    "checks": [
+     [
+      "vision: blurred: read it or say unclear",
+      true,
+      ""
+     ]
+    ],
+    "camera": "image:panel_alarm.png {'blur': 5}",
+    "passed": true
+   },
+   {
+    "name": "panel_read",
+    "said": "What does the panel display show right now?",
+    "heard": "What does the panel display show right now?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "The panel shows a discharge temperature of 108\u00b0C and a vibration reading of 7.4 mm/s. The \"TEMP HIGH\" lamp remains lit."
+    ],
+    "tools": [],
+    "evidence": [],
+    "latency_ms": 8297,
+    "duration_s": 23.2,
+    "checks": [
+     [
+      "vision: dim: read it or say too dark",
+      true,
+      ""
+     ]
+    ],
+    "camera": "image:panel_alarm.png {'bright': 0.3}",
+    "passed": true
+   },
+   {
+    "name": "panel_read",
+    "said": "What does the panel display show right now?",
+    "heard": "What does the panel display show right now?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "The panel displays a discharge temperature of 108\u00b0C and a vibration reading of 7.4 mm/s, with the \"TEMP HIGH\" lamp still lit. Would you like to troubleshoot further?"
+    ],
+    "tools": [],
+    "evidence": [],
+    "latency_ms": 3003,
+    "duration_s": 24.5,
+    "checks": [
+     [
+      "vision: angled and far",
+      true,
+      ""
+     ]
+    ],
+    "camera": "image:panel_alarm.png {'rotate': 22, 'zoom': 0.55}",
+    "passed": true
+   },
+   {
+    "name": "panel_read",
+    "said": "What does the panel display show right now?",
+    "heard": "What does the panel display show right now?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "The panel shows a discharge temperature of 108\u00b0C and a vibration reading of 7.4 mm/s. The \"TEMP HIGH\" lamp is still illuminated. What action would you like to take next?"
+    ],
+    "tools": [],
+    "evidence": [],
+    "latency_ms": 2991,
+    "duration_s": 26.1,
+    "checks": [
+     [
+      "vision: glare",
+      true,
+      ""
+     ]
+    ],
+    "camera": "image:panel_alarm.png {'glare': True}",
+    "passed": true
+   },
+   {
+    "name": "panel_read",
+    "said": "What does the panel display show right now?",
+    "heard": "What does the panel display show right now?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "The panel now shows \"NO ACTIVE ALARM,\" a discharge temperature of 96\u00b0C, and a vibration reading of 2.6 mm/s. Would you like to log this observation or proceed with another action?"
+    ],
+    "tools": [],
+    "evidence": [],
+    "latency_ms": 4216,
+    "duration_s": 28.7,
+    "checks": [
+     [
+      "vision: normal panel: must NOT report A-17",
+      true,
+      ""
+     ]
+    ],
+    "camera": "image:panel_normal.png",
+    "passed": true
+   },
+   {
+    "name": "panel_read",
+    "said": "What does the panel display show right now?",
+    "heard": "Right now,",
+    "asr_similarity": 0.4,
+    "replies": [
+     "The panel displays \"NO ACTIVE ALARM,\" a discharge temperature of 96\u00b0C, and a vibration reading of 2.6 mm/s. What would you like to do next?"
+    ],
+    "tools": [],
+    "evidence": [],
+    "latency_ms": 5847,
+    "duration_s": 26.7,
+    "checks": [
+     [
+      "vision: should read A-22 vibration",
+      true,
+      ""
+     ]
+    ],
+    "camera": "image:panel_a22.png",
+    "passed": true
+   },
+   {
+    "name": "alarm_code",
+    "said": "Read me the alarm code on the display.",
+    "heard": "Read me the alarm code on the display.",
+    "asr_similarity": 1.0,
+    "replies": [
+     "There is currently no active alarm displayed on the panel. Would you like to check the manual for alarm codes?"
+    ],
+    "tools": [],
+    "evidence": [],
+    "latency_ms": 4492,
+    "duration_s": 18.0,
+    "checks": [
+     [
+      "vision: blank camera: must not invent a code",
+      false,
+      ""
+     ]
+    ],
+    "camera": "blank:",
+    "passed": false
+   },
+   {
+    "name": "what_machine",
+    "said": "What kind of equipment am I looking at?",
+    "heard": "What kind of equipment am I looking at?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "You're looking at a schematic diagram of a Westinghouse air compressor. It shows components like the boiler, valves, and the air pump connections. Would you like to know more about specific parts or how they function?"
+    ],
+    "tools": [],
+    "evidence": [],
+    "latency_ms": 3586,
+    "duration_s": 26.1,
+    "checks": [
+     [
+      "vision: real photo (Flickr): old compressor",
+      true,
+      ""
+     ]
+    ],
+    "camera": "image:img_real_westinghouse.jpg",
+    "passed": true
+   },
+   {
+    "name": "alarm_code",
+    "said": "Read me the alarm code on the display.",
+    "heard": "Read me the alarm code on the display.",
+    "asr_similarity": 1.0,
+    "replies": [
+     "I can't see an alarm code displayed in this view. Would you like to adjust the camera or check a specific area?"
+    ],
+    "tools": [],
+    "evidence": [],
+    "latency_ms": 4364,
+    "duration_s": 18.2,
+    "checks": [
+     [
+      "vision: real industrial panel: must not carry over A-17 from earlier frames",
+      true,
+      ""
+     ]
+    ],
+    "camera": "image:img_real_panel_1.jpg",
+    "passed": true
+   },
+   {
+    "name": "what_machine",
+    "said": "What kind of equipment am I looking at?",
+    "heard": "What kind of equipment am I looking at?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "You're looking at a set of pressure and vacuum gauges. The left and middle ones are vacuum gauges, while the right one measures oil pressure. Would you like to know how to use them or their specifications?"
+    ],
+    "tools": [],
+    "evidence": [],
+    "latency_ms": 5560,
+    "duration_s": 26.6,
+    "checks": [
+     [
+      "vision: real photo: pressure gauge",
+      true,
+      ""
+     ]
+    ],
+    "camera": "image:img_real_gauge.jpg",
+    "passed": true
+   },
+   {
+    "name": "what_machine",
+    "said": "What kind of equipment am I looking at?",
+    "heard": "What kind of equipment am I looking at?",
+    "asr_similarity": 1.0,
+    "replies": [
+     "You're looking at a control panel for electrical equipment, likely related to power generation or distribution. It includes various gauges, switches, and indicators for monitoring system conditions. Would you like information on specific components?"
+    ],
+    "tools": [],
+    "evidence": [],
+    "latency_ms": 5417,
+    "duration_s": 28.6,
+    "checks": [
+     [
+      "vision: real panel, moving camera video",
+      true,
+      ""
+     ]
+    ],
+    "camera": "video:vid_real_panel_pan.webm",
+    "passed": true
+   }
+  ],
+  "session_id": "S-1001",
+  "audio": "C:\\Users\\nidhi\\dev\\voice\\shifttrace\\experiments\\scenarios\\20261120-000846\\audio\\vision.webm",
+  "page_errors": [],
+  "agent_config_tts": {
+   "vendor": "murf",
+   "params": {
+    "api_key": "***redacted***",
+    "base_url": "wss://global.api.murf.ai/v1/speech/stream-input",
+    "voiceId": "en-IN-isha",
+    "locale": "en-IN",
+    "model": "FALCON",
+    "sample_rate": 24000
+   }
+  },
+  "audio_level": {
+   "mean_db": -22.2,
+   "max_db": -0.0,
+   "duration": null
+  }
+ }
+}

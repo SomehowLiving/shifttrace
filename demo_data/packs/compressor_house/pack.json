@@ -1,0 +1,706 @@
+{
+ "id": "compressor_house",
+ "name": "Compressor house (Building B utilities)",
+ "description": "Rotary screw compressor C-204 with a recurring A-17 temperature alarm and drive-end vibration; a sensor swap did not fix it. Plus cooling water pump P-117.",
+ "manuals": [
+  {
+   "model": "KS-75",
+   "prefix": "KS75",
+   "file": "KS-75_service_manual.md"
+  }
+ ],
+ "assets": [
+  {
+   "asset_id": "C-204",
+   "name": "Compressor C-204",
+   "asset_type": "Rotary screw air compressor",
+   "manufacturer": "Kestrel Air Systems (fictional)",
+   "model": "KS-75",
+   "serial_no": "KS75-22-0417",
+   "location": "Building B, Line 3 utilities bay",
+   "status": "DEGRADED",
+   "criticality": "High",
+   "metadata": {
+    "rated_power_kw": 75,
+    "running_hours": 18420,
+    "commissioned": "2022-03",
+    "serves": "Line 3 pneumatic tools and packaging",
+    "qr": "SHIFTTRACE:C-204",
+    "tasks": [
+     "troubleshoot",
+     "preventive_maintenance",
+     "inspection_round",
+     "onboarding",
+     "shift_briefing"
+    ],
+    "safety_notes": [
+     "Before bearing or coupling work, lockout and tagout is required (manual section 7.1)."
+    ],
+    "panel": {
+     "title": "KESTREL KS-75",
+     "subtitle": "ROTARY SCREW COMPRESSOR · C-204",
+     "lamps": [
+      {
+       "key": "run",
+       "label": "RUN",
+       "color": "#2fbf71"
+      },
+      {
+       "key": "load",
+       "label": "LOAD",
+       "color": "#2fbf71"
+      },
+      {
+       "key": "temp",
+       "label": "TEMP HIGH",
+       "color": "#ff3b30"
+      },
+      {
+       "key": "service",
+       "label": "SERVICE",
+       "color": "#f5a524"
+      },
+      {
+       "key": "fault",
+       "label": "FAULT",
+       "color": "#ff3b30"
+      }
+     ],
+     "lit": [
+      "run",
+      "load",
+      "temp"
+     ],
+     "alarms": [
+      "A-17 DISCH TEMP HIGH",
+      "A-22 VIBRATION HIGH",
+      "A-31 OIL PRESS LOW",
+      "NO ACTIVE ALARM"
+     ],
+     "readings": [
+      {
+       "key": "temp",
+       "label": "DISCHARGE TEMP",
+       "unit": "°C",
+       "value": 108,
+       "step": 2,
+       "min": 96,
+       "max": 116,
+       "decimals": 0
+      },
+      {
+       "key": "vib",
+       "label": "DE VIBRATION",
+       "unit": "mm/s",
+       "value": 7.4,
+       "step": 0.6,
+       "min": 2.6,
+       "max": 11,
+       "decimals": 1
+      }
+     ]
+    },
+    "limits": [
+     {
+      "label": "discharge temperature",
+      "aliases": [
+       "discharge temp",
+       "temperature",
+       "temp"
+      ],
+      "unit": "°C",
+      "normal": [
+       80,
+       100
+      ],
+      "limit_high": 105,
+      "section": "9.1",
+      "action_high": "Warning level for alarm A-17; report to the shift supervisor."
+     },
+     {
+      "label": "DE vibration",
+      "aliases": [
+       "drive end vibration",
+       "drive-end vibration",
+       "de vibration",
+       "vibration"
+      ],
+      "unit": "mm/s",
+      "normal": [
+       0,
+       2.8
+      ],
+      "limit_high": 7.1,
+      "section": "6.3",
+      "note": "2.8 to 7.1 is acceptable; monitor the trend.",
+      "action_high": "Alarm zone: plan bearing replacement at the next opportunity; above 11.0 stop the unit."
+     },
+     {
+      "label": "NDE vibration",
+      "aliases": [
+       "non drive end vibration",
+       "non-drive end vibration",
+       "nde vibration"
+      ],
+      "unit": "mm/s",
+      "normal": [
+       0,
+       2.8
+      ],
+      "limit_high": 7.1,
+      "section": "6.3",
+      "note": "2.8 to 7.1 is acceptable; monitor the trend."
+     },
+     {
+      "label": "discharge pressure",
+      "aliases": [
+       "pressure"
+      ],
+      "unit": "bar",
+      "limit_low": 7.0,
+      "limit_high": 7.5,
+      "section": "9.1"
+     }
+    ],
+    "training": [
+     {
+      "module_id": "KS75-SAFE-1",
+      "title": "KS-75 safety and alarms basics",
+      "pass_score": 80,
+      "intro": "Three questions on isolating the compressor, its alarm codes and the vibration limits.",
+      "questions": [
+       {
+        "id": "q1",
+        "ask": "Before any bearing or coupling work on the compressor, what must you do?",
+        "section": "7.1",
+        "min_points": 2,
+        "key_points": [
+         [
+          "lock out",
+          "lockout",
+          "isolate",
+          "main breaker",
+          "lock and tag",
+          "lock"
+         ],
+         [
+          "tag out",
+          "tagout",
+          " tag"
+         ],
+         [
+          "zero energy",
+          "bleed",
+          "blowdown",
+          "residual pressure",
+          "attempting a start",
+          "try to start",
+          "verify"
+         ]
+        ],
+        "explain": "Stop from the panel, isolate the main breaker with a personal lock and tag, close the discharge valve, bleed to zero and verify zero energy by attempting a start. Never rely on the STOP button alone."
+       },
+       {
+        "id": "q2",
+        "ask": "What does alarm A-17 mean, and at what temperature does the unit shut down?",
+        "section": "1.2",
+        "min_points": 2,
+        "key_points": [
+         [
+          "discharge temp",
+          "discharge temperature",
+          "temperature high",
+          "temp high",
+          "too hot"
+         ],
+         [
+          "115"
+         ]
+        ],
+        "explain": "A-17 is discharge temperature high: warning at 105 degrees C, automatic shutdown at 115 degrees C."
+       },
+       {
+        "id": "q3",
+        "ask": "At what drive-end vibration level are you in the alarm zone, and what should you plan?",
+        "section": "6.3",
+        "min_points": 2,
+        "key_points": [
+         [
+          "7.1"
+         ],
+         [
+          "bearing replacement",
+          "replace the bearing",
+          "replacing the bearing",
+          "bearing",
+          "plan replacement"
+         ]
+        ],
+        "explain": "7.1 to 11.0 mm/s is the alarm zone: plan a bearing replacement at the next opportunity. Above 11.0 mm/s, stop the unit."
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "asset_id": "P-117",
+   "name": "Cooling water pump P-117",
+   "asset_type": "Centrifugal pump",
+   "manufacturer": "Riverline Pumps (fictional)",
+   "model": "RL-40",
+   "serial_no": "RL40-21-1180",
+   "location": "Building B, cooling loop",
+   "status": "RUNNING",
+   "criticality": "Medium",
+   "metadata": {
+    "rated_power_kw": 22,
+    "running_hours": 9310,
+    "qr": "SHIFTTRACE:P-117",
+    "tasks": [
+     "inspection_round",
+     "troubleshoot",
+     "preventive_maintenance",
+     "shift_briefing"
+    ],
+    "safety_notes": [
+     "Isolate the pump and close the suction and discharge valves before opening the seal housing."
+    ]
+   }
+  }
+ ],
+ "parts": [
+  {
+   "part_id": "BRG-6316-C3",
+   "name": "Bearing 6316-C3 (motor drive end)",
+   "description": "Deep groove ball bearing, C3 clearance",
+   "quantity_on_hand": 0,
+   "quantity_reserved": 0,
+   "location": "Stores A-14",
+   "reorder_threshold": 2,
+   "lead_time_days": 3,
+   "supplier": "Southfield Bearings (demo supplier)",
+   "compatible_models": "KS-75"
+  },
+  {
+   "part_id": "BRG-6314-C3",
+   "name": "Bearing 6314-C3 (motor non-drive end)",
+   "description": "Deep groove ball bearing, C3 clearance",
+   "quantity_on_hand": 1,
+   "quantity_reserved": 0,
+   "location": "Stores A-14",
+   "reorder_threshold": 1,
+   "lead_time_days": 3,
+   "supplier": "Southfield Bearings (demo supplier)",
+   "compatible_models": "KS-75"
+  },
+  {
+   "part_id": "CPL-INS-90",
+   "name": "Coupling elastomer insert",
+   "description": "Jaw coupling spider insert, 90 Shore A",
+   "quantity_on_hand": 3,
+   "quantity_reserved": 0,
+   "location": "Stores B-02",
+   "reorder_threshold": 2,
+   "lead_time_days": 5,
+   "supplier": "Drivetrain Supply (demo supplier)",
+   "compatible_models": "KS-75"
+  },
+  {
+   "part_id": "SNS-TS2",
+   "name": "Discharge temperature sensor TS-2",
+   "description": "PT100 probe with connector",
+   "quantity_on_hand": 1,
+   "quantity_reserved": 0,
+   "location": "Stores C-07",
+   "reorder_threshold": 1,
+   "lead_time_days": 7,
+   "supplier": "Kestrel spares (demo)",
+   "compatible_models": "KS-75"
+  },
+  {
+   "part_id": "GRS-EP2",
+   "name": "EP2 bearing grease cartridge",
+   "description": "Lithium-complex, 400 g",
+   "quantity_on_hand": 6,
+   "quantity_reserved": 0,
+   "location": "Stores C-01",
+   "reorder_threshold": 3,
+   "lead_time_days": 2,
+   "supplier": "Lubeco (demo supplier)",
+   "compatible_models": "ALL"
+  },
+  {
+   "part_id": "FLT-OIL-75",
+   "name": "Oil filter KS-75",
+   "description": "Spin-on oil filter",
+   "quantity_on_hand": 4,
+   "quantity_reserved": 0,
+   "location": "Stores C-03",
+   "reorder_threshold": 2,
+   "lead_time_days": 4,
+   "supplier": "Kestrel spares (demo)",
+   "compatible_models": "KS-75"
+  },
+  {
+   "part_id": "SEAL-RL40",
+   "name": "Mechanical seal kit RL-40",
+   "description": "Pump mechanical seal kit",
+   "quantity_on_hand": 2,
+   "quantity_reserved": 0,
+   "location": "Stores B-09",
+   "reorder_threshold": 1,
+   "lead_time_days": 6,
+   "supplier": "Riverline spares (demo)",
+   "compatible_models": "RL-40"
+  }
+ ],
+ "work_orders": [
+  {
+   "work_order_id": "WO-1187",
+   "asset_id": "C-204",
+   "title": "Intermittent vibration and discharge temperature warning (A-17)",
+   "description": "Operator reported vibration at the motor end during load cycles. TEMP HIGH lamp seen intermittently.",
+   "priority": "P2",
+   "status": "IN_PROGRESS",
+   "assigned_to": "Maintenance B-team",
+   "created_at": "ago:3d2h",
+   "updated_at": "ago:17h"
+  },
+  {
+   "work_order_id": "WO-1162",
+   "asset_id": "C-204",
+   "title": "Quarterly preventive maintenance: oil filter and regrease",
+   "description": "Routine PM.",
+   "priority": "P4",
+   "status": "CLOSED",
+   "assigned_to": "Maintenance A-team",
+   "created_at": "ago:41d",
+   "updated_at": "ago:40d"
+  },
+  {
+   "work_order_id": "WO-1191",
+   "asset_id": "P-117",
+   "title": "Seal weep at pump casing",
+   "description": "Minor seal weep observed on rounds.",
+   "priority": "P3",
+   "status": "OPEN",
+   "assigned_to": "Maintenance A-team",
+   "created_at": "ago:1d5h",
+   "updated_at": "ago:1d5h"
+  }
+ ],
+ "work_order_log": [
+  {
+   "work_order_id": "WO-1162",
+   "ts": "ago:40d",
+   "author": "Ravi Iyer",
+   "status_from": "IN_PROGRESS",
+   "status_to": "CLOSED",
+   "note": "Oil filter FLT-OIL-75 replaced, bearings regreased 25 g each.",
+   "via": "cmms"
+  },
+  {
+   "work_order_id": "WO-1187",
+   "ts": "ago:3d2h",
+   "author": "Shift supervisor",
+   "status_to": "OPEN",
+   "note": "Created from operator complaint.",
+   "session_id": "S-0987",
+   "via": "cmms"
+  },
+  {
+   "work_order_id": "WO-1187",
+   "ts": "ago:3d",
+   "author": "Ravi Iyer",
+   "status_from": "OPEN",
+   "status_to": "IN_PROGRESS",
+   "note": "Vibration confirmed by feel at motor DE. Monitoring.",
+   "session_id": "S-0987",
+   "via": "cmms"
+  },
+  {
+   "work_order_id": "WO-1187",
+   "ts": "ago:18h10m",
+   "author": "Anil Mehta",
+   "status_from": "IN_PROGRESS",
+   "status_to": "IN_PROGRESS",
+   "note": "Replaced discharge temperature sensor TS-2. A-17 recurred ~40 min later.",
+   "session_id": "S-0991",
+   "via": "cmms"
+  }
+ ],
+ "sessions": [
+  {
+   "session_id": "S-0987",
+   "asset_id": "C-204",
+   "technician": "Ravi Iyer",
+   "shift_label": "A shift",
+   "started_at": "ago:3d1h",
+   "ended_at": "ago:3d",
+   "status": "ENDED",
+   "summary": "Initial inspection after operator complaint."
+  },
+  {
+   "session_id": "S-0991",
+   "asset_id": "C-204",
+   "technician": "Anil Mehta",
+   "shift_label": "B shift (yesterday)",
+   "started_at": "ago:20h",
+   "ended_at": "ago:17h",
+   "status": "ENDED",
+   "summary": "Sensor TS-2 replaced; A-17 recurred; DE vibration in alarm zone."
+  }
+ ],
+ "evidence": [
+  {
+   "session_id": "S-0987",
+   "asset_id": "C-204",
+   "ts": "ago:3d50m",
+   "event_type": "technician_statement",
+   "source_type": "technician",
+   "title": "Vibration felt at motor end during load cycles",
+   "detail": "Ravi Iyer: \"Vibration is noticeable at the motor end when it loads up. No noise from the airend.\"",
+   "verified_by": "Ravi Iyer"
+  },
+  {
+   "session_id": "S-0991",
+   "asset_id": "C-204",
+   "ts": "ago:19h40m",
+   "event_type": "visual_observation",
+   "source_type": "camera_model",
+   "title": "TEMP HIGH lamp lit; display shows A-17 and 107 °C",
+   "detail": "Model observation from the technician's camera: TEMP HIGH lamp appears lit, panel display reads alarm A-17 with discharge temperature 107 °C.",
+   "model_id": "gpt-4o-mini via Agora ConvoAI (camera frames)",
+   "status": "verified",
+   "verified_by": "Anil Mehta"
+  },
+  {
+   "session_id": "S-0991",
+   "asset_id": "C-204",
+   "ts": "ago:19h5m",
+   "event_type": "action",
+   "source_type": "tool_result",
+   "title": "Discharge temperature sensor TS-2 replaced",
+   "detail": "Part SNS-TS2 issued from stores and installed. Recorded on WO-1187.",
+   "verified_by": "Anil Mehta"
+  },
+  {
+   "session_id": "S-0991",
+   "asset_id": "C-204",
+   "ts": "ago:18h20m",
+   "event_type": "technician_statement",
+   "source_type": "technician",
+   "title": "A-17 came back about 40 minutes after the sensor swap",
+   "detail": "Anil Mehta: \"Warning came back about forty minutes after I swapped the sensor.\"",
+   "verified_by": "Anil Mehta"
+  },
+  {
+   "session_id": "S-0991",
+   "asset_id": "C-204",
+   "ts": "ago:18h5m",
+   "event_type": "technician_statement",
+   "source_type": "technician",
+   "title": "Drive-end vibration 7.4 mm/s, non-drive end 3.1 mm/s",
+   "detail": "Anil Mehta: \"Handheld reading at motor DE is 7.4 millimetres per second, NDE 3.1.\" (Alarm zone per manual §6.3 starts at 7.1.)",
+   "verified_by": "Anil Mehta"
+  },
+  {
+   "session_id": "S-0991",
+   "asset_id": "C-204",
+   "ts": "ago:18h",
+   "event_type": "hypothesis",
+   "source_type": "agent_inference",
+   "title": "Sensor TS-2 is the cause of A-17",
+   "detail": "Ruled out: A-17 recurred with a new sensor installed (manual §4.2).",
+   "status": "ruled_out",
+   "verified_by": "Anil Mehta"
+  },
+  {
+   "session_id": "S-0991",
+   "asset_id": "C-204",
+   "ts": "ago:17h55m",
+   "event_type": "hypothesis",
+   "source_type": "agent_inference",
+   "title": "Motor DE bearing wear is contributing to vibration and heat",
+   "detail": "Suggested by DE 7.4 mm/s with NDE normal (manual §6.3). Not confirmed: bearing not inspected.",
+   "status": "open"
+  },
+  {
+   "session_id": "S-0991",
+   "asset_id": "C-204",
+   "ts": "ago:17h50m",
+   "event_type": "open_question",
+   "source_type": "agent_inference",
+   "title": "Does vibration rise before or after the TEMP HIGH warning?",
+   "detail": "Manual §4.2 recommends recording this to separate a cooling problem from a mechanical one. Not observed yet.",
+   "status": "open"
+  },
+  {
+   "session_id": "S-0991",
+   "asset_id": "C-204",
+   "ts": "ago:17h45m",
+   "event_type": "open_question",
+   "source_type": "technician",
+   "title": "Coupling alignment and insert not checked",
+   "detail": "Anil Mehta ran out of time; manual §6.4 says misalignment can cause the same DE vibration.",
+   "status": "open",
+   "verified_by": "Anil Mehta"
+  },
+  {
+   "session_id": "S-0991",
+   "asset_id": "C-204",
+   "ts": "ago:17h1m",
+   "event_type": "system_record",
+   "source_type": "cmms",
+   "title": "Shift handoff H-0042 created",
+   "detail": "Handoff stored for the next shift."
+  }
+ ],
+ "handoffs": [
+  {
+   "handoff_id": "H-0042",
+   "asset_id": "C-204",
+   "session_id": "S-0991",
+   "created_at": "ago:17h1m",
+   "created_by": "Anil Mehta",
+   "status": "PUBLISHED",
+   "report": {
+    "schema": "shifttrace.handoff/v1",
+    "asset": {
+     "asset_id": "C-204",
+     "name": "Compressor C-204",
+     "model": "KS-75",
+     "location": "Building B, Line 3 utilities bay"
+    },
+    "session": {
+     "session_id": "S-0991",
+     "technician": "Anil Mehta",
+     "shift": "B shift (yesterday)",
+     "started_at": "ago:20h",
+     "ended_at": "ago:17h"
+    },
+    "headline": "A-17 recurred after sensor TS-2 replacement; DE vibration 7.4 mm/s (alarm zone). Bearing suspected, not confirmed.",
+    "work_order": {
+     "work_order_id": "WO-1187",
+     "status": "IN_PROGRESS",
+     "priority": "P2",
+     "title": "Intermittent vibration and discharge temperature warning (A-17)"
+    },
+    "observations": [
+     {
+      "text": "TEMP HIGH lamp lit; display shows A-17 and 107 °C",
+      "source": "camera_model",
+      "verified_by": "Anil Mehta"
+     },
+     {
+      "text": "A-17 came back about 40 minutes after the sensor swap",
+      "source": "technician"
+     },
+     {
+      "text": "Drive-end vibration 7.4 mm/s, non-drive end 3.1 mm/s",
+      "source": "technician"
+     }
+    ],
+    "actions_completed": [
+     {
+      "text": "Discharge temperature sensor TS-2 replaced (part SNS-TS2)",
+      "verified": true,
+      "ref": "WO-1187"
+     }
+    ],
+    "actions_failed_or_pending": [
+     {
+      "text": "Bearing BRG-6316-C3 availability not checked",
+      "ref": null
+     }
+    ],
+    "parts": [],
+    "ruled_out": [
+     {
+      "text": "Sensor TS-2 is the cause of A-17",
+      "reason": "A-17 recurred with a new sensor"
+     }
+    ],
+    "open_loops": [
+     {
+      "text": "Motor DE bearing wear is contributing to vibration and heat",
+      "type": "hypothesis"
+     },
+     {
+      "text": "Does vibration rise before or after the TEMP HIGH warning?",
+      "type": "open_question"
+     },
+     {
+      "text": "Coupling alignment and insert not checked",
+      "type": "open_question"
+     }
+    ],
+    "suggested_next_steps": [
+     "Check stores for DE bearing BRG-6316-C3 (suggestion).",
+     "Observe whether vibration precedes the A-17 warning (suggestion, manual §4.2).",
+     "Inspect coupling insert and alignment (suggestion, manual §6.4)."
+    ],
+    "manual_refs": [
+     "KS75-4.2",
+     "KS75-6.3",
+     "KS75-6.4"
+    ],
+    "spoken_summary": "Yesterday Anil Mehta replaced the TS-2 temperature sensor, but the A-17 warning came back forty minutes later, so the sensor has been ruled out. Drive-end vibration was 7.4 millimetres per second, in the alarm zone. A worn drive-end bearing is suspected but not confirmed. Still open: whether vibration starts before the warning, and the coupling has not been checked.",
+    "generated_by": "seed (synthetic history)"
+   }
+  }
+ ],
+ "procurement": [
+  {
+   "request_id": "PR-1987",
+   "part_id": "FLT-OIL-75",
+   "quantity": 2,
+   "work_order_id": "WO-1162",
+   "session_id": null,
+   "status": "SUBMITTED",
+   "reason": "Quarterly PM oil filter",
+   "created_by": "Ravi Iyer",
+   "approved_by": "Ravi Iyer",
+   "approval_via": "voice",
+   "approval_evidence": "\"Yes, order two.\" (earlier voice session)",
+   "supplier": "Kestrel Parts (demo supplier)",
+   "expected_by": "ago:38d",
+   "supplier_ref": "SO-1987-0412",
+   "created_at": "ago:42d",
+   "decided_at": "ago:42d"
+  },
+  {
+   "request_id": "PR-1994",
+   "part_id": "SNS-TS2",
+   "quantity": 1,
+   "work_order_id": "WO-1187",
+   "session_id": "S-0987",
+   "status": "SUBMITTED",
+   "reason": "Suspected faulty discharge temperature sensor",
+   "created_by": "Ravi Iyer",
+   "approved_by": "Shift supervisor",
+   "approval_via": "console",
+   "approval_evidence": "Approve button in SHIFTTRACE console",
+   "supplier": "Kestrel Parts (demo supplier)",
+   "expected_by": "ago:1d10h",
+   "supplier_ref": "SO-1994-0877",
+   "created_at": "ago:3d",
+   "decided_at": "ago:3d"
+  }
+ ],
+ "follow_ups": [
+  {
+   "follow_up_id": "FU-4997",
+   "title": "Check coupling alignment and elastomer insert on C-204",
+   "due_text": "today",
+   "due_date": "in:0d",
+   "assignee": "A shift",
+   "asset_id": "C-204",
+   "session_id": "S-0991",
+   "created_by": "Anil Mehta",
+   "status": "OPEN",
+   "created_at": "ago:16h"
+  }
+ ]
+}
