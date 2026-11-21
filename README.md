@@ -8,6 +8,9 @@ A technician talks to the machine's memory hands-free. The agent retrieves histo
 
 ## How it works
 
+![Shifttrace architecture: seven layers, 22 MCP tools, one voice turn end to end](submission/10-architecture.png)
+
+
 ```
 Browser (technician console)                     Agora cloud                        SHIFTTRACE backend
   mic + camera ── RTC ──────────────────────▶  ConvoAI agent                     ┌─ MCP server :8001 (tunnelled, bearer auth)

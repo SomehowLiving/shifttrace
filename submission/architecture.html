@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Shifttrace architecture</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Patrick+Hand&display=block" rel="stylesheet">
+<style>
+  :root { --paper: #fdfcfa; --ink: #2b2433; --line: #b7a8dc; --blob: #ece8fb; --box: #ffffff; --edge: #6f6a78; --accent: #6c4fd1; --lime: #8fb30f; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--paper); }
+  .page { position: relative; width: 1920px; height: 1080px; overflow: hidden; color: var(--ink); font-family: "Patrick Hand", "Segoe Print", cursive;
+          background: radial-gradient(circle at 1px 1px, #ebe7f3 1px, transparent 1.2px) 0 0 / 26px 26px, var(--paper); }
+  svg.wires { position: absolute; inset: 0; pointer-events: none; z-index: 1; }
+  .title { position: absolute; left: 44px; top: 26px; font-family: Kalam, cursive; font-weight: 700; font-size: 40px; line-height: 1; z-index: 3; }
+  .title small { display: block; font-family: "Patrick Hand", cursive; font-weight: 400; font-size: 20px; color: #6f6a78; margin-top: 6px; }
+  .legend { position: absolute; right: 44px; top: 30px; z-index: 3; font-size: 17px; color: #6f6a78; text-align: right; line-height: 1.35; }
+  .legend b { color: var(--accent); font-weight: 400; }
+  .map { position: absolute; left: 0; right: 0; top: 104px; height: 790px; display: grid; grid-template-columns: 1fr 270px 1fr; align-items: center; z-index: 2; }
+  .side { display: flex; flex-direction: column; justify-content: space-around; height: 100%; gap: 8px; }
+  .side.left { align-items: flex-end; padding-right: 64px; }
+  .side.right { align-items: flex-start; padding-left: 64px; }
+  .branch { position: relative; display: flex; align-items: center; gap: 34px; padding: 10px 18px; }
+  .left .branch { flex-direction: row-reverse; }
+  .branch::before { content: ""; position: absolute; inset: 0; background: var(--blob); border-radius: 46% 54% 40% 60% / 58% 42% 58% 42%; filter: url(#rough); z-index: -1; }
+  .head { font-family: Kalam, cursive; font-weight: 700; font-size: 25px; background: var(--box); border: 1.6px solid var(--edge); padding: 6px 14px; line-height: 1.1;
+          box-shadow: 2px 2px 0 rgba(43,36,51,.08); white-space: nowrap; }
+  .head .n { display: inline-grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: #fff; font-size: 16px; margin-right: 8px; transform: translateY(-2px); }
+  .head .sub { display: block; font-family: "Patrick Hand", cursive; font-weight: 400; font-size: 15px; color: #6f6a78; }
+  .groups { display: flex; flex-direction: column; gap: 8px; }
+  .group { display: flex; align-items: center; gap: 26px; }
+  .left .group { flex-direction: row-reverse; }
+  .gbox { font-size: 17px; background: var(--box); border: 1.3px solid var(--edge); padding: 2px 10px; white-space: nowrap; }
+  .leaves { display: flex; flex-direction: column; gap: 5px; }
+  .left .leaves { align-items: flex-end; }
+  .leaf { font-size: 15px; background: var(--box); border: 1px solid #8d8796; padding: 1px 8px; white-space: nowrap; color: #3b3444; line-height: 1.3; }
+  .leaf.code { font-family: "Cascadia Mono", Consolas, monospace; font-size: 12px; padding: 3px 8px; }
+  .leaf.key { border-color: var(--accent); color: var(--accent); }
+  .root { position: relative; justify-self: center; text-align: center; background: #fff; border: 2px solid var(--accent); padding: 18px 16px 14px; width: 250px;
+          box-shadow: 4px 4px 0 rgba(108,79,209,.15); }
+  .root .logo { width: 64px; height: 64px; margin: 0 auto 8px; }
+  .root .name { font-family: Kalam, cursive; font-weight: 700; font-size: 34px; line-height: 1; }
+  .root .tag { font-size: 17px; color: #6f6a78; margin-top: 6px; line-height: 1.25; }
+  .flow { position: absolute; left: 44px; right: 44px; bottom: 28px; height: 130px; z-index: 2; }
+  .flow .lbl { font-family: Kalam, cursive; font-weight: 700; font-size: 22px; margin-bottom: 8px; }
+  .flow .lbl span { font-family: "Patrick Hand", cursive; font-weight: 400; font-size: 17px; color: #6f6a78; margin-left: 10px; }
+  .steps { display: flex; align-items: stretch; gap: 0; position: relative; }
+  .steps::before { content: ""; position: absolute; inset: -8px -14px; background: var(--blob); border-radius: 38px 60px 44px 56px / 40px 30px 50px 36px; filter: url(#rough); z-index: -1; }
+  .step { flex: 1; background: #fff; border: 1.4px solid var(--edge); padding: 6px 10px; font-size: 16px; line-height: 1.2; text-align: center; }
+  .step b { display: block; font-family: Kalam, cursive; font-size: 17px; }
+  .step.gate { border: 2px solid var(--accent); }
+  .arrow { width: 34px; display: grid; place-items: center; color: var(--accent); font-size: 26px; flex: none; }
+</style></head>
+<body>
+<div class="page" id="page">
+  <svg width="0" height="0" style="position:absolute">
+    <filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves="2" seed="7"/><feDisplacementMap in="SourceGraphic" scale="16"/></filter>
+  </svg>
+  <svg class="wires" id="wires" width="1920" height="1080"></svg>
+
+  <div class="title">Shifttrace: how it fits together<small>Seven layers, from the worker's voice to the team's tools</small></div>
+  <div class="legend">Numbers are the layers, top of stack to bottom<br><b>Purple boxes</b> are where a person must say yes or where nothing is trusted until checked</div>
+
+  <div class="map">
+    <div class="side left" id="left"></div>
+    <div class="root" id="root">
+      <svg class="logo" viewBox="0 0 32 32"><rect width="32" height="32" rx="8" fill="#c8f135"/><path d="M5 19h6l3-9 4 14 3-8h6" stroke="#0d0f11" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="name">Shifttrace</div>
+      <div class="tag">Voice AI for the shift handover. Acts only on a spoken yes.</div>
+    </div>
+    <div class="side right" id="right"></div>
+  </div>
+
+  <div class="flow">
+    <div class="lbl">One voice turn, end to end<span>example: ordering a part</span></div>
+    <div class="steps" id="steps"></div>
+  </div>
+</div>
+
+<script>
+const L = [
+  { n: 1, title: "Device", sub: "phone, laptop, rugged handheld", groups: [
+    { leaves: ["Browser app (no install)", "Mic + camera", "Push-to-talk (F9 / Zebra PTT)", "Barcode: DataWedge, wedge, camera"] }] },
+  { n: 2, title: "Real-time voice", sub: "Agora", groups: [
+    { title: "Agora RTC", leaves: ["audio + video"] },
+    { title: "Agora RTM", leaves: ["transcripts, agent state"] },
+    { title: "Conversational AI Engine", leaves: ["ASR: Deepgram nova-3", "LLM: gpt-4o-mini (vision)", "TTS: Murf Falcon"] }] },
+  { n: 3, title: "MCP tools (22)", sub: "streamable HTTP, bearer token", groups: [
+    { title: "Memory", leaves: ["get_asset_history · get_previous_handoff", "get_open_items · get_open_work_orders"], code: true },
+    { title: "Knowledge", leaves: ["search_maintenance_manual · check_inventory"], code: true },
+    { title: "Actions", leaves: ["reserve_spare_part · create_procurement_request", "approve_procurement_request ✋ · update_work_order", "escalate_incident · schedule_follow_up"], code: true },
+    { title: "Evidence", leaves: ["record_observation · record_reading", "update_open_item · create_shift_handoff"], code: true },
+    { title: "Warehouse", leaves: ["track_shipment · create_stock_transfer", "confirm_stock_transfer ✋"], code: true },
+    { title: "Training", leaves: ["get_training_module · record_training_answer", "finish_training_module"], code: true }] },
+];
+const R = [
+  { n: 4, title: "Trust", sub: "nothing is believed until checked", groups: [
+    { leaves: [["Spoken-yes gate", 1], ["Re-read before \"done\"", 1], "Claim guard", "Provenance on every record", "Per-task tool allowlist"] }] },
+  { n: 5, title: "Records", sub: "system of record", groups: [
+    { leaves: ["SQLite + audit log of every call", "Site packs (JSON: machines, manuals, limits, tasks)", "Orders, stock, transfers, ERP postings", "Handoffs, follow-ups, learning records"] }] },
+  { n: 6, title: "Integrations", sub: "verified actions become events", groups: [
+    { title: "Chat", leaves: ["Slack · Teams · Telegram · WhatsApp"] },
+    { title: "Sheets", leaves: ["Excel · Google Sheets"] },
+    { title: "Tickets", leaves: ["Jira · GitHub · signed webhooks"] },
+    { title: "Calendar + reports", leaves: ["Google · Outlook · .ics · HTML + Excel"] }] },
+  { n: 7, title: "Console", sub: "React", groups: [
+    { leaves: ["Shift board", "Live session trace", "Handoff + audit log", "Agent quality loop", "3D floor view"] }] },
+];
+const STEPS = [
+  ["Worker speaks", "\"Order the bearing\""], ["Agora ASR", "speech to text"], ["LLM decides", "calls a tool"], ["MCP tool", "drafts PR-2001"],
+  ["Murf reads back", "\"Shall I submit?\""], ["Worker: \"Yes\"", "spoken approval", 1], ["Submit + re-read", "verified in DB", 1], ["Audit + event", "Slack, Excel"], ["Handoff", "next shift hears it"],
+];
+
+function el(tag, cls, html) { const e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; }
+function build(side, data) {
+  const root = document.getElementById(side);
+  for (const b of data) {
+    const br = el("div", "branch");
+    const head = el("div", "head", `<span class="n">${b.n}</span>${b.title}<span class="sub">${b.sub}</span>`);
+    head.dataset.role = "head";
+    const groups = el("div", "groups");
+    for (const g of b.groups) {
+      const grp = el("div", "group");
+      const leaves = el("div", "leaves");
+      for (const lf of g.leaves) {
+        const [text, key] = Array.isArray(lf) ? lf : [lf, 0];
+        leaves.appendChild(el("div", "leaf" + (g.code ? " code" : "") + (key || text.includes("✋") ? " key" : ""), text.replace("✋", "<b style='color:#6c4fd1'>✋</b>")));
+      }
+      if (g.title) { const gb = el("div", "gbox", g.title); grp.appendChild(gb); }
+      grp.appendChild(leaves);
+      groups.appendChild(grp);
+    }
+    br.appendChild(head); br.appendChild(groups);
+    root.appendChild(br);
+  }
+}
+build("left", L); build("right", R);
+const st = document.getElementById("steps");
+STEPS.forEach(([a, b, gate], i) => {
+  if (i) st.appendChild(el("div", "arrow", "→"));
+  st.appendChild(el("div", "step" + (gate ? " gate" : ""), `<b>${a}</b>${b}`));
+});
+
+function wire() {
+  const svg = document.getElementById("wires"); svg.innerHTML = "";
+  const page = document.getElementById("page").getBoundingClientRect();
+  const r = (e) => { const b = e.getBoundingClientRect(); return { l: b.left - page.left, r: b.right - page.left, t: b.top - page.top, b: b.bottom - page.top, cy: (b.top + b.bottom) / 2 - page.top }; };
+  const path = (x1, y1, x2, y2, w) => {
+    const dx = (x2 - x1) * 0.5;
+    const p = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    p.setAttribute("d", `M${x1},${y1} C${x1 + dx},${y1} ${x2 - dx},${y2} ${x2},${y2}`);
+    p.setAttribute("fill", "none"); p.setAttribute("stroke", "#a796d6"); p.setAttribute("stroke-width", w); p.setAttribute("stroke-linecap", "round");
+    svg.appendChild(p);
+  };
+  const root = r(document.getElementById("root"));
+  for (const side of ["left", "right"]) {
+    const left = side === "left";
+    for (const br of document.querySelectorAll(`#${side} .branch`)) {
+      const h = r(br.querySelector(".head"));
+      path(left ? root.l : root.r, root.cy, left ? h.r : h.l, h.cy, 2.2);
+      for (const g of br.querySelectorAll(".group")) {
+        const gb = g.querySelector(".gbox");
+        const leaves = [...g.querySelectorAll(".leaf")];
+        let from = h;
+        if (gb) { const gr = r(gb); path(left ? h.l : h.r, h.cy, left ? gr.r : gr.l, gr.cy, 1.5); from = gr; }
+        for (const lf of leaves) { const lr = r(lf); path(left ? from.l : from.r, from.cy, left ? lr.r : lr.l, lr.cy, 1.1); }
+      }
+    }
+  }
+}
+document.fonts.ready.then(() => requestAnimationFrame(wire));
+window.addEventListener("resize", wire);
+</script>
+</body></html>

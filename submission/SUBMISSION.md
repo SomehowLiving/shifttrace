@@ -48,14 +48,15 @@ All demo data is synthetic.
 
 ## Images (upload in this order; the first is the thumbnail)
 1. `00-cover.png`: cover / thumbnail
-2. `02-floor-3d-walk.png`: 3D view, worker walks to the compressor
-3. `03-floor-3d-spoken-approval.png`: 3D view, order drafted, waits for a spoken yes
-4. `06-live-session-trace.png`: live session trace (camera evidence, hypotheses, handoff so far)
-5. `05-shift-board.png`: shift board
-6. `07-handoff.png`: shift handoff report
-7. `04-floor-3d-handoff.png`: 3D view, handoff sent to the team's tools
-8. `08-connected-systems.png`: connected systems
-9. `09-agent-quality.png`: agent quality and improvement loop
+2. `10-architecture.png`: architecture mind map (seven layers, 22 MCP tools, one voice turn end to end)
+3. `02-floor-3d-walk.png`: 3D view, worker walks to the compressor
+4. `03-floor-3d-spoken-approval.png`: 3D view, order drafted, waits for a spoken yes
+5. `06-live-session-trace.png`: live session trace (camera evidence, hypotheses, handoff so far)
+6. `05-shift-board.png`: shift board
+7. `07-handoff.png`: shift handoff report
+8. `04-floor-3d-handoff.png`: 3D view, handoff sent to the team's tools
+9. `08-connected-systems.png`: connected systems
+10. `09-agent-quality.png`: agent quality and improvement loop
 
 All are 1920 x 1080 PNG.
 
