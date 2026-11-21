@@ -6,6 +6,27 @@ A voice-first, camera-aware maintenance assistant for PS31 (Voice AI at Work: Fi
 
 A technician talks to the machine's memory hands-free. The agent retrieves history and the previous shift's handoff, looks at the panel through the phone camera, records what is seen and said **with provenance**, checks stores, drafts a procurement request that only goes out after the technician's own spoken "yes", updates the work order, and writes a handoff for the next shift. The next technician asks "what happened, what did we try, what's still open?" and gets an answer built only from stored records.
 
+**Try it:** [shifttrace.onrender.com](https://shifttrace.onrender.com) is the product page, and [shifttrace.onrender.com/floor](https://shifttrace.onrender.com/floor) is the 3D floor view. Both are public. The console asks for a password because it can start paid voice sessions. The free instance sleeps when idle, so the first load takes about a minute.
+
+## Shifttrace on the floor (3D)
+
+[![Shifttrace on the floor: a technician walks to compressor C-204 and starts a voice session](submission/02-floor-3d-walk.png)](https://shifttrace.onrender.com/floor)
+
+An interactive 3D view of one shift on a plant floor, built with three.js (React Three Fiber). It plays the whole flow in under a minute, and you can pause it, jump between steps or orbit the camera:
+
+1. A technician with a headset and a rugged handheld walks to compressor C-204 and starts a voice session.
+2. They say what is wrong out loud. The agent checks the machine's history, the manual and stores through MCP tools, and answers in Murf Falcon's voice.
+3. The handheld's camera saves the gauge as evidence, labelled a model observation, not a diagnosis.
+4. No cooler kit is on site, so the agent drafts order PR-2001 and reads it back. Nothing is ordered until the technician says "yes".
+5. A barcode scan of the part label logs the pick against the job.
+6. The shift handoff is written for the next shift and lands in the team's chat, sheet and calendar.
+
+| Spoken approval | Handoff to the team's tools |
+|---|---|
+| [![The agent drafts PR-2001 and waits for a spoken yes](submission/03-floor-3d-spoken-approval.png)](https://shifttrace.onrender.com/floor) | [![The handoff is sent to Slack, Telegram, WhatsApp, Excel and the calendar](submission/04-floor-3d-handoff.png)](https://shifttrace.onrender.com/floor) |
+
+Open it at [/floor](https://shifttrace.onrender.com/floor), or from the product page. The source is in [frontend/src/floor3d/](frontend/src/floor3d/). It is an illustration, and every name and number in it is synthetic demo data.
+
 ## How it works
 
 ![Shifttrace architecture: seven layers, 22 MCP tools, one voice turn end to end](submission/10-architecture.png)
@@ -41,17 +62,22 @@ Every one runs the track's demo flow: initiate by voice (Agora Conversational AI
 
 - **Real integrations.** Every verified action (order submitted, stock transfer posted to the ERP, escalation, follow-up, handoff, learning record, out-of-limit reading) becomes a business event. It is delivered to whatever the site connects in `backend/.env`:
   - Slack and Microsoft Teams messages
+  - Telegram and WhatsApp messages, with the handoff report attached (HTML and Excel)
   - Jira or GitHub issues for escalations and follow-ups
+  - a row per event in Excel or Google Sheets (through a spreadsheet webhook)
   - HMAC-signed JSON webhooks for ERP, CMMS or automation tools (Zapier, Make, n8n)
-  - an `.ics` calendar feed of follow-ups
+  - calendar links (Google, Outlook) and an `.ics` feed for follow-ups
+
+  Every message links back to the console. Handoffs download as HTML or Excel, and **Action centre** exports an operations workbook.
 
   Each delivery is logged and retried, and you can see them in **Connected systems**. A built-in local test receiver verifies signatures, so the pipeline can be shown without any external account.
-- **The improvement loop.** `scripts/scenarios.py` drives the real agent with recorded speech and camera scenes, and every step is scored. Each failure goes into `experiments/FAILURES.md` (41 so far) with its root cause and fix, and is pinned by a test. **Agent quality** shows the runs, the pass rate per run, the fixes and the media dataset (Creative Commons photos, derived videos, rendered panels and speech, each with licence and source in `experiments/media/MEDIA_SOURCES.json`). Grow the dataset with `scripts/fetch_dataset.py`.
+- **The improvement loop.** `scripts/scenarios.py` drives the real agent with recorded speech and camera scenes, and every step is scored. Each failure goes into `experiments/FAILURES.md` (44 so far) with its root cause and fix, and is pinned by a test. **Agent quality** shows the runs, the pass rate per run, the fixes and the media dataset (Creative Commons photos, derived videos, rendered panels and speech, each with licence and source in `experiments/media/MEDIA_SOURCES.json`). Grow the dataset with `scripts/fetch_dataset.py`.
 
 ## Cost and devices
 
 - **Not live all the time.** The agent runs only during a session and pauses itself after silence, and the camera can be on demand. Each session shows its measured cost, and System projects the cost per worker per shift (about $1.40 for 40 active minutes at list prices, versus about $14.60 to stream a full shift).
-- **Rugged devices.** It runs in the browser on Android rugged handhelds and wearables. Barcode and QR scans work through DataWedge keystroke output or any keyboard-wedge scanner, and there is push-to-talk on Space or F9.
+- **Rugged devices.** It runs in the browser on Android rugged handhelds and wearables, and there is push-to-talk on Space or F9.
+- **Barcode and QR scans, with or without a scanner.** Zebra DataWedge keystroke output and any keyboard-wedge scanner work, and so does the phone or laptop camera (**Scan** in the sidebar). `/labels` prints QR labels for the demo machines, parts, bins and shipments.
 
 See [docs/COST_AND_DEVICES.md](docs/COST_AND_DEVICES.md).
 
@@ -90,7 +116,7 @@ Current verification status: [PROJECT_STATUS.md](PROJECT_STATUS.md).
 
 ```powershell
 cd backend
-uv run python -m pytest -q          # 53 tests: workflow, agent config, approval gate, failures, MCP over HTTP, guard, capture, packs/tasks, reading limits
+uv run python -m pytest -q          # 89 tests: workflow, agent config, approval gate, failures, MCP over HTTP, guard, capture, packs/tasks, reading limits, integrations, reports
 uv run python scripts/ui_smoke.py   # headless Edge: every page + console-driven workflow, screenshots to results/
 ```
 
